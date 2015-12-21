@@ -1,0 +1,75 @@
+// Place all the styles related to the Runs controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+$record-color: lighten($brand-info, 65%);
+$rain-color: lighten($brand-success, 65%);
+$night-color: lighten($gray-light, 25%);
+$record-hover-color: lighten($brand-info, 60%);
+$rain-hover-color: lighten($brand-success, 60%);
+$night-hover-color: lighten($gray-light, 20%);
+
+table.runs {
+  th {
+    text-align: center;
+  }
+
+  tr {
+    td {
+      width: 11%;
+      text-align: center;
+      &.start_time {
+        width: 23%;
+      }
+      a:visited {
+        color: $brand-primary;
+        background-color: lighten($brand-primary, 75%);
+        &:hover {
+          text-decoration: none;
+        }
+      }
+      &.record {
+        background-color: $record-color;
+      }
+      &.rain {
+        background-color: $rain-color;
+      }
+    }
+
+    &:hover {
+      td.record {
+        background-color: $record-hover-color;
+      }
+      td.rain {
+        background-color: $rain-hover-color;
+      }
+    }
+
+    &.night {
+      td {
+        background-color: $night-color;
+        &.record {
+          background-color: $record-color;
+        }
+        &.rain {
+          background-color: $rain-color;
+        }
+      }
+      &:hover {
+        td {
+          background-color: $night-hover-color;
+          &.record {
+            background-color: $record-hover-color;
+          }
+          &.rain {
+            background-color: $rain-hover-color;
+          }
+        }
+      }
+    }
+  }
+}
+
+.precip {
+  background-color: $rain-color;
+}

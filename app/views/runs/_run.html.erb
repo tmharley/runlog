@@ -1,0 +1,51 @@
+<% if run.is_race? %>
+<tr class="warning" title="<%= run.race_name %>">
+<% elsif run.is_night? %>
+<tr class="night">
+<% else %>
+<tr>
+<% end %>
+  <td class="start_time"><%= link_to run.start_time_local_string, run %></td>
+  <% if run.is_distance_record? %>
+  <td class="record" title="distance record">
+  <% else %>
+  <td>
+  <% end %>
+    <%= '%.2f' % run.distance %> mi
+  </td>
+  <td><%= run.duration_string %></td>
+  <% if run.is_pace_record? %>
+  <td class="record" title="pace record">
+  <% else %>
+  <td>
+  <% end %>
+    <%= run.pace_string %>
+  </td>
+  <% if run.temperature.nil? %>
+  <td>
+  </td>
+  <% else %>
+    <% if run.precip? %>
+  <td class="<%= temp_class(run.temperature) %> rain" title="rain">
+    <% else %>
+  <td class="<%= temp_class(run.temperature) %>">
+    <% end %>
+    <%= run.temperature %>&deg;F
+  </td>
+  <% end %>
+  <td>
+    <% if !run.elev_gain.nil? %>
+    <%= run.elev_gain %> ft
+    <% end %>
+  </td>
+  <td>
+    <%= star_output(run.sip_plus) %>
+  </td>
+  <% if !run.notes.blank? %>
+    <td title="<%= run.notes %>">
+      <%= build_glyphicon('comment') %>
+    </td>
+  <% else %>
+    <td></td>
+  <% end %>
+</tr>

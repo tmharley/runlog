@@ -1,0 +1,30 @@
+<% provide(:title, 'Shoes') %>
+
+<div class="page-header"><h1>Shoes</h1></div>
+
+<%= will_paginate %>
+
+<div class="panel panel-default">
+  <div class="panel-heading"><%= page_entries_info %></div>
+  <table class="shoes table table-hover">
+    <thead>
+    <tr>
+      <th>Manufacturer</th>
+      <th>Model</th>
+      <th>Colors</th>
+      <th>Size</th>
+      <th>Last used</th>
+      <th>Runs</th>
+      <th>Mileage</th>
+      <th>Details</th>
+    </tr>
+    </thead>
+    <%= render @shoes %>
+  </table>
+</div>
+
+<%= will_paginate %>
+
+<br />
+
+<%= link_to 'New Shoe', new_shoe_path, class: "btn btn-large btn-success" %>

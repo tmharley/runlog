@@ -1,0 +1,23 @@
+<div class="jumbotron">
+  <h1>Run Log</h1>
+  <p>This is a record of all my recorded runs, dating back to the very beginning.</p>
+  
+  <%= link_to "View all #{Run.count} runs", runs_path, class: "btn btn-large btn-primary" %>
+</div>
+
+<div class="panel panel-primary">
+  <div class="panel-heading"><%= link_to "#{Run.count} runs for #{total_mileage} total miles", runs_path %></div>
+  <ul class="list-group" start="<%= years.min %>">
+  <% years.each do |y| %>
+    <li class="list-group-item">
+      <h4 class="list-group-item-heading"><%= link_to "#{y}", runs_path(year: y) %></h4>
+      <span class="badge"><%= year_runs(y).count %></span>
+      <div class="progress list-group-item-text">
+        <div class="progress-bar" style="width: <%= mileage_for_year(y) / 610.93 * 100 %>%">
+          <%= mileage_for_year(y) %> miles
+        </div>
+      </div>
+    </li>
+  <% end %>
+  </ul>
+</div>
