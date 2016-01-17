@@ -10,5 +10,5 @@
   <td><%= shoe.last_used_local_string %></td>
   <td><%= shoe.runs.count %></td>
   <td><%= '%.2f' % shoe.mileage %></td>
-  <td><%= link_to build_glyphicon('pencil'), shoe_path(shoe), class: 'btn btn-xs btn-default' %></td>
+  <td><%= link_to 'View', shoe_path(shoe), class: 'btn btn-xs btn-default' %></td>
 </tr>

@@ -43,6 +43,7 @@ html {
 
 body {
   padding-top: 60px;
+  font-family: 'Source Sans Pro', Verdana, Geneva, Tahoma, sans-serif;
 }
 
 section {
@@ -97,7 +98,25 @@ p {
     font-size: 3.5em;
     line-height: 1em;
     text-align: center;
+
+    .glyphicon {
+      font-size: 75%;
+    }
   }
+}
+
+table {
+  th {
+    font-weight: 600;
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 80%;
+  }
+}
+
+.btn, .pagination {
+  text-transform: uppercase;
+  font-weight: 600;
 }
 
 /* header */
@@ -107,8 +126,7 @@ p {
   margin-right: 10px;
   font-size: 1.7em;
   text-transform: uppercase;
-  letter-spacing: -1px;
-  font-weight: bold;
+  font-weight: 800;
   line-height: 1;
 }
 
