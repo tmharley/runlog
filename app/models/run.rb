@@ -8,12 +8,12 @@ class Run < ActiveRecord::Base
   validates :temperature, numericality: {only_integer: true}, allow_nil: true
   validates :elev_gain, numericality: {only_integer: true, greater_than_or_equal_to: 0}, allow_nil: true
 
-  REG_INTERCEPT = 713.981
-  REG_DISTANCE = 6.3614
-  REG_TEMPERATURE = 0.6066
-  REG_HILLS = 0.7262
-  REG_TIME = -12.9088
-  REG_RACE_ADJ = -54.1113
+  REG_INTERCEPT = 714.7724
+  REG_DISTANCE = 5.8777
+  REG_TEMPERATURE = 0.5311
+  REG_HILLS = 0.7478
+  REG_TIME = -12.4145
+  REG_RACE_ADJ = -53.134
 
   def self.average_distance
     @average_distance = @average_distance || (Run.pluck(:distance).reduce(:+) / Run.count)
