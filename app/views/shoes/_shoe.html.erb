@@ -6,7 +6,7 @@
     <div class="col-sm-4" style="background: #<%= shoe.color_secondary %>">&nbsp;</div>
     <div class="col-sm-4" style="background: #<%= shoe.color_tertiary %>">&nbsp;</div>
   </td>
-  <td><%= shoe.size %></td>
+  <td><%= shoe_size_clean(shoe.size) %></td>
   <td><%= shoe.last_used_local_string %></td>
   <td><%= shoe.runs.count %></td>
   <td><%= '%.2f' % shoe.mileage %></td>
