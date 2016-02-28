@@ -27,7 +27,7 @@
     <%= star_output(run.sip_plus) %>
   </td>
   <% unless run.notes.blank? %>
-    <td title="<%= run.notes %>">
+    <td title="<%= run.notes %>" data-toggle="tooltip">
       <%= build_glyphicon('comment') %>
     </td>
   <% else %>

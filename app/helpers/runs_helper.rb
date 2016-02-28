@@ -17,27 +17,38 @@ module RunsHelper
     return '' if rating.nil?
     star = build_glyphicon('star')
     half = '&frac12;'.html_safe
-    if rating < 45
-      output = "<span title='awful'>#{half}</span>"
-    elsif rating < 65
-      output = "<span title='poor'>#{star}</span>"
-    elsif rating < 80
-      output = "<span title='okay'>#{star + half}</span>"
-    elsif rating < 90
-      output = "<span title='decent'>#{star*2}</span>"
-    elsif rating < 100
-      output = "<span title='average'>#{star*2 + half}</span>"
-    elsif rating < 110
-      output = "<span title='solid'>#{star*3}</span>"
-    elsif rating < 120
-      output = "<span title='good'>#{star*3 + half}</span>"
-    elsif rating < 135
-      output = "<span title='great'>#{star*4}</span>"
-    elsif rating < 155
-      output = "<span title='excellent'>#{star*4 + half}</span>"
+    case
+    when rating < 45
+      title = 'awful'
+      content = half
+    when rating < 65
+      title = 'poor'
+      content = star
+    when rating < 80
+      title = 'okay'
+      content = star + half
+    when rating < 90
+      title = 'decent'
+      content = star * 2
+    when rating < 100
+      title = 'average'
+      content = star * 2 + half
+    when rating < 110
+      title = 'solid'
+      content = star * 3
+    when rating < 120
+      title = 'good'
+      content = star * 3 + half
+    when rating < 135
+      title = 'great'
+      content = star * 4
+    when rating < 155
+      title = 'excellent'
+      content = star * 4 + half
     else
-      output = "<span title='awesome'>#{star*5}</span>"
+      title = 'awesome'
+      content = star * 5
     end
-    output.html_safe
+    "<span title=#{title} data-toggle=tooltip>#{content}</span>".html_safe
   end
 end
