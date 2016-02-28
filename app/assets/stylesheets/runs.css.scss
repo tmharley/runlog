@@ -69,3 +69,17 @@ table.runs {
 .precip {
   background-color: $rain-color;
 }
+
+.run-date-header {
+  .panel-heading {
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: 0;
+  }
+
+  .panel-body {
+    font-size: 300%;
+    font-weight: 700;
+    padding: 0;
+  }
+}
