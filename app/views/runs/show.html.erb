@@ -19,9 +19,17 @@
       <div class="panel-body text-center"><%= @run.local_time.day %></div>
     </div>
   </div>
-  <div class="col-sm-10 col-md-11">
+  <div class="col-sm-7 col-md-8">
     <h1 class="text-left"><%= page_header %></h1>
   </div>
+  <% unless @run.sip_plus.nil? %>
+    <div class="col-sm-3 run-rating">
+      <div class="h1">
+        <%= star_output(@run.sip_plus) %>
+      </div>
+      <p>Raw rating: <%= '%d' % @run.sip_plus %></p>
+    </div>
+  <% end %>
 </div>
 
 <div class="panel panel-info">
@@ -108,13 +116,6 @@
 <div class="panel panel-info">
   <div class="panel-heading">Notes</div>
   <div class="panel-body"><%= @run.notes %></div>
-</div>
-<% end %>
-
-<% unless @run.sip_plus.nil? %>
-<div class="panel panel-info">
-  <div class="panel-heading">SIP+</div>
-  <div class="panel-body"><%= '%d' % @run.sip_plus %></div>
 </div>
 <% end %>
 
