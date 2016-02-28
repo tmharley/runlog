@@ -5,43 +5,28 @@
 <% else %>
 <tr>
 <% end %>
-  <td class="start_time"><%= link_to run.start_time_local_string, run %></td>
-  <% if run.is_distance_record? %>
-  <td class="record" title="distance record">
-  <% else %>
-  <td>
-  <% end %>
+  <td class="start_time">
+    <%= link_to run.start_time_local_string, run %>
+  </td>
+  <td <%= "class='record' title='distance record'".html_safe if run.is_distance_record? %>>
     <%= '%.2f' % run.distance %> mi
   </td>
-  <td><%= run.duration_string %></td>
-  <% if run.is_pace_record? %>
-  <td class="record" title="pace record">
-  <% else %>
   <td>
-  <% end %>
+    <%= run.duration_string %>
+  </td>
+  <td <%= "class='record' title='pace record'".html_safe if run.is_pace_record? %>>
     <%= run.pace_string %>
   </td>
-  <% if run.temperature.nil? %>
-  <td>
+  <td class="<%= temp_class(run.temperature) %> <%= 'rain' if run.precip? %>" <%= 'title=rain' if run.precip? %>>
+    <%= "#{run.temperature}&deg;F".html_safe unless run.temperature.nil? %>
   </td>
-  <% else %>
-    <% if run.precip? %>
-  <td class="<%= temp_class(run.temperature) %> rain" title="rain">
-    <% else %>
-  <td class="<%= temp_class(run.temperature) %>">
-    <% end %>
-    <%= run.temperature %>&deg;F
-  </td>
-  <% end %>
   <td>
-    <% if !run.elev_gain.nil? %>
-    <%= run.elev_gain %> ft
-    <% end %>
+    <%= "#{run.elev_gain} ft" unless run.elev_gain.nil? %>
   </td>
   <td>
     <%= star_output(run.sip_plus) %>
   </td>
-  <% if !run.notes.blank? %>
+  <% unless run.notes.blank? %>
     <td title="<%= run.notes %>">
       <%= build_glyphicon('comment') %>
     </td>
