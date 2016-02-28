@@ -25,15 +25,12 @@
     <%= f.primary %>
   </div>
 <% end %>
+
 <script type="text/javascript">
-  $(function() {
-    var inputGroup = $('.bootstrap_form-datetimepicker');
-    inputGroup.datetimepicker({
-      //sideBySide: true,
-      <% unless @run.start_time.nil? %>
+  $('.bootstrap_form-datetimepicker').datetimepicker({
+    <% unless @run.start_time.nil? %>
       defaultDate: "<%= @run.start_time.strftime('%Y-%m-%d %H:%M') %>",
-      <% end %>
-      format: 'YYYY-MM-DD HH:mm'
-    });
+    <% end %>
+    format: 'YYYY-MM-DD HH:mm'
   });
 </script>

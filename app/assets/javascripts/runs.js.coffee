@@ -2,4 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
-#$('#run_start_time_string').datetimepicker();
+$(document).ready ->
+  $('[data-toggle="tooltip"]').tooltip({
+    container: 'body'
+  })
