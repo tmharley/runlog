@@ -51,14 +51,15 @@ class Run < ActiveRecord::Base
   end
 
   def time_of_day
-    if local_time.hour < 4 || local_time.hour > 22
-      day_of_week + ' night'
-    elsif local_time.hour < 12
-      day_of_week + ' morning'
-    elsif local_time.hour < 17
-      day_of_week + ' afternoon'
+    case local_time.hour
+    when 4..11
+      "#{day_of_week} morning"
+    when 12..16
+      "#{day_of_week} afternoon"
+    when 17..21
+      "#{day_of_week} evening"
     else
-      day_of_week + ' evening'
+      "#{day_of_week} overnight"
     end
   end
 
@@ -67,11 +68,7 @@ class Run < ActiveRecord::Base
   end
 
   def duration_string
-    if !duration?
-      ''
-    else
-      time_string(duration)
-    end
+    duration? ? time_string(duration) : ''
   end
 
   def pace
@@ -90,11 +87,7 @@ class Run < ActiveRecord::Base
   end
 
   def pace_string
-    if !duration?
-      'N/A'
-    else
-      "#{time_string(pace)}/mi"
-    end
+    duration? ? "#{time_string(pace)}/mi" : 'N/A'
   end
 
   def climb_rate
@@ -102,11 +95,7 @@ class Run < ActiveRecord::Base
   end
 
   def climb_rate_string
-    if elev_gain.nil?
-      'N/A'
-    else
-      "#{climb_rate.round(1)} ft/mi"
-    end
+    elev_gain.nil? ? 'N/A' : "#{climb_rate.round(1)} ft/mi"
   end
 
   def days_from_start

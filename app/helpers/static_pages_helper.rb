@@ -1,6 +1,6 @@
 module StaticPagesHelper
   def total_mileage
-    Run.all.inject(0) { |a,b| a = a + b.distance }.round(2)
+    Run.pluck(:distance).reduce(:+).round(2)
   end
 
   def years
@@ -8,7 +8,7 @@ module StaticPagesHelper
   end
 
   def mileage_for_year(year)
-    year_runs(year).inject(0) { |a,b| a = a + b.distance }.round(2)
+    year_runs(year).pluck(:distance).reduce(:+).round(2)
   end
 
   def year_runs(year)
