@@ -8,33 +8,12 @@ class Run < ActiveRecord::Base
   validates :temperature, numericality: {only_integer: true}, allow_nil: true
   validates :elev_gain, numericality: {only_integer: true, greater_than_or_equal_to: 0}, allow_nil: true
 
-  REG_INTERCEPT = 714.7724
-  REG_DISTANCE = 5.8777
-  REG_TEMPERATURE = 0.5311
-  REG_HILLS = 0.7478
-  REG_TIME = -12.4145
-  REG_RACE_ADJ = -53.134
-
-  def self.average_distance
-    @average_distance = @average_distance || (Run.pluck(:distance).reduce(:+) / Run.count)
-    @average_distance
-  end
-
-  def self.average_temperature
-    if @average_temperature.nil?
-      temps = Run.where.not(temperature: nil).pluck(:temperature)
-      @average_temperature = temps.reduce(:+) / temps.count
-    end
-    @average_temperature
-  end
-
-  def self.average_hills
-    if @average_hills.nil?
-      hills = Run.where.not(elev_gain: nil).pluck(:distance, :elev_gain).map {|r| r[1] / r[0]}
-      @average_hills = hills.reduce(:+) / hills.count
-    end
-    @average_hills
-  end
+  REG_INTERCEPT = 716.5064
+  REG_DISTANCE = 5.6904
+  REG_TEMPERATURE = 0.4946
+  REG_HILLS = 0.7492
+  REG_TIME = -12.2908
+  REG_RACE_ADJ = -53.9854
 
   def validate
     errors.add(:start_time, 'is invalid') if @invalid_start_time
@@ -131,10 +110,8 @@ class Run < ActiveRecord::Base
   end
 
   def days_from_start
-    if @first_run_date.nil?
-      @first_run_date = Run.order('start_time ASC').first.start_time.to_date
-    end
-    start_time.to_date - @first_run_date
+    @@first_run_date ||= Run.order('start_time ASC').first.start_time.to_date
+    start_time.to_date - @@first_run_date
   end
 
   def sip_plus
@@ -150,9 +127,33 @@ class Run < ActiveRecord::Base
   private
 
   def self.sip_stats
-    sip_runs = Run.where.not(elev_gain: nil, temperature: nil, duration: 0)
-    stats = DescriptiveStatistics::Stats.new(sip_runs.map {|r| r.sip})
-    {mean: stats.mean, stdev: stats.standard_deviation}
+    @@sip_stats ||= nil
+    if @@sip_stats.nil?
+      sip_runs = Run.where.not(elev_gain: nil, temperature: nil, duration: 0)
+      stats = DescriptiveStatistics::Stats.new(sip_runs.map {|r| r.sip})
+      @@sip_stats = {mean: stats.mean, stdev: stats.standard_deviation}
+    end
+    @@sip_stats
+  end
+
+  def self.average_distance
+    @average_distance ||= (Run.pluck(:distance).reduce(:+) / Run.count)
+  end
+
+  def self.average_temperature
+    if @average_temperature.nil?
+      temps = Run.where.not(temperature: nil).pluck(:temperature)
+      @average_temperature = temps.reduce(:+) / temps.count
+    end
+    @average_temperature
+  end
+
+  def self.average_hills
+    if @average_hills.nil?
+      hills = Run.where.not(elev_gain: nil).pluck(:distance, :elev_gain).map {|r| r[1] / r[0]}
+      @average_hills = hills.reduce(:+) / hills.count
+    end
+    @average_hills
   end
 
   def time_string(seconds)
