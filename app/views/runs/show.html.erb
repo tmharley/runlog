@@ -39,7 +39,7 @@
       <div class="col-md-4">
         <h3>Start time</h3>
         <p class="details">
-          <%= build_glyphicon('calendar') %>
+          <%= build_glyphicon('time') %>
           <%= @run.start_time_local_time_string %>
         </p>
       </div>
@@ -58,7 +58,7 @@
       <div class="col-md-4">
         <h3>Total duration</h3>
         <p class="details">
-          <%= build_glyphicon('time') %>
+          <%= build_glyphicon('dashboard') %>
           <%= @run.duration_string %>
         </p>
       </div>
@@ -73,7 +73,7 @@
         <% end %>
         <h3>Average pace</h3>
         <p class="details">
-          <%= build_glyphicon('flash') %>
+          <%= build_glyphicon('map-marker') %>
           <%= @run.pace_string %>
         </p>
       </div>
@@ -91,7 +91,7 @@
         <div class="col-md-4">
           <h3>Total elevation gain</h3>
           <p class="details">
-            <%= build_glyphicon('chevron-up') %>
+            <%= build_glyphicon('arrow-up') %>
             <%= @run.elev_gain %> feet
           </p>
         </div>
