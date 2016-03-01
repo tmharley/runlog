@@ -8,12 +8,12 @@ class Run < ActiveRecord::Base
   validates :temperature, numericality: {only_integer: true}, allow_nil: true
   validates :elev_gain, numericality: {only_integer: true, greater_than_or_equal_to: 0}, allow_nil: true
 
-  REG_INTERCEPT = 716.5064
-  REG_DISTANCE = 5.6904
-  REG_TEMPERATURE = 0.4946
-  REG_HILLS = 0.7492
-  REG_TIME = -12.2908
-  REG_RACE_ADJ = -53.9854
+  REG_INTERCEPT = 716.1135
+  REG_DISTANCE = 5.6473
+  REG_TEMPERATURE = 0.4934
+  REG_HILLS = 0.7546
+  REG_TIME = -12.2513
+  REG_RACE_ADJ = -53.9609
 
   def validate
     errors.add(:start_time, 'is invalid') if @invalid_start_time
