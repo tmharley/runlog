@@ -104,6 +104,16 @@ p {
   }
 }
 
+label {
+  text-transform: uppercase;
+  font-weight: 600;
+  text-align: right;
+}
+
+.form-group > label {
+  margin-top: 7px;
+}
+
 table {
   th {
     font-weight: 600;
