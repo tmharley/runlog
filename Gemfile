@@ -12,6 +12,7 @@ gem 'momentjs-rails', '>= 2.8.1'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.7.14'
 gem 'bootstrap_form-datetimepicker'
 gem 'descriptive-statistics'
+gem 'haml', '~> 4.0.7'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
