@@ -12,7 +12,7 @@ class WeatherTypesController < ApplicationController
   end
 
   def create
-    @weather_type = WeatherType.new(params[:weather_type])
+    @weather_type = WeatherType.new(weather_type_params)
     if @weather_type.save
       render action: :index, notice: 'Weather type was successfully created.'
     else
@@ -22,7 +22,7 @@ class WeatherTypesController < ApplicationController
 
   def update
     @weather_type = WeatherType.find(params[:id])
-    if @weather_type.save
+    if @weather_type.update(weather_type_params)
       render action: :index, notice: 'Weather type was successfully updated.'
     else
       render action: :edit
@@ -34,4 +34,9 @@ class WeatherTypesController < ApplicationController
     @weather_type.destroy
     render action: :index
   end
+
+  private
+	def weather_type_params
+		params.require(:weather_type).permit(:name, :is_precip)
+	end
 end
