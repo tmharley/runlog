@@ -1,0 +1,22 @@
+- page_title = build_page_title(params)
+- provide(:title, page_title)
+
+.col-xs-12
+  %h1=page_title
+  .text-center=will_paginate
+  .panel.panel-default
+    .panel-heading=page_entries_info
+    %table.table.table-hover.runs
+      %thead
+        %tr
+          %th Start time
+          %th Distance
+          %th Duration
+          %th Pace
+          %th Weather
+          %th Climb
+          %th Performance
+          %th Notes
+      = render @runs
+  .text-center=will_paginate
+  = link_to 'New Run', new_run_path, class: 'btn btn-large btn-success'

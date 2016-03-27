@@ -12,11 +12,7 @@ $night-hover-color: lighten($gray-light, 20%);
 table.runs {
   tr {
     td {
-      width: 11%;
       text-align: center;
-      &.start_time {
-        width: 23%;
-      }
       a:visited {
         color: $brand-primary;
         background-color: lighten($brand-primary, 75%);

@@ -1,0 +1,30 @@
+- row_class = run.is_night? ? 'night' : nil
+- row_class = 'warning' if run.is_race?
+- dist_record = run.is_distance_record?
+- pace_record = run.is_pace_record?
+- rain = run.precip?
+
+%tr{class: row_class, title: (run.race_name if run.is_race?)}
+  %td.start_time
+    = link_to run.start_time_local_string, run
+  %td{class: ('record' if dist_record), title: ('distance record' if dist_record)}
+    #{'%.2f' % run.distance} mi
+  %td
+    #{run.duration_string}
+  %td{class: ('record' if pace_record), title: ('pace record' if pace_record)}
+    #{run.pace_string}
+  %td.weather{class: "#{temp_class(run.temperature)} #{'rain' if rain}", title: ('rain' if rain)}
+    - if run.weather_type
+      %span.hidden-sm.hidden-xs=run.weather_type.name
+    - unless run.temperature.nil?
+      #{run.temperature}&deg;F
+  %td
+    - unless run.elev_gain.nil?
+      #{run.elev_gain} ft
+  %td
+    = star_output(run.sip_plus)
+  - if run.notes.blank?
+    %td
+  - else
+    %td{title: run.notes, 'data-toggle': 'tooltip'}
+      = build_glyphicon('comment')
