@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141220144243) do
+ActiveRecord::Schema.define(version: 20160327184851) do
 
   create_table "runs", force: true do |t|
     t.datetime "start_time"
@@ -38,6 +38,13 @@ ActiveRecord::Schema.define(version: 20141220144243) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "color_tertiary"
+  end
+
+  create_table "weather_types", force: true do |t|
+    t.string   "name"
+    t.boolean  "is_precip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

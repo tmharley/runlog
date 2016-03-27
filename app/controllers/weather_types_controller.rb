@@ -1,6 +1,6 @@
 class WeatherTypesController < ApplicationController
   def index
-    @weather_types = WeatherType.all
+    @weather_types = WeatherType.all.paginate(per_page: 20, page: params[:page])
   end
 
   def new
