@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160327184851) do
+ActiveRecord::Schema.define(version: 20160327194414) do
 
   create_table "runs", force: true do |t|
     t.datetime "start_time"
@@ -19,14 +19,15 @@ ActiveRecord::Schema.define(version: 20160327184851) do
     t.integer  "duration"
     t.integer  "temperature"
     t.integer  "elev_gain"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.boolean  "is_race"
     t.string   "notes"
     t.string   "race_name"
     t.integer  "shoe_id"
     t.boolean  "precip"
     t.boolean  "is_night"
+    t.integer  "weather_type_id"
   end
 
   create_table "shoes", force: true do |t|

@@ -1,5 +1,4 @@
 class Run < ActiveRecord::Base
-  attr_accessible :distance, :elev_gain, :start_time_string, :temperature, :duration_string, :is_race, :notes, :race_name, :shoe_id, :precip, :is_night
   belongs_to :shoe
   belongs_to :weather_type
 

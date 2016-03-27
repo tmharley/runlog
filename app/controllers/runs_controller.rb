@@ -48,7 +48,7 @@ class RunsController < ApplicationController
 
   def create
     convert_datetime_to_local("start_time")
-    @run = Run.new(params[:run])
+    @run = Run.new(run_params)
     if @run.save
       #Run.sip_stats = nil
       #Run.average_distance = nil
@@ -64,7 +64,7 @@ class RunsController < ApplicationController
   def update
     convert_datetime_to_local("start_time")
     @run = Run.find(params[:id])
-    if @run.update_attributes(params[:run])
+    if @run.update(run_params)
       #Run.sip_stats = nil
       #Run.average_distance = nil
       #Run.average_temperature = nil
@@ -92,4 +92,8 @@ class RunsController < ApplicationController
     end
   end
 
+  private
+	def run_params
+		params.require(:run).permit(:distance, :elev_gain, :start_time_string, :temperature, :duration_string, :is_race, :notes, :race_name, :shoe_id, :is_night, :weather_type_id)
+	end
 end
