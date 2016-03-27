@@ -1,0 +1,5 @@
+%tr
+  %td=weather_type.name
+  %td=weather_type.is_precip ? 'yes' : 'no'
+  %td.text-right
+    =link_to 'Edit', edit_weather_type_path(weather_type), class: 'btn btn-xs btn-primary'

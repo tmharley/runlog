@@ -18,3 +18,8 @@ en:
         one:   shoe
         few:   shoes
         other: shoes
+      weather_type:
+        zero:  weather types
+        one:   weather type
+        few:   weather types
+        other: weather types

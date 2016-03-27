@@ -1,0 +1,16 @@
+- provide(:title, 'Weather types')
+.col-xs-12
+  %h1 Weather types
+  = will_paginate
+  .panel.panel-default
+    .panel-heading=page_entries_info
+    %table.table.table-hover
+      %thead
+        %tr
+          %th Name
+          %th Precipitation?
+          %th
+      %tbody
+        = render @weather_types
+  = will_paginate
+  = link_to 'New Weather Type', new_weather_type_path, class: 'btn btn-large btn-success'

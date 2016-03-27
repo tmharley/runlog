@@ -1,0 +1,15 @@
+%nav.navbar.navbar-fixed-top.navbar-default{role: 'navigation'}
+  .container-fluid
+    .navbar-header
+      %button.navbar-toggle{type: 'button', data: {toggle: 'collapse', target: '#navbar1'}}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      = link_to 'Run Log', root_path, id: 'logo', class: 'navbar-brand'
+    .collapse.navbar-collapse#navbar1
+      %ul.nav.navbar-nav.navbar-right
+        %li=link_to 'Home', root_path
+        %li=link_to 'Runs', runs_path
+        %li=link_to 'Shoes', shoes_path
+        %li=link_to 'Weather', weather_types_path
