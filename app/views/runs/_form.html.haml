@@ -28,11 +28,8 @@
         = f.number_field :temperature, class: 'form-control', in: -10..110
         %span.input-group-addon &deg;F
       %p.help-block At start of run
-    .col-sm-2
-      .checkbox
-        %label
-          = f.check_box :precip
-          Rain?
+    .col-sm-4.col-md-3
+      = f.select :weather_type_id, WeatherType.all.collect {|wt| [wt.name, wt.id]}, {include_blank: true}, class: 'form-control'
   .form-group
     = f.label :elev_gain, 'Elevation gain', class: 'col-sm-3'
     .col-sm-4.col-md-3

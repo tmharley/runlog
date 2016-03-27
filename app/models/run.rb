@@ -113,6 +113,10 @@ class Run < ActiveRecord::Base
     adjusted_pace.nil? ? nil : 3600 / adjusted_pace
   end
 
+  def precip?
+    weather_type && weather_type.is_precip?
+  end
+
   private
 
   def self.sip_stats

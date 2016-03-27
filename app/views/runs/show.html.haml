@@ -1,0 +1,78 @@
+- if @run.is_race?
+  - page_title = @run.race_name || "Race on #{@run.local_time.strftime('%B %e, %Y')}"
+  - page_header = @run.race_name || "#{@run.time_of_day} race"
+- else
+  - page_title = @run.local_time.strftime('%B %e, %Y')
+  - page_header = "#{@run.time_of_day} run"
+- provide(:title, page_title)
+
+.col-xs-12
+  .row
+    .run-date-header.col-sm-2.col-md-1
+      .panel.panel-primary
+        .panel-heading.text-center
+          = @run.local_time.strftime('%b')
+        .panel-body.text-center
+          = @run.local_time.day
+    .col-sm-7.col-md-8
+      %h1.text-left=page_header
+    - unless @run.sip_plus.nil?
+      .col-sm-3.run-rating
+        .h1=star_output(@run.sip_plus)
+        %p Raw rating: #{'%d' % @run.sip_plus}
+  .panel.panel-info
+    .panel-heading Details
+    .panel-body.container
+      .col-sm-6.col-md-4
+        %h3 Start time
+        %p.details
+          = build_glyphicon('time')
+          = @run.start_time_local_time_string
+      .col-sm-6.col-md-4{class: ('dist_record' if @run.is_distance_record?)}
+        %h3 Total distance
+        %p.details
+          = build_glyphicon('road')
+          #{'%.2f' % @run.distance} miles
+      - if @run.duration?
+        .col-sm-6.col-md-4
+          %h3 Total duration
+          %p.details
+            = build_glyphicon('dashboard')
+            = @run.duration_string
+        .col-sm-6.col-md-4{class: ('pace_record' if @run.is_pace_record?)}
+          %h3 Average pace
+          %p.details
+            = build_glyphicon('map-marker')
+            = @run.pace_string
+      - unless @run.temperature.nil?
+        .col-sm-6.col-md-4{class: ('precip' if @run.precip?)}
+          %h3 Weather
+          %p.details
+            - if @run.weather_type
+              #{@run.weather_type.name},
+            %span{class: temp_class(@run.temperature)} #{@run.temperature}&deg;F
+      - unless @run.elev_gain.nil?
+        .col-sm-6.col-md-4
+          %h3 Total elevation gain
+          %p.details
+            = build_glyphicon('arrow-up')
+            #{@run.elev_gain} feet
+  - if @run.shoe
+    .panel.panel-info
+      .panel-heading Shoes
+      .panel-body
+        = link_to [@run.shoe.manufacturer, @run.shoe.model].join(' '),
+                  shoe_path(@run.shoe),
+                  style: "background: ##{@run.shoe.dark_color.hex}; color: ##{@run.shoe.bright_color.hex}"
+  - unless @run.notes.blank?
+    .panel.panel-info
+      .panel-heading Notes
+      .panel-body=@run.notes
+  .btn-toolbar{role: 'toolbar'}
+    .btn-group
+      = link_to 'All Runs', runs_path, class: 'btn btn-info'
+    .btn-group
+      = link_to 'New Run', new_run_path, class: 'btn btn-success'
+    .btn-group
+      = link_to 'Edit', edit_run_path(@run), class: 'btn btn-warning'
+      = link_to 'Delete', @run, data: {confirm: 'Are you sure?'}, method: :delete, class: 'btn btn-danger'
