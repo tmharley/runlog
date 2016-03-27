@@ -50,11 +50,11 @@ class RunsController < ApplicationController
     convert_datetime_to_local("start_time")
     @run = Run.new(params[:run])
     if @run.save
-      Run.sip_stats = nil
-      Run.average_distance = nil
-      Run.average_temperature = nil
-      Run.average_hills = nil
-      flash['success'] = 'Run was successfully created.'
+      #Run.sip_stats = nil
+      #Run.average_distance = nil
+      #Run.average_temperature = nil
+      #Run.average_hills = nil
+      flash[:success] = 'Run was successfully created.'
       redirect_to @run
     else
       render action: "new"
@@ -65,11 +65,11 @@ class RunsController < ApplicationController
     convert_datetime_to_local("start_time")
     @run = Run.find(params[:id])
     if @run.update_attributes(params[:run])
-      Run.sip_stats = nil
-      Run.average_distance = nil
-      Run.average_temperature = nil
-      Run.average_hills = nil
-      flash['success'] = 'Run was successfully updated.'
+      #Run.sip_stats = nil
+      #Run.average_distance = nil
+      #Run.average_temperature = nil
+      #Run.average_hills = nil
+      flash[:success] = 'Run was successfully updated.'
       redirect_to @run
     else
       render action: "edit"
@@ -82,6 +82,7 @@ class RunsController < ApplicationController
     @average_distance = nil
     @average_temperature = nil
     @average_hills = nil
+    render action: 'index'
   end
 
   def convert_datetime_to_local(field)

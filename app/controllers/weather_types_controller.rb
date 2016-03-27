@@ -14,7 +14,8 @@ class WeatherTypesController < ApplicationController
   def create
     @weather_type = WeatherType.new(weather_type_params)
     if @weather_type.save
-      render action: :index, notice: 'Weather type was successfully created.'
+      flash[:success] = 'Weather type was successfully created.'
+      redirect_to weather_types_path
     else
       render action: :new
     end
@@ -23,7 +24,8 @@ class WeatherTypesController < ApplicationController
   def update
     @weather_type = WeatherType.find(params[:id])
     if @weather_type.update(weather_type_params)
-      render action: :index, notice: 'Weather type was successfully updated.'
+      flash[:success] = 'Weather type was successfully updated.'
+      redirect_to weather_types_path
     else
       render action: :edit
     end

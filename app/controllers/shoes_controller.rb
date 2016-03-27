@@ -7,7 +7,7 @@ class ShoesController < ApplicationController
 
   def show
     @shoe = Shoe.find(params[:id])
-    
+
     respond_to do |format|
       format.html
       format.xml { render xml: @shoe }
@@ -25,7 +25,8 @@ class ShoesController < ApplicationController
   def create
     @shoe = Shoe.new(params[:shoe])
     if @shoe.save
-      redirect_to @shoe, notice: 'Shoe was successfully created.'
+      flash[:success] = 'Shoe was successfully created.'
+      redirect_to @shoe
     else
       render action: "new"
     end
@@ -34,7 +35,8 @@ class ShoesController < ApplicationController
   def update
     @shoe = Shoe.find(params[:id])
     if @shoe.update_attributes(params[:shoe])
-      redirect_to @shoe, notice: 'Shoe was successfully updated.'
+      flash[:success] = 'Shoe was successfully updated.'
+      redirect_to @shoe
     else
       render action: "edit"
     end
