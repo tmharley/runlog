@@ -1,0 +1,12 @@
+%tr
+  %td=shoe.manufacturer
+  %td=shoe.model
+  %td
+    .col-xs-4{style: "background: ##{shoe.color_primary}"} &nbsp;
+    .col-xs-4{style: "background: ##{shoe.color_secondary}"} &nbsp;
+    .col-xs-4{style: "background: ##{shoe.color_tertiary}"} &nbsp;
+  %td=shoe_size_clean(shoe.size)
+  %td=shoe.last_used_local_string
+  %td=shoe.runs.count
+  %td='%.2f' % shoe.mileage
+  %td=link_to 'View', shoe_path(shoe), class: 'btn btn-xs btn-default'

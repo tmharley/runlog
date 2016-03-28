@@ -1,0 +1,37 @@
+- provide(:title, 'View shoe')
+.col-xs-12
+  %h1 #{@shoe.manufacturer} #{@shoe.model}
+  .panel.panel-info
+    .panel-heading Details
+    .panel-body
+      .row
+        .col-sm-4
+          %h3 Manufacturer
+          %p.details=@shoe.manufacturer
+        .col-sm-4
+          %h3 Model
+          %p.details=@shoe.model
+        .col-sm-4
+          %h3 Size
+          %p.details=shoe_size_clean(@shoe.size)
+  .panel.panel-info
+    .panel-heading Colors
+    .panel-body
+      .row
+        .col-sm-4
+          %p.details{style: "background: ##{@shoe.color_primary}"}
+            \##{@shoe.color_primary}
+        .col-sm-4
+          %p.details{style: "background: ##{@shoe.color_secondary}"}
+            \##{@shoe.color_secondary}
+        .col-sm-4
+          %p.details{style: "background: ##{@shoe.color_tertiary}"}
+            \##{@shoe.color_tertiary}
+  .btn-toolbar{role: 'toolbar'}
+    .btn-group
+      = link_to 'All Shoes', shoes_path, class: 'btn btn-info'
+    .btn-group
+      = link_to 'New Shoe', new_shoe_path, class: 'btn btn-success'
+    .btn-group
+      = link_to 'Edit', edit_shoe_path(@shoe), class: 'btn btn-warning'
+      = link_to 'Delete', @shoe, confirm: 'Are you sure?', method: :delete, class: 'btn btn-danger'

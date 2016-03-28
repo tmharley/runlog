@@ -1,0 +1,5 @@
+- provide(:title, 'Edit shoe')
+%h1 Editing shoe
+= render 'form', button_title: 'Update'
+= link_to 'Show', @shoe, class: 'btn btn-info'
+= link_to 'Back', shoes_path, class: 'btn btn-warning'
