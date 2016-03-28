@@ -50,7 +50,7 @@
       = f.select :shoe_id, Shoe.all.collect {|s| [s.model, s.id]}, {include_blank: true}, class: 'form-control'
   .form-group
     = f.label :notes, 'Notes', class: 'col-sm-3'
-    .col-sm-4.col-md-3
+    .col-sm-8.col-md-6
       = f.text_area :notes, rows: 3, class: 'form-control'
   .form-group
     .col-sm-7

@@ -1,0 +1,6 @@
+- if @run.errors.any?
+  .alert.alert-danger
+    %p #{pluralize(@run.errors.count, 'error')} prohibited this run from being saved:
+    %ul
+      - @run.errors.full_messages.each do |msg|
+        %li=msg

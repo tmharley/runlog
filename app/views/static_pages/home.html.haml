@@ -1,0 +1,16 @@
+.col-xs-12
+  .jumbotron
+    %h1 Run Log
+    %p This is a record of all my recorded runs, dating back to the very beginning.
+    = link_to "View all #{Run.count} runs", runs_path, class: 'btn btn-large btn-primary'
+  .panel.panel-primary
+    .panel-heading
+      #{Run.count} runs for #{total_mileage} total miles
+    %ul.list-group{start: years.min}
+      - years.each do |y|
+        %li.list-group-item
+          %h4.list-group-item-heading
+            = link_to "#{y} (#{year_runs(y).count} runs)", runs_path(year: y)
+          .progress.list-group-item-text
+            .progress-bar{style: "width: #{mileage_for_year(y) / 610.93 * 100}%"}
+              #{mileage_for_year(y)} miles
