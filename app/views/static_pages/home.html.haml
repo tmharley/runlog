@@ -2,15 +2,16 @@
   .jumbotron
     %h1 Run Log
     %p This is a record of all my recorded runs, dating back to the very beginning.
-    = link_to "View all #{Run.count} runs", runs_path, class: 'btn btn-large btn-primary'
+    = link_to "View all #{pluralize(Run.count, 'run')}", runs_path, class: 'btn btn-primary'
   .panel.panel-primary
     .panel-heading
-      #{Run.count} runs for #{total_mileage} total miles
+      #{Run.count} runs for #{pluralize(total_mileage, 'total mile')}
     %ul.list-group{start: years.min}
+      - greatest_mileage = years.collect {|y| mileage_for_year(y)}.max
       - years.each do |y|
         %li.list-group-item
           %h4.list-group-item-heading
-            = link_to "#{y} (#{year_runs(y).count} runs)", runs_path(year: y)
+            = link_to "#{y} (#{pluralize(year_runs(y).size, 'run')})", runs_path(year: y)
           .progress.list-group-item-text
-            .progress-bar{style: "width: #{mileage_for_year(y) / 610.93 * 100}%"}
-              #{mileage_for_year(y)} miles
+            .progress-bar{style: "width: #{mileage_for_year(y) / greatest_mileage * 100}%"}
+              = pluralize(mileage_for_year(y), 'mile')
