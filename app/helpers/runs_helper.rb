@@ -1,6 +1,7 @@
 module RunsHelper
 
   def temp_class(temp)
+    return nil if temp.nil?
     "temp#{temp / 10 * 10}"
   end
 
