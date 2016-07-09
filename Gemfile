@@ -29,6 +29,10 @@ gem 'uglifier', '>= 1.0.3'
 
 gem 'jquery-rails'
 
+group :development do
+  gem 'rails_best_practices'
+end
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
