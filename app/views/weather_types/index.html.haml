@@ -13,5 +13,10 @@
           %th
       %tbody
         = render @weather_types
+        %tr
+          %td.text-center (not specified)
+          %td
+          %td.text-center=Run.where(weather_type_id: nil).size
+          %td
   = will_paginate
   = link_to 'New Weather Type', new_weather_type_path, class: 'btn btn-large btn-success'
