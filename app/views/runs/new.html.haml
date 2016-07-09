@@ -1,4 +1,4 @@
 - provide(:title, 'New run')
 %h1 New run
-= render 'form', button_title: 'Create'
+= render 'form', button_title: 'Create', run: @run
 = link_to 'Back', runs_path, class: 'btn btn-warning'

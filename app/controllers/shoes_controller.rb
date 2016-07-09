@@ -28,7 +28,7 @@ class ShoesController < ApplicationController
       flash[:success] = 'Shoe was successfully created.'
       redirect_to @shoe
     else
-      render action: "new"
+      render :new
     end
   end
 
@@ -38,7 +38,7 @@ class ShoesController < ApplicationController
       flash[:success] = 'Shoe was successfully updated.'
       redirect_to @shoe
     else
-      render action: "edit"
+      render :edit
     end
   end
 

@@ -1,4 +1,4 @@
 - provide(:title, 'New shoe')
 %h1 New shoe
-= render 'form', button_title: 'Create'
+= render 'form', button_title: 'Create', shoe: @shoe
 = link_to 'Back', shoes_path, class: 'btn btn-warning'

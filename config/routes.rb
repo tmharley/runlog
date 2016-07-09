@@ -2,7 +2,7 @@ RunApp::Application.routes.draw do
   root to: 'static_pages#home'
   resources :runs
   resources :shoes
-  resources :weather_types
+  resources :weather_types, except: [:show]
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

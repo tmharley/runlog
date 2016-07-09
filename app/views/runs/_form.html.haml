@@ -1,5 +1,5 @@
-= form_for(@run, html: {class: 'form-horizontal'}) do |f|
-  = render 'form_error'
+= form_for(run, html: {class: 'form-horizontal'}) do |f|
+  = render 'form_error', run: run
   .form-group
     = f.label :start_time_string, 'Start time', class: 'col-sm-3'
     .col-sm-4.col-md-3
@@ -59,8 +59,8 @@
 :erb
   <script type="text/javascript">
     $('#start-time').datetimepicker({
-      <% unless @run.start_time.nil? %>
-        defaultDate: "<%= @run.start_time.strftime('%Y-%m-%d %H:%M') %>",
+      <% if run.start_time? %>
+        defaultDate: "<%= run.start_time.strftime('%Y-%m-%d %H:%M') %>",
       <% end %>
       format: 'YYYY-MM-DD HH:mm'
     });

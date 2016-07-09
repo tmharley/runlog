@@ -8,12 +8,12 @@ class Run < ActiveRecord::Base
   validates :temperature, numericality: {only_integer: true}, allow_nil: true
   validates :elev_gain, numericality: {only_integer: true, greater_than_or_equal_to: 0}, allow_nil: true
 
-  REG_INTERCEPT = 716.1135
-  REG_DISTANCE = 5.6473
-  REG_TEMPERATURE = 0.4934
-  REG_HILLS = 0.7546
-  REG_TIME = -12.2513
-  REG_RACE_ADJ = -53.9609
+  REG_INTERCEPT = 726.5978
+  REG_DISTANCE = 6.106
+  REG_TEMPERATURE = 0.4277
+  REG_HILLS = 0.7261
+  REG_TIME = -12.9094
+  REG_RACE_ADJ = -54.7803
 
   def validate
     errors.add(:start_time, 'is invalid') if @invalid_start_time
@@ -27,10 +27,6 @@ class Run < ActiveRecord::Base
 
   def local_time
     start_time.in_time_zone("Eastern Time (US & Canada)")
-  end
-
-  def start_time_local_date_string
-    local_time.strftime("%A, %B %e, %Y")
   end
 
   def start_time_local_time_string
@@ -94,10 +90,6 @@ class Run < ActiveRecord::Base
     elev_gain / distance
   end
 
-  def climb_rate_string
-    elev_gain.nil? ? 'N/A' : "#{climb_rate.round(1)} ft/mi"
-  end
-
   def days_from_start
     @@first_run_date ||= Run.order('start_time ASC').first.start_time.to_date
     start_time.to_date - @@first_run_date
@@ -115,6 +107,14 @@ class Run < ActiveRecord::Base
 
   def precip?
     weather_type && weather_type.is_precip?
+  end
+
+  def weather_string
+    weather_type.name
+  end
+
+  def shoe_name
+    [shoe.manufacturer, shoe.model].join(' ')
   end
 
   private

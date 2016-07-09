@@ -15,7 +15,7 @@
     #{run.pace_string}
   %td.weather{class: "#{temp_class(run.temperature)} #{'rain' if rain}", title: ('rain' if rain)}
     - if run.weather_type
-      %span.hidden-sm.hidden-xs=run.weather_type.name
+      %span.hidden-sm.hidden-xs=run.weather_string
     - unless run.temperature.nil?
       #{run.temperature}&deg;F
   %td
@@ -23,8 +23,8 @@
       #{run.elev_gain} ft
   %td
     = star_output(run.sip_plus)
-  - if run.notes.blank?
-    %td
-  - else
+  - if run.notes?
     %td{title: run.notes, 'data-toggle': 'tooltip'}
       = build_glyphicon('comment')
+  - else
+    %td

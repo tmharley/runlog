@@ -17,7 +17,7 @@ class WeatherTypesController < ApplicationController
       flash[:success] = 'Weather type was successfully created.'
       redirect_to weather_types_path
     else
-      render action: :new
+      render :new
     end
   end
 
@@ -27,14 +27,14 @@ class WeatherTypesController < ApplicationController
       flash[:success] = 'Weather type was successfully updated.'
       redirect_to weather_types_path
     else
-      render action: :edit
+      render :edit
     end
   end
 
   def destroy
     @weather_type = WeatherType.find(params[:id])
     @weather_type.destroy
-    render action: :index
+    render :index
   end
 
   private

@@ -57,7 +57,7 @@ class RunsController < ApplicationController
       flash[:success] = 'Run was successfully created.'
       redirect_to @run
     else
-      render action: "new"
+      render :new
     end
   end
 
@@ -72,7 +72,7 @@ class RunsController < ApplicationController
       flash[:success] = 'Run was successfully updated.'
       redirect_to @run
     else
-      render action: "edit"
+      render :edit
     end
   end
 
@@ -82,7 +82,7 @@ class RunsController < ApplicationController
     @average_distance = nil
     @average_temperature = nil
     @average_hills = nil
-    render action: 'index'
+    render :index
   end
 
   def convert_datetime_to_local(field)

@@ -1,5 +1,5 @@
 - provide(:title, 'Edit run')
 %h1 Editing run
-= render 'form', button_title: 'Update'
+= render 'form', button_title: 'Update', run: @run
 = link_to 'Show', @run, class: 'btn btn-info'
 = link_to 'Back', runs_path, class: 'btn btn-warning'

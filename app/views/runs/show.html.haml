@@ -49,7 +49,7 @@
           %h3 Weather
           %p.details
             - if @run.weather_type
-              #{@run.weather_type.name},
+              #{@run.weather_string},
             %span{class: temp_class(@run.temperature)} #{@run.temperature}&deg;F
       - unless @run.elev_gain.nil?
         .col-sm-6.col-md-4
@@ -61,10 +61,10 @@
     .panel.panel-info
       .panel-heading Shoes
       .panel-body
-        = link_to [@run.shoe.manufacturer, @run.shoe.model].join(' '),
+        = link_to @run.shoe_name,
                   shoe_path(@run.shoe),
                   style: "background: ##{@run.shoe.dark_color.hex}; color: ##{@run.shoe.bright_color.hex}"
-  - unless @run.notes.blank?
+  - if @run.notes?
     .panel.panel-info
       .panel-heading Notes
       .panel-body=@run.notes
