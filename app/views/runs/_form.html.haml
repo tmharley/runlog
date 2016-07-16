@@ -55,13 +55,3 @@
   .form-group
     .col-sm-7
       = submit_tag button_title, class: 'btn btn-primary'
-
-:erb
-  <script type="text/javascript">
-    $('#start-time').datetimepicker({
-      <% if run.start_time? %>
-        defaultDate: "<%= run.start_time.strftime('%Y-%m-%d %H:%M') %>",
-      <% end %>
-      format: 'YYYY-MM-DD HH:mm'
-    });
-  </script>
