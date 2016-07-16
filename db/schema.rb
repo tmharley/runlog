@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160327194414) do
+ActiveRecord::Schema.define(version: 20160716223146) do
 
   create_table "runs", force: true do |t|
     t.datetime "start_time"
@@ -29,6 +29,9 @@ ActiveRecord::Schema.define(version: 20160327194414) do
     t.boolean  "is_night"
     t.integer  "weather_type_id"
   end
+
+  add_index "runs", ["shoe_id"], name: "index_runs_on_shoe_id"
+  add_index "runs", ["weather_type_id"], name: "index_runs_on_weather_type_id"
 
   create_table "shoes", force: true do |t|
     t.string   "manufacturer"
