@@ -20,3 +20,9 @@
       = render @runs
   .text-center=will_paginate
   = link_to 'New Run', new_run_path, class: 'btn btn-large btn-success'
+
+  %h2 Safe training mileage outlook
+  - (0...28).each do |d|
+    .col-xs-3
+      #{(Time.now + d.days).strftime('%a %-m/%-d')}:
+      = '%.2f' % Run.safe_mileage(Time.now + d.days)

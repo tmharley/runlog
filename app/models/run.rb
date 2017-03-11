@@ -8,12 +8,62 @@ class Run < ActiveRecord::Base
   validates :temperature, numericality: {only_integer: true}, allow_nil: true
   validates :elev_gain, numericality: {only_integer: true, greater_than_or_equal_to: 0}, allow_nil: true
 
-  REG_INTERCEPT = 726.5978
-  REG_DISTANCE = 6.106
-  REG_TEMPERATURE = 0.4277
-  REG_HILLS = 0.7261
-  REG_TIME = -12.9094
-  REG_RACE_ADJ = -54.7803
+  REG_INTERCEPT = 348.6133
+  REG_DISTANCE = 414.739
+  REG_TEMPERATURE = 0.3417
+  REG_HILLS = 0.6548
+  REG_TIME = -24.3031
+  REG_RACE_ADJ = -906.9538
+  REG_RACE_DIST_ADJ = 775.4982
+
+  def self.mileage_between(start_date, end_date)
+    Run.where(start_time: start_date.beginning_of_day..end_date.end_of_day)
+       .map(&:distance).sum
+  end
+
+  def self.safe_mileage(start_date = Time.now)
+    last_week = Run.mileage_between(start_date - 6.days, start_date)
+    last_4_weeks = Run.mileage_between(start_date - 27.days, start_date)
+    if last_week > last_4_weeks * 3/8
+      0
+    else
+      (3 * last_4_weeks - 8 * last_week) / 5
+    end
+  end
+
+  def mileage_in_last_days(num_days)
+    Run.mileage_between(start_time - (num_days - 1).days, start_time)
+  end
+
+  def similar_runs(limit = 5)
+    @dists = Run.where.not(distance: nil).pluck(:distance)
+    @hills = Run.where.not(elev_gain: nil).map(&:climb_rate)
+    @temps = Run.where.not(temperature: nil).pluck(:temperature)
+    runs = Run.all.select {|r| r.sip.present?}
+    @sips = runs.map(&:sip)
+    runs.reject! {|r| r == self}
+    runs.map! {|r| {run: r, similarity: similarity(r)}}
+    runs.sort! {|a, b| b[:similarity] <=> a[:similarity]}
+    runs[0...limit]
+  end
+
+  def similarity(other)
+    return 0 unless other.is_a? Run
+    unless can_be_compared? && other.can_be_compared?
+      return 0
+    end
+
+    sim_dist = 1 - (distance - other.distance).abs / (@dists.max - @dists.min)
+    sim_hill = 1 - (climb_rate - other.climb_rate).abs / (@hills.max - @hills.min)
+    sim_temp = 1 - (temperature - other.temperature).abs / ((@temps.max - @temps.min) * 1.0)
+    sim_perf = 1 - (sip - other.sip).abs / (@sips.max - @sips.min)
+
+    (sim_dist + sim_hill + sim_temp + sim_perf) / 4
+  end
+
+  def can_be_compared?
+    distance? && elev_gain? && temperature?
+  end
 
   def validate
     errors.add(:start_time, 'is invalid') if @invalid_start_time
@@ -117,6 +167,12 @@ class Run < ActiveRecord::Base
     [shoe.manufacturer, shoe.model].join(' ')
   end
 
+  def training_ratio
+    acute = mileage_in_last_days(7)
+    chronic = mileage_in_last_days(28) / 4
+    acute / chronic
+  end
+
   private
 
   def self.sip_stats
@@ -159,7 +215,7 @@ class Run < ActiveRecord::Base
   end
 
   def adjusted_pace
-    return nil unless duration? and elev_gain and temperature
-    pace - (distance - Run.average_distance) * REG_DISTANCE - (temperature - Run.average_temperature) * REG_TEMPERATURE - (climb_rate - Run.average_hills) * REG_HILLS - days_from_start**0.4 * REG_TIME
+    return nil unless duration? && elev_gain && temperature
+    pace - (distance**0.06 - Run.average_distance**0.06) * REG_DISTANCE - (temperature - Run.average_temperature) * REG_TEMPERATURE - (climb_rate - Run.average_hills) * REG_HILLS - days_from_start**(1.0/3) * REG_TIME
   end
 end

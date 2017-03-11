@@ -68,6 +68,38 @@
     .panel.panel-info
       .panel-heading Notes
       .panel-body=@run.notes
+  - if @run.can_be_compared?
+    .panel.panel-info
+      .panel-heading Similar runs
+      %table.table
+        %tr
+          %th Date
+          %th Distance
+          %th Weather
+          %th Climb
+          %th Performance
+          %th Similarity score
+        - @run.similar_runs.each do |r|
+          - run = r[:run]
+          %tr.text-center
+            %td=link_to run.start_time_local_string, run
+            %td #{'%.2f' % run.distance} mi
+            %td
+              - if run.weather_type
+                #{run.weather_string}
+              - unless run.temperature.nil?
+                #{run.temperature}&deg;F
+            %td #{run.elev_gain} ft
+            %td=star_output(run.sip_plus)
+            %td #{'%.3f' % r[:similarity]}
+  .panel.panel-info
+    .panel-heading Training statistics
+    .panel-body
+      Last 7 days: #{@run.mileage_in_last_days(7)} miles
+      %br
+      Weekly average for last 4 weeks: #{@run.mileage_in_last_days(28) / 4} miles
+      %br
+      Training ratio: #{'%.2f' % @run.training_ratio}
   .btn-toolbar{role: 'toolbar'}
     .btn-group
       = link_to 'All Runs', runs_path, class: 'btn btn-info'
