@@ -28,7 +28,7 @@
         %p.details
           = build_glyphicon('time')
           = @run.start_time_local_time_string
-      .col-sm-6.col-md-4{class: ('dist_record' if @run.is_distance_record?)}
+      .col-sm-6.col-md-4{class: ('record' if @run.is_distance_record?)}
         %h3 Total distance
         %p.details
           = build_glyphicon('road')
@@ -39,7 +39,7 @@
           %p.details
             = build_glyphicon('dashboard')
             = @run.duration_string
-        .col-sm-6.col-md-4{class: ('pace_record' if @run.is_pace_record?)}
+        .col-sm-6.col-md-4{class: ('record' if @run.is_pace_record?)}
           %h3 Average pace
           %p.details
             = build_glyphicon('map-marker')
