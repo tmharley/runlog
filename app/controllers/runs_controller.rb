@@ -13,18 +13,17 @@ class RunsController < ApplicationController
       end
     end
 
-    if criteria.any?
-      run_list = Run.where(criteria)
-    else
-      run_list = Run.all
-    end
+    run_list = if criteria.any?
+                 Run.where(criteria).order(start_time: :desc)
+               else
+                 Run.all.order(start_time: :desc)
+               end
 
-    @all_runs = run_list.sort {|a, b| b.start_time <=> a.start_time}
-    @runs = @all_runs.paginate(per_page: 20, page: params[:page])
+    @runs = run_list.paginate(per_page: 20, page: params[:page])
 
     respond_to do |format|
       format.html
-      format.xml { render xml: @all_runs }
+      format.xml { render xml: run_list }
     end
   end
 
