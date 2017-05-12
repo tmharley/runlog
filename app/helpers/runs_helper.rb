@@ -52,11 +52,4 @@ module RunsHelper
     end
     "<span title=#{title} data-toggle=tooltip>#{content}</span>".html_safe
   end
-
-  def convert_datetime_to_local(field)
-    datetime = (1..5).collect {|num| params['run'].delete "#{field}(#{num}i)" }
-    if datetime[0] && datetime[1] && datetime[2]
-      params['run'][field] = Time.find_zone!("Eastern Time (US & Canada)").local(*datetime.map(&:to_i))
-    end
-  end
 end

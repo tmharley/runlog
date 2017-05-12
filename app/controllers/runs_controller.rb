@@ -81,11 +81,18 @@ class RunsController < ApplicationController
     @average_distance = nil
     @average_temperature = nil
     @average_hills = nil
-    render :index
+    redirect_to action: :index
   end
 
   private
 	def run_params
 		params.require(:run).permit(:distance, :elev_gain, :start_time_string, :temperature, :duration_string, :is_race, :notes, :race_name, :shoe_id, :is_night, :weather_type_id)
 	end
+
+  def convert_datetime_to_local(field)
+    datetime = (1..5).collect {|num| params['run'].delete "#{field}(#{num}i)" }
+    if datetime[0] && datetime[1] && datetime[2]
+      params['run'][field] = Time.find_zone!("Eastern Time (US & Canada)").local(*datetime.map(&:to_i))
+    end
+  end
 end
