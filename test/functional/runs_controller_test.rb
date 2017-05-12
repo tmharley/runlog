@@ -18,7 +18,14 @@ class RunsControllerTest < ActionController::TestCase
 
   test "should create run" do
     assert_difference('Run.count') do
-      post :create, run: { distance: @run.distance, duration: @run.duration, elev_gain: @run.elev_gain, start_time: @run.start_time, temperature: @run.temperature }
+      post :create, run: { start_time_string: '2017-01-01 12:00',
+                           is_night: false,
+                           distance: 4.00,
+                           duration_string: '36:00',
+                           temperature: 72,
+                           weather_type_id: 2,
+                           elev_gain: 150,
+                           is_race: false }
     end
 
     assert_redirected_to run_path(assigns(:run))
