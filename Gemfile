@@ -29,6 +29,8 @@ gem 'uglifier', '>= 1.0.3'
 
 gem 'jquery-rails'
 
+gem 'rack-cors'#, require: 'rack-cors'
+
 group :development do
   gem 'rails_best_practices'
 end
