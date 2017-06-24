@@ -24,6 +24,7 @@ class RunsController < ApplicationController
     respond_to do |format|
       format.html
       format.xml { render xml: run_list }
+      format.json { render json: run_list }
     end
   end
 
