@@ -36,6 +36,11 @@ group :development do
   gem 'web-console', '~> 2.0'
 end
 
+group :test do
+  gem 'rails-perftest'
+  gem 'ruby-prof'
+end
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
