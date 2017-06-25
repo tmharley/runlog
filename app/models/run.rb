@@ -52,11 +52,13 @@ class Run < ActiveRecord::Base
     unless can_be_compared? && other.can_be_compared?
       return 0
     end
+    sips_range = @sips.max - @sips.min
+    return 0 if sips_range == 0
 
     sim_dist = 1 - (distance - other.distance).abs / (@dists.max - @dists.min)
     sim_hill = 1 - (climb_rate - other.climb_rate).abs / (@hills.max - @hills.min)
     sim_temp = 1 - (temperature - other.temperature).abs / ((@temps.max - @temps.min) * 1.0)
-    sim_perf = 1 - (sip - other.sip).abs / (@sips.max - @sips.min)
+    sim_perf = 1 - (sip - other.sip).abs / sips_range
 
     (sim_dist + sim_hill + sim_temp + sim_perf) / 4
   end
@@ -148,7 +150,8 @@ class Run < ActiveRecord::Base
   def sip_plus
     return nil if sip.nil?
     stats = Run.sip_stats
-    (sip - stats[:mean]) / stats[:stdev] * 50 + 100
+    result = (sip - stats[:mean]) / stats[:stdev] * 50 + 100
+    result.nan? ? nil : result
   end
 
   def sip
