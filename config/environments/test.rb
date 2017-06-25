@@ -34,4 +34,7 @@ RunApp::Application.configure do
 
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
+
+  # Use Rails 5 random test order
+  config.active_support.test_order = :random
 end
