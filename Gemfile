@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 4.1.0'
+gem 'rails', '~> 4.2.0'
 gem 'bootstrap-sass', '3.2.0'
 gem 'bourbon'
 gem 'will_paginate', '~> 3.0.5'
@@ -33,6 +33,7 @@ gem 'rack-cors'#, require: 'rack-cors'
 
 group :development do
   gem 'rails_best_practices'
+  gem 'web-console', '~> 2.0'
 end
 
 # To use ActiveModel has_secure_password
