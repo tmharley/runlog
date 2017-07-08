@@ -14,6 +14,9 @@ gem 'descriptive-statistics'
 gem 'haml', '~> 4.0.7'
 gem 'rake', '~> 10.5.0'
 
+# Use Puma as the app server
+gem 'puma', '~> 3.7'
+
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
