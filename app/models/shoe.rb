@@ -1,4 +1,4 @@
-class Shoe < ActiveRecord::Base
+class Shoe < ApplicationRecord
   attr_accessible :manufacturer, :model, :color_primary, :color_secondary, :color_tertiary, :size
   has_many :runs
 

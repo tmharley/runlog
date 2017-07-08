@@ -1,4 +1,4 @@
-class Run < ActiveRecord::Base
+class Run < ApplicationRecord
   belongs_to :shoe
   belongs_to :weather_type
 
