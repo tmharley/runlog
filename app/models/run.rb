@@ -1,6 +1,6 @@
 class Run < ApplicationRecord
-  belongs_to :shoe
-  belongs_to :weather_type
+  belongs_to :shoe, optional: true
+  belongs_to :weather_type, optional: true
 
   validates :start_time, presence: true
   validates :distance, numericality: {greater_than: 0}
