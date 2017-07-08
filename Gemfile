@@ -1,12 +1,11 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 4.2.0'
+gem 'rails', '~> 5.0.0'
 gem 'bootstrap-sass', '3.2.0'
 gem 'bourbon'
 gem 'will_paginate', '~> 3.0.5'
 gem 'bootstrap-will_paginate', '0.0.10'
 gem 'bootstrap_form'
-gem 'protected_attributes'
 gem 'color'
 gem 'momentjs-rails', '>= 2.8.1'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.7.14'
@@ -14,6 +13,9 @@ gem 'bootstrap_form-datetimepicker'
 gem 'descriptive-statistics'
 gem 'haml', '~> 4.0.7'
 gem 'rake', '~> 10.5.0'
+
+# Use Puma as the app server
+gem 'puma', '~> 3.7'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -39,6 +41,7 @@ end
 group :test do
   gem 'rails-perftest'
   gem 'ruby-prof'
+  gem 'rails-controller-testing'
 end
 
 # To use ActiveModel has_secure_password

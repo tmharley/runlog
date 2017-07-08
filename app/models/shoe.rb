@@ -1,5 +1,4 @@
-class Shoe < ActiveRecord::Base
-  attr_accessible :manufacturer, :model, :color_primary, :color_secondary, :color_tertiary, :size
+class Shoe < ApplicationRecord
   has_many :runs
 
   validates :manufacturer, presence: true
