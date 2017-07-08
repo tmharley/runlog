@@ -23,7 +23,7 @@ class ShoesController < ApplicationController
   end
 
   def create
-    @shoe = Shoe.new(params[:shoe])
+    @shoe = Shoe.new(shoe_params)
     if @shoe.save
       flash[:success] = 'Shoe was successfully created.'
       redirect_to @shoe
@@ -34,7 +34,7 @@ class ShoesController < ApplicationController
 
   def update
     @shoe = Shoe.find(params[:id])
-    if @shoe.update_attributes(params[:shoe])
+    if @shoe.update_attributes(shoe_params)
       flash[:success] = 'Shoe was successfully updated.'
       redirect_to @shoe
     else
@@ -45,5 +45,10 @@ class ShoesController < ApplicationController
   def destroy
     @shoe = Shoe.find(params[:id])
     @shoe.destroy
+  end
+
+  private
+  def shoe_params
+    params.require(:shoe).permit(:manufacturer, :model, :color_primary, :color_secondary, :color_tertiary, :size)
   end
 end
