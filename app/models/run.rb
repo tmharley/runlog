@@ -8,13 +8,11 @@ class Run < ApplicationRecord
   validates :temperature, numericality: {only_integer: true}, allow_nil: true
   validates :elev_gain, numericality: {only_integer: true, greater_than_or_equal_to: 0}, allow_nil: true
 
-  REG_INTERCEPT = 348.6133
-  REG_DISTANCE = 414.739
-  REG_TEMPERATURE = 0.3417
-  REG_HILLS = 0.6548
-  REG_TIME = -24.3031
-  REG_RACE_ADJ = -906.9538
-  REG_RACE_DIST_ADJ = 775.4982
+  REG_INTERCEPT = -614.6221
+  REG_DISTANCE = 1125.7969
+  REG_TEMPERATURE = 2.0218
+  REG_TIME = -19.6665
+  REG_STDEV = 26.04043
 
   def self.mileage_between(start_date, end_date)
     Run.where(start_time: start_date.beginning_of_day..end_date.end_of_day)
@@ -156,17 +154,6 @@ class Run < ApplicationRecord
     start_time.to_date - @@first_run_date
   end
 
-  def sip_plus
-    return nil if sip.nil?
-    stats = Run.sip_stats
-    result = (sip - stats[:mean]) / stats[:stdev] * 50 + 100
-    result.nan? ? nil : result
-  end
-
-  def sip
-    adjusted_pace.nil? ? nil : 3600 / adjusted_pace
-  end
-
   def precip?
     weather_type && weather_type.is_precip?
   end
@@ -185,37 +172,11 @@ class Run < ApplicationRecord
     acute / chronic
   end
 
+  def race_performance
+    100 + 50 * (expected_race_pace - pace) / REG_STDEV
+  end
+
   private
-
-  def self.sip_stats
-    @@sip_stats ||= nil
-    if @@sip_stats.nil?
-      sip_runs = Run.where.not(elev_gain: nil, temperature: nil, duration: 0)
-      stats = DescriptiveStatistics::Stats.new(sip_runs.map {|r| r.sip})
-      @@sip_stats = {mean: stats.mean, stdev: stats.standard_deviation}
-    end
-    @@sip_stats
-  end
-
-  def self.average_distance
-    @average_distance ||= (Run.pluck(:distance).reduce(:+) / Run.count)
-  end
-
-  def self.average_temperature
-    if @average_temperature.nil?
-      temps = Run.where.not(temperature: nil).pluck(:temperature)
-      @average_temperature = temps.reduce(:+) / temps.count
-    end
-    @average_temperature
-  end
-
-  def self.average_hills
-    if @average_hills.nil?
-      hills = Run.where.not(elev_gain: nil).pluck(:distance, :elev_gain).map {|r| r[1] / r[0]}
-      @average_hills = hills.reduce(:+) / hills.count
-    end
-    @average_hills
-  end
 
   def time_string(seconds)
     if seconds < 3600
@@ -226,8 +187,7 @@ class Run < ApplicationRecord
     end
   end
 
-  def adjusted_pace
-    return nil unless duration? && elev_gain && temperature
-    pace - (distance**0.06 - Run.average_distance**0.06) * REG_DISTANCE - (temperature - Run.average_temperature) * REG_TEMPERATURE - (climb_rate - Run.average_hills) * REG_HILLS - days_from_start**(1.0/3) * REG_TIME
+  def expected_race_pace
+    REG_INTERCEPT + (distance ** 0.06) * REG_DISTANCE + temperature * REG_TEMPERATURE + (days_from_start ** (1.0/3)) * REG_TIME
   end
 end

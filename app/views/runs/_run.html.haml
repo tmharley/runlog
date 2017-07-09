@@ -19,8 +19,6 @@
   %td
     - unless run.elev_gain.nil?
       #{run.elev_gain} ft
-  %td
-    = star_output(run.sip_plus)
   - if run.notes?
     %td{title: run.notes, 'data-toggle': 'tooltip'}
       = build_glyphicon('comment')

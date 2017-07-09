@@ -50,10 +50,6 @@ class RunsController < ApplicationController
     convert_datetime_to_local("start_time")
     @run = Run.new(run_params)
     if @run.save
-      #Run.sip_stats = nil
-      #Run.average_distance = nil
-      #Run.average_temperature = nil
-      #Run.average_hills = nil
       flash[:success] = 'Run was successfully created.'
       redirect_to @run
     else
@@ -65,10 +61,6 @@ class RunsController < ApplicationController
     convert_datetime_to_local("start_time")
     @run = Run.find(params[:id])
     if @run.update(run_params)
-      #Run.sip_stats = nil
-      #Run.average_distance = nil
-      #Run.average_temperature = nil
-      #Run.average_hills = nil
       flash[:success] = 'Run was successfully updated.'
       redirect_to @run
     else
@@ -79,9 +71,6 @@ class RunsController < ApplicationController
   def destroy
     @run = Run.find(params[:id])
     @run.destroy
-    @average_distance = nil
-    @average_temperature = nil
-    @average_hills = nil
     redirect_to action: :index
   end
 

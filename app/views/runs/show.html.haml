@@ -16,10 +16,10 @@
           = @run.local_time.day
     .col-sm-7.col-md-8
       %h1.text-left=page_header
-    - unless true # @run.sip_plus.nil?
+    - if @run.is_race?
       .col-sm-3.run-rating
-        .h1=star_output(@run.sip_plus)
-        %p Raw rating: #{'%d' % @run.sip_plus}
+        .h1=star_output(@run.race_performance)
+        %p Raw rating: #{'%d' % @run.race_performance}
   .panel.panel-info
     .panel-heading Details
     .panel-body.container
