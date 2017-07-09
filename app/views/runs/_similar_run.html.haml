@@ -1,0 +1,10 @@
+%tr.text-center
+  %td=link_to run.start_time_local_string, run
+  %td #{'%.2f' % run.distance} mi
+  %td
+    - if run.weather_type
+      #{run.weather_string}
+    - unless run.temperature.nil?
+      #{run.temperature}&deg;F
+  %td #{run.elev_gain} ft
+  %td #{'%.3f' % similarity}

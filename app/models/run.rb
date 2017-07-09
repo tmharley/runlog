@@ -36,31 +36,40 @@ class Run < ApplicationRecord
   end
 
   def similar_runs(limit = 5)
-    @dists = Run.where.not(distance: nil).pluck(:distance)
-    @hills = Run.where.not(elev_gain: nil).map(&:climb_rate)
-    @temps = Run.where.not(temperature: nil).pluck(:temperature)
-    runs = Run.all.select {|r| r.sip.present?}
-    @sips = runs.map(&:sip)
-    runs.reject! {|r| r == self}
-    runs.map! {|r| {run: r, similarity: similarity(r)}}
+    dists = Run.where.not(distance: nil).pluck(:distance)
+    hills = Run.where.not(elev_gain: nil).map(&:climb_rate)
+    temps = Run.where.not(temperature: nil).pluck(:temperature)
+
+    dist_range = dists.max - dists.min
+    hill_range = hills.max - hills.min
+    temp_range = (temps.max - temps.min) * 1.0
+
+    runs = Run.all.select {|r| r.can_be_compared? && r != self}
+    runs.map! do |r|
+      {
+        run: r,
+        similarity: similarity(r, {
+          dist_range: dist_range,
+          hill_range: hill_range,
+          temp_range: temp_range
+        })
+      }
+    end
     runs.sort! {|a, b| b[:similarity] <=> a[:similarity]}
     runs[0...limit]
   end
 
-  def similarity(other)
+  def similarity(other, options={})
     return 0 unless other.is_a? Run
     unless can_be_compared? && other.can_be_compared?
       return 0
     end
-    sips_range = @sips.max - @sips.min
-    return 0 if sips_range == 0
 
-    sim_dist = 1 - (distance - other.distance).abs / (@dists.max - @dists.min)
-    sim_hill = 1 - (climb_rate - other.climb_rate).abs / (@hills.max - @hills.min)
-    sim_temp = 1 - (temperature - other.temperature).abs / ((@temps.max - @temps.min) * 1.0)
-    sim_perf = 1 - (sip - other.sip).abs / sips_range
+    sim_dist = 1 - (distance - other.distance).abs / options[:dist_range]
+    sim_hill = 1 - (climb_rate - other.climb_rate).abs / options[:hill_range]
+    sim_temp = 1 - (temperature - other.temperature).abs / options[:temp_range]
 
-    (sim_dist + sim_hill + sim_temp + sim_perf) / 4
+    (sim_dist + sim_hill + sim_temp) / 3
   end
 
   def can_be_compared?

@@ -16,7 +16,7 @@
           = @run.local_time.day
     .col-sm-7.col-md-8
       %h1.text-left=page_header
-    - unless @run.sip_plus.nil?
+    - unless true # @run.sip_plus.nil?
       .col-sm-3.run-rating
         .h1=star_output(@run.sip_plus)
         %p Raw rating: #{'%d' % @run.sip_plus}
@@ -77,21 +77,9 @@
           %th Distance
           %th Weather
           %th Climb
-          %th Performance
           %th Similarity score
         - @run.similar_runs.each do |r|
-          - run = r[:run]
-          %tr.text-center
-            %td=link_to run.start_time_local_string, run
-            %td #{'%.2f' % run.distance} mi
-            %td
-              - if run.weather_type
-                #{run.weather_string}
-              - unless run.temperature.nil?
-                #{run.temperature}&deg;F
-            %td #{run.elev_gain} ft
-            %td=star_output(run.sip_plus)
-            %td #{'%.3f' % r[:similarity]}
+          = render 'similar_run', run: r[:run], similarity: r[:similarity]
   .panel.panel-info
     .panel-heading Training statistics
     .panel-body
