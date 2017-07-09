@@ -44,6 +44,7 @@ group :test do
   gem 'rails-perftest'
   gem 'ruby-prof'
   gem 'rails-controller-testing'
+  gem 'simplecov', require: false
 end
 
 # To use ActiveModel has_secure_password
