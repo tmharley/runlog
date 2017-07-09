@@ -63,9 +63,9 @@ class Run < ApplicationRecord
       return 0
     end
 
-    sim_dist = 1 - (distance - other.distance).abs / options[:dist_range]
-    sim_hill = 1 - (climb_rate - other.climb_rate).abs / options[:hill_range]
-    sim_temp = 1 - (temperature - other.temperature).abs / options[:temp_range]
+    sim_dist = options[:dist_range] == 0 ? 1 : 1 - (distance - other.distance).abs / options[:dist_range]
+    sim_hill = options[:hill_range] == 0 ? 1 : 1 - (climb_rate - other.climb_rate).abs / options[:hill_range]
+    sim_temp = options[:temp_range] == 0 ? 1 : 1 - (temperature - other.temperature).abs / options[:temp_range]
 
     (sim_dist + sim_hill + sim_temp) / 3
   end
