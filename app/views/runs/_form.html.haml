@@ -40,10 +40,10 @@
     .col-sm-offset-3.col-sm-4.col-md-3
       .checkbox
         %label
-          = f.check_box :is_race
+          = f.check_box :is_race, class: 'is-race-checkbox'
           This run is a race
     .col-sm-3
-      = f.text_field :race_name, class: 'form-control', placeholder: 'Race name'
+      = f.text_field :race_name, class: 'form-control race-name-input', placeholder: 'Race name', style: 'display: none'
   .form-group
     = f.label :shoe_id, 'Shoe', class: 'col-sm-3'
     .col-sm-4.col-md-3

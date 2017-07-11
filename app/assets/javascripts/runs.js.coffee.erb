@@ -12,3 +12,8 @@ $(document).ready ->
     <% end %>
     format: 'YYYY-MM-DD HH:mm'
   });
+  $('.is-race-checkbox').on 'click', (e) ->
+    if this.checked
+      $('.race-name-input').show()
+    else
+      $('.race-name-input').hide()
