@@ -15,6 +15,7 @@ gem 'bootstrap_form-datetimepicker'
 gem 'descriptive-statistics'
 gem 'haml', '~> 4.0.7'
 gem 'rake', '~> 10.5.0'
+gem 'toastr-rails'
 
 # Use Puma as the app server
 gem 'puma', '~> 3.7'

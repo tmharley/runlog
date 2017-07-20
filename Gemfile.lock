@@ -172,6 +172,8 @@ GEM
     thor (0.19.4)
     thread_safe (0.3.6)
     tilt (2.0.7)
+    toastr-rails (1.0.3)
+      railties (>= 3.1.0)
     tzinfo (1.2.3)
       thread_safe (~> 0.1)
     uglifier (3.2.0)
@@ -214,6 +216,7 @@ DEPENDENCIES
   simplecov
   sqlite3
   timespan!
+  toastr-rails
   uglifier (>= 1.0.3)
   web-console (~> 2.0)
   will_paginate (~> 3.0.5)

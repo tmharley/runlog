@@ -1,6 +1,5 @@
 .col-xs-12#alerts
   - %i(success info warning danger).each do |type|
     - if flash[type]
-      .alert.alert-dismissible{class: "alert-#{type}", role: 'alert'}
-        %button.close{type: 'button', 'data-dismiss': 'alert'} &times;
-        = flash[type]
+      :coffee
+        toastr.#{type}('#{flash[type]}')
