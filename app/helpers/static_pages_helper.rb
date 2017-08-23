@@ -2,7 +2,8 @@ module StaticPagesHelper
   include ActionView::Helpers::NumberHelper
 
   def total_mileage
-    number_with_delimiter(Run.pluck(:distance).reduce(:+).round(2))
+    total = Run.pluck(:distance).reduce(:+)
+    total.nil? ? 0 : number_with_delimiter(total.round(2))
   end
 
   def years
