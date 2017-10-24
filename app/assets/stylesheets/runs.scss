@@ -2,20 +2,20 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-$record-color: lighten($brand-info, 65%);
-$rain-color: lighten($brand-success, 65%);
-$night-color: lighten($gray-light, 25%);
-$record-hover-color: lighten($brand-info, 60%);
-$rain-hover-color: lighten($brand-success, 60%);
-$night-hover-color: lighten($gray-light, 20%);
+$record-color: lighten($info, 65%);
+$rain-color: lighten($success, 65%);
+$night-color: $gray-200;
+$record-hover-color: lighten($info, 60%);
+$rain-hover-color: lighten($success, 60%);
+$night-hover-color: $gray-300;
 
 table.runs {
   tr {
     td {
       text-align: center;
       a:visited {
-        color: $brand-primary;
-        background-color: lighten($brand-primary, 75%);
+        color: $primary;
+        background-color: lighten($primary, 75%);
         &:hover {
           text-decoration: none;
         }
@@ -71,13 +71,13 @@ table.runs {
 }
 
 .run-date-header {
-  .panel-heading {
+  .card-header {
     text-transform: uppercase;
     font-weight: 600;
     padding: 0;
   }
 
-  .panel-body {
+  .card-body {
     font-size: 300%;
     font-weight: 700;
     padding: 0;

@@ -1,14 +1,14 @@
-= form_for(weather_type, html: {class: 'form-horizontal'}) do |f|
-  .form-group
+= form_for(weather_type) do |f|
+  .form-group.row
     = f.label :name, 'Name', class: 'col-sm-3'
     .col-sm-4.col-md-3
       = f.text_field :name, class: 'form-control'
-  .form-group
+  .form-group.row
     .col-sm-offset-3.col-sm-4.col-md-3
-      .checkbox
+      .form-check
         %label
           = f.check_box :is_precip
           Precipitation?
-  .form-group
+  .form-group.row
     .col-sm-7
       = submit_tag button_title, class: 'btn btn-primary'

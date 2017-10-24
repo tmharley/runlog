@@ -1,9 +1,9 @@
 - provide(:title, 'View shoe')
-.col-xs-12
+.col-12
   %h1 #{@shoe.manufacturer} #{@shoe.model}
-  .panel.panel-info
-    .panel-heading Details
-    .panel-body
+  .card
+    .card-header.bg-primary.text-white Details
+    .card-body
       .row
         .col-sm-4
           %h3 Manufacturer
@@ -14,9 +14,9 @@
         .col-sm-4
           %h3 Size
           %p.details=shoe_size_clean(@shoe.size)
-  .panel.panel-info
-    .panel-heading Colors
-    .panel-body
+  .card
+    .card-header.bg-primary.text-white Colors
+    .card-body
       .row
         .col-sm-4
           %p.details{style: "background: ##{@shoe.color_primary}"}
@@ -28,10 +28,10 @@
           %p.details{style: "background: ##{@shoe.color_tertiary}"}
             \##{@shoe.color_tertiary}
   .btn-toolbar{role: 'toolbar'}
-    .btn-group
+    .btn-group.mr-2
       = link_to 'All Shoes', shoes_path, class: 'btn btn-info'
-    .btn-group
+    .btn-group.mr-2
       = link_to 'New Shoe', new_shoe_path, class: 'btn btn-success'
-    .btn-group
+    .btn-group.mr-2
       = link_to 'Edit', edit_shoe_path(@shoe), class: 'btn btn-warning'
       = link_to 'Delete', @shoe, confirm: 'Are you sure?', method: :delete, class: 'btn btn-danger'
