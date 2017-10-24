@@ -21,6 +21,6 @@
       #{run.elev_gain} ft
   - if run.notes?
     %td{title: run.notes, 'data-toggle': 'tooltip'}
-      = build_glyphicon('comment')
+      = build_icon :notes
   - else
     %td

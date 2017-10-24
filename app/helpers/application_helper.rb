@@ -1,4 +1,15 @@
 module ApplicationHelper
+  ICONS = {    
+    distance: 'ruler',
+    duration: 'hour-glass',
+    elevation: 'area-graph',
+    notes: 'typing',
+    pace: 'stopwatch',
+    rain: 'drop',
+    star: 'star',
+    start_time: 'clock',
+    weather: 'cloud'
+  }
 
   def full_title(page_title)
     base_title = "Run Log"
@@ -9,7 +20,7 @@ module ApplicationHelper
     end
   end
 
-  def build_glyphicon(name)
-    "<span class='glyphicon glyphicon-#{name}'></span>".html_safe
+  def build_icon(name)
+    image_tag "icons/#{ICONS[name]}.svg", class: 'icon'
   end
 end

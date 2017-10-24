@@ -27,14 +27,14 @@
         .card-header.bg-primary.text-white Start time
         .card-body
           %h4.card-title
-            = build_glyphicon('time')
+            = build_icon :start_time
             = @run.start_time_local_time_string
     .col-sm-6.col-md-4
       .card
         .card-header.bg-primary.text-white Total distance
         .card-body{class: ('record' if @run.is_distance_record?)}
           %h4.card-title
-            = build_glyphicon('road')
+            = build_icon :distance
             #{'%.2f' % @run.distance} miles
     - if @run.duration?
       .col-sm-6.col-md-4
@@ -42,14 +42,14 @@
           .card-header.bg-primary.text-white Total duration
           .card-body
             %h4.card-title
-              = build_glyphicon('dashboard')
+              = build_icon :duration
               = @run.duration_string
       .col-sm-6.col-md-4
         .card
           .card-header.bg-primary.text-white Average pace
           .card-body
             %h4.card-title
-              = build_glyphicon('map-marker')
+              = build_icon :pace
               = @run.pace_string
     - unless @run.temperature.nil?
       .col-sm-6.col-md-4
@@ -58,6 +58,7 @@
           .card-body{class: ('precip' if @run.precip?)}
             %h4.card-title
               - if @run.weather_type
+                = build_icon(@run.weather_type.is_precip ? :rain : :weather)
                 #{@run.weather_string},
               %span{class: temp_class(@run.temperature)} #{@run.temperature}&deg;F
     - unless @run.elev_gain.nil?
@@ -66,7 +67,7 @@
           .card-header.bg-primary.text-white Total elevation gain
           .card-body
             %h4.card-title
-              = build_glyphicon('arrow-up')
+              = build_icon :elevation
               #{@run.elev_gain} feet
               
   - if @run.shoe
@@ -78,7 +79,7 @@
                   style: "background: ##{@run.shoe.dark_color.hex}; color: ##{@run.shoe.bright_color.hex}"
   - if @run.notes?
     .card
-      .card-header.bg-info Notes
+      .card-header.bg-info.text-white Notes
       .card-body=@run.notes
   - if @run.can_be_compared?
     .card
