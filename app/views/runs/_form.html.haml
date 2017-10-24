@@ -1,57 +1,57 @@
-= form_for(run, html: {class: 'form-horizontal'}) do |f|
+= form_for(run) do |f|
   = render 'form_error', run: run
-  .form-group
+  .form-group.row
     = f.label :start_time_string, 'Start time', class: 'col-sm-3'
     .col-sm-4.col-md-3
       = f.text_field :start_time_string, id: 'start-time', class: 'form-control'
-  .form-group
+  .form-group.row
     .col-sm-offset-3.col-sm-4.col-md-3
-      .checkbox
+      .form-check
         %label
           = f.check_box :is_night
           Night run
-  .form-group
+  .form-group.row
     = f.label :distance, 'Distance', class: 'col-sm-3'
     .col-sm-4.col-md-3
       .input-group
         = f.number_field :distance, class: 'form-control', step: 0.01, min: 0
         %span.input-group-addon miles
-  .form-group
+  .form-group.row
     = f.label :duration_string, 'Duration', class: 'col-sm-3'
     .col-sm-4.col-md-3
       = f.text_field :duration_string, class: 'form-control'
-      %p.help-block mm:ss or h:mm:ss format
-  .form-group
+      %p.form-text mm:ss or h:mm:ss format
+  .form-group.row
     = f.label :temperature, 'Temperature', class: 'col-sm-3'
     .col-sm-4.col-md-3
       .input-group
         = f.number_field :temperature, class: 'form-control', in: -10..110
         %span.input-group-addon &deg;F
-      %p.help-block At start of run
+      %p.form-text At start of run
     .col-sm-4.col-md-3
       = f.select :weather_type_id, WeatherType.all.collect {|wt| [wt.name, wt.id]}, {include_blank: true}, class: 'form-control'
-  .form-group
+  .form-group.row
     = f.label :elev_gain, 'Elevation gain', class: 'col-sm-3'
     .col-sm-4.col-md-3
       .input-group
         = f.number_field :elev_gain, class: 'form-control', min: 0
         %span.input-group-addon feet
-  .form-group
+  .form-group.row
     .col-sm-offset-3.col-sm-4.col-md-3
-      .checkbox
+      .form-check
         %label
           = f.check_box :is_race, class: 'is-race-checkbox'
           This run is a race
     .col-sm-3
       = f.text_field :race_name, class: 'form-control race-name-input', placeholder: 'Race name', style: 'display: none'
-  .form-group
+  .form-group.row
     = f.label :shoe_id, 'Shoe', class: 'col-sm-3'
     .col-sm-4.col-md-3
       = f.select :shoe_id, Shoe.all.collect {|s| [s.model, s.id]}, {include_blank: true}, class: 'form-control'
-  .form-group
+  .form-group.row
     = f.label :notes, 'Notes', class: 'col-sm-3'
     .col-sm-8.col-md-6
       = f.text_area :notes, rows: 3, class: 'form-control'
-  .form-group
+  .form-group.row
     .col-sm-7
       = submit_tag button_title, class: 'btn btn-primary'

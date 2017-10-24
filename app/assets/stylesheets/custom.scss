@@ -1,6 +1,5 @@
 /* mixins, variables, etc. */
 
-$gray-medium-light: #eaeaea;
 $secondary-yellow:  #8a6c4c;
 $secondary-orange:  #d1952b;
 
@@ -16,19 +15,19 @@ $temp80:  #8e0817;
 $temp90:  #960043;
 $temp100: #8d0962;
 
-$brand-primary: #002a46;
-$brand-success: #0d750d;
-$brand-info:    #0d5f75;
-$brand-warning: #754c0d;
-$brand-danger:  #75100d;
+$primary: #002a46;
+$success: #0d750d;
+$info:    #0d5f75;
+$warning: #754c0d;
+$danger:  #75100d;
 
-$navbar-default-bg:               $brand-primary;
+$navbar-default-bg:               $primary;
 $navbar-default-link-color:       $secondary-yellow;
 $navbar-default-link-hover-color: $secondary-yellow;
 $navbar-default-link-hover-bg:    darken($navbar-default-bg, 5%);
 $navbar-default-brand-hover-bg:   darken($navbar-default-bg, 5%);
 
-$pagination-hover-bg: lighten($brand-primary, 75%);
+$pagination-hover-bg: lighten($primary, 75%);
 
 /* bootstrap */
 
@@ -42,8 +41,7 @@ html {
 }
 
 body {
-  padding-top: 60px;
-  font-family: 'Source Sans Pro', Verdana, Geneva, Tahoma, sans-serif;
+  padding-top: 80px;
 }
 
 section {
@@ -61,6 +59,10 @@ textarea {
   }
 }
 
+.card {
+  margin-bottom: 1rem;
+}
+
 /* typography */
 
 h1, h2, h3, h4, h5, h6 {
@@ -75,11 +77,9 @@ h1 {
 
 h2 {
   font-size: 1.7em;
-  letter-spacing: -1px;
   margin-bottom: 30px;
   text-align: center;
   font-weight: normal;
-  color: $gray-light;
 }
 
 h3 {
@@ -144,14 +144,7 @@ table {
 footer {
   margin-top: 45px;
   padding-top: 5px;
-  border-top: 1px solid $gray-medium-light;
-  color: $gray-light;
-  a {
-    color: $gray;
-    &:hover {
-      color: $gray-darker;
-    }
-  }
+  border-top: 1px solid $gray-300;
   small {
     float: left;
   }
@@ -171,58 +164,45 @@ select.date-select {
   width: auto;
 }
 
-/* links */
-
-a:visited {
-  &.btn-primary {
-    color: $btn-primary-color;
-  }
-  &.btn-success {
-    color: $btn-success-color;
-  }
-  &.btn-info {
-    color: $btn-info-color;
-  }
-  &.btn-warning {
-    color: $btn-warning-color;
-  }
-  &.btn-danger {
-    color: $btn-danger-color;
-  }
-}
-
 /* weather */
 
 .temp0 {
-  color: $temp0;
+  color: color("pink");
 }
 .temp10 {
-  color: $temp10;
+  color: color("purple");
 }
 .temp20 {
-  color: $temp20;
+  color: color("indigo");
 }
 .temp30 {
-  color: $temp30;
+  color: color("blue");
 }
 .temp40 {
-  color: $temp40;
+  color: color("cyan");
 }
 .temp50 {
-  color: $temp50;
+  color: color("teal");
 }
 .temp60 {
-  color: $temp60;
+  color: color("green");
 }
 .temp70 {
-  color: $temp70;
+  color: color("yellow");
 }
 .temp80 {
-  color: $temp80;
+  color: color("orange");
 }
 .temp90 {
-  color: $temp90;
+  color: color("red");
 }
 .temp100 {
-  color: $temp100;
+  color: color("pink");
+}
+
+/* icons */
+
+.icon {
+  height: 1.25rem;
+  margin-top: -0.25rem;
 }

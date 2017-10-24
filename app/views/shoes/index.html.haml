@@ -1,9 +1,9 @@
 - provide(:title, 'Shoes')
-.col-xs-12
+.col-12
   %h1 Shoes
   .text-center=will_paginate
-  .panel.panel-default
-    .panel-heading=page_entries_info
+  .card
+    .card-header=page_entries_info
     %table.shoes.table.table-hover
       %thead
         %tr
@@ -14,7 +14,6 @@
           %th Last used
           %th Runs
           %th Mileage
-          %th Details
       = render @shoes
   .text-center=will_paginate
   = link_to 'New Shoe', new_shoe_path, class: 'btn btn-success'

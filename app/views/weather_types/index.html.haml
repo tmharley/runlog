@@ -1,22 +1,20 @@
 - provide(:title, 'Weather types')
-.col-xs-12
+.col-12
   %h1 Weather types
   = will_paginate
-  .panel.panel-default
-    .panel-heading=page_entries_info
+  .card
+    .card-header=page_entries_info
     %table.table.table-hover
       %thead
         %tr
           %th Name
           %th Precipitation?
           %th Number of runs
-          %th
       %tbody
         = render @weather_types
         %tr
           %td.text-center (not specified)
           %td
           %td.text-center=Run.where(weather_type_id: nil).size
-          %td
   = will_paginate
   = link_to 'New Weather Type', new_weather_type_path, class: 'btn btn-large btn-success'

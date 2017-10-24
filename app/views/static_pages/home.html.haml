@@ -1,10 +1,10 @@
-.col-xs-12
+.col-12
   .jumbotron
     %h1 Run Log
     %p This is a record of all my recorded runs, dating back to the very beginning.
     = link_to "View all #{pluralize(Run.count, 'run')}", runs_path, class: 'btn btn-primary'
-  .panel.panel-primary
-    .panel-heading
+  .card
+    .card-header
       #{Run.count} runs for #{pluralize(total_mileage, 'total mile')}
     %ul.list-group{start: years.min}
       - greatest_mileage = years.collect {|y| mileage_for_year(y)}.max
