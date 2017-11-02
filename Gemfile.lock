@@ -55,9 +55,9 @@ GEM
       autoprefixer-rails (>= 6.0.3)
       popper_js (>= 1.12.3, < 2)
       sass (>= 3.5.2)
-    bootstrap-will_paginate (0.0.10)
+    bootstrap-will_paginate (1.0.0)
       will_paginate
-    bootstrap3-datetimepicker-rails (4.7.14)
+    bootstrap3-datetimepicker-rails (4.17.47)
       momentjs-rails (>= 2.8.1)
     bootstrap_form (2.7.0)
     bootstrap_form-datetimepicker (0.0.1)
@@ -206,8 +206,8 @@ PLATFORMS
 
 DEPENDENCIES
   bootstrap (~> 4.0.0.beta2.1)
-  bootstrap-will_paginate (= 0.0.10)
-  bootstrap3-datetimepicker-rails (~> 4.7.14)
+  bootstrap-will_paginate (~> 1.0.0)
+  bootstrap3-datetimepicker-rails (~> 4.17.47)
   bootstrap_form
   bootstrap_form-datetimepicker
   bourbon
@@ -216,7 +216,7 @@ DEPENDENCIES
   descriptive-statistics
   haml (~> 4.0.7)
   jquery-rails
-  momentjs-rails (>= 2.8.1)
+  momentjs-rails (>= 2.9.0)
   puma (~> 3.7)
   rack-cors
   rails (~> 5.0.0)
@@ -232,7 +232,6 @@ DEPENDENCIES
   toastr-rails
   uglifier (>= 1.0.3)
   web-console (~> 2.0)
-  will_paginate (~> 3.1.6)
 
 RUBY VERSION
    ruby 2.3.1p112

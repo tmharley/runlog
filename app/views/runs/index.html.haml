@@ -3,7 +3,8 @@
 
 .col-12
   %h1=page_title
-  .text-center=will_paginate
+  .text-center
+    = will_paginate(@runs, renderer: WillPaginate::ActionView::Bootstrap4LinkRenderer)
   .card
     .card-header=page_entries_info
     %table.table.table-hover.runs
@@ -17,7 +18,8 @@
           %th Climb
           %th Notes
       = render @runs
-  .text-center=will_paginate
+  .text-center
+    = will_paginate(@runs, renderer: WillPaginate::ActionView::Bootstrap4LinkRenderer)
   = link_to 'New Run', new_run_path, class: 'btn btn-large btn-success'
 
   %h2 Safe training mileage outlook
