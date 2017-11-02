@@ -47,7 +47,7 @@
       .col-sm-6.col-md-4
         .card
           .card-header.bg-primary.text-white Average pace
-          .card-body
+          .card-body{class: ('record' if @run.is_pace_record?)}
             %h4.card-title
               = build_icon :pace
               = @run.pace_string
