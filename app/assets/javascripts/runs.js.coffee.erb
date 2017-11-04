@@ -3,9 +3,9 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 $(document).ready ->
-  # $('[data-toggle="tooltip"]').tooltip({
-  #   container: 'body'
-  # })
+  $('[data-toggle="tooltip"]').tooltip({
+    container: 'body'
+  })
   $('#start-time').datetimepicker({
     <% if @run.try(:start_time?) %>
       defaultDate: "<%= run.start_time.strftime('%Y-%m-%d %H:%M') %>",
