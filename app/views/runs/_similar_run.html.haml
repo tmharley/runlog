@@ -1,5 +1,5 @@
 %tr.text-center
-  %td=link_to run.start_time_local_string, run
+  %td=link_to local_date_time_string(run.start_time), run
   %td #{'%.2f' % run.distance} mi
   %td
     - if run.weather_type

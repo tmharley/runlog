@@ -28,7 +28,7 @@
         .card-body
           %h4.card-title
             = build_icon :start_time
-            = @run.start_time_local_time_string
+            = local_time_string(@run.start_time)
     .col-sm-6.col-md-4
       .card
         .card-header.bg-primary.text-white Total distance

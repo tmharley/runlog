@@ -4,7 +4,7 @@
 
 %tr{class: row_class, title: (run.race_name if run.is_race?)}
   %td.start_time
-    = link_to run.start_time_local_string, run
+    = link_to local_date_time_string(run.start_time), run
   %td
     #{'%.2f' % run.distance} mi
   %td

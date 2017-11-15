@@ -23,4 +23,8 @@ module ApplicationHelper
   def build_icon(name)
     image_tag "icons/#{ICONS[name]}.svg", class: 'icon'
   end
+
+  def time_as_local(time)
+    time.in_time_zone("Eastern Time (US & Canada)")
+  end
 end

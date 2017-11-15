@@ -52,4 +52,12 @@ module RunsHelper
     end
     "<span title=#{title} data-toggle=tooltip>#{content}</span>".html_safe
   end
+
+  def local_time_string(time)
+    time_as_local(time).strftime('%l:%M %p')
+  end
+
+  def local_date_time_string(time)
+    time_as_local(time).strftime('%a %-m/%-d/%y %-l:%M %p')
+  end
 end

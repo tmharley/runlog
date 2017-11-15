@@ -88,14 +88,6 @@ class Run < ApplicationRecord
     start_time.in_time_zone("Eastern Time (US & Canada)")
   end
 
-  def start_time_local_time_string
-    local_time.strftime("%l:%M %p")
-  end
-
-  def start_time_local_string
-    local_time.strftime("%a %-m/%-d/%y %-l:%M %p")
-  end
-
   def start_time_string
     time = id? ? local_time : Time.now
     time.strftime("%Y-%m-%d %H:%M")
