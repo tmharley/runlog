@@ -206,3 +206,22 @@ select.date-select {
   height: 1.25rem;
   margin-top: -0.25rem;
 }
+
+/* home page graph */
+
+.run-graph-bar {
+  fill: $primary;
+}
+
+.run-graph-bar-text {
+  font-size: 0.8rem;
+  text-anchor: middle;
+}
+
+.run-graph-bar-text-year {
+  fill: white;  
+}
+
+.run-graph-bar-text-miles {
+  fill: black;
+}
