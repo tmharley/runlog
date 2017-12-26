@@ -7,11 +7,14 @@ module StaticPagesHelper
   end
 
   def years
-    Run.pluck(:start_time).map {|r| r.year}.uniq
+    all_years = Run.pluck(:start_time).map {|r| r.year}.uniq
+    all_years.min..all_years.max
   end
 
   def mileage_for_year(year)
-    year_runs(year).pluck(:distance).reduce(:+).round(2)
+    distances = year_runs(year).pluck(:distance)
+    return 0.00 if distances.empty?
+    distances.reduce(:+).round(2)
   end
 
   def year_runs(year)
