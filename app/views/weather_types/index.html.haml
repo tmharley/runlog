@@ -1,22 +1,23 @@
 - provide(:title, 'Weather types')
-.col-12
-  %h1 Weather types
-  .text-center
-    =will_paginate(@runs, renderer: WillPaginate::ActionView::Bootstrap4LinkRenderer)
-  .card
-    .card-header=page_entries_info
-    %table.table.table-hover
-      %thead
-        %tr
-          %th Name
-          %th Precipitation?
-          %th Number of runs
-      %tbody
-        = render @weather_types
-        %tr
-          %td.text-center (not specified)
-          %td
-          %td.text-center=Run.where(weather_type_id: nil).size
-  .text-center
-    =will_paginate(@runs, renderer: WillPaginate::ActionView::Bootstrap4LinkRenderer)
-  = link_to 'New Weather Type', new_weather_type_path, class: 'btn btn-large btn-success'
+.row
+  .col-12
+    %h1 Weather types
+    .text-center
+      =will_paginate(@runs, renderer: WillPaginate::ActionView::Bootstrap4LinkRenderer)
+    .card
+      .card-header=page_entries_info
+      %table.table.table-hover
+        %thead
+          %tr
+            %th Name
+            %th Precipitation?
+            %th Number of runs
+        %tbody
+          = render @weather_types
+          %tr
+            %td.text-center (not specified)
+            %td
+            %td.text-center=Run.where(weather_type_id: nil).size
+    .text-center
+      =will_paginate(@runs, renderer: WillPaginate::ActionView::Bootstrap4LinkRenderer)
+    = link_to 'New Weather Type', new_weather_type_path, class: 'btn btn-large btn-success'

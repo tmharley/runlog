@@ -1,21 +1,22 @@
 - provide(:title, 'Shoes')
-.col-12
-  %h1 Shoes
-  .text-center
-    = will_paginate(@runs, renderer: WillPaginate::ActionView::Bootstrap4LinkRenderer)
-  .card
-    .card-header=page_entries_info
-    %table.shoes.table.table-hover
-      %thead
-        %tr
-          %th Manufacturer
-          %th Model
-          %th Colors
-          %th Size
-          %th Last used
-          %th Runs
-          %th Mileage
-      = render @shoes
-  .text-center
-    = will_paginate(@runs, renderer: WillPaginate::ActionView::Bootstrap4LinkRenderer)
-  = link_to 'New Shoe', new_shoe_path, class: 'btn btn-success'
+.row
+  .col-12
+    %h1 Shoes
+    .text-center
+      = will_paginate(@runs, renderer: WillPaginate::ActionView::Bootstrap4LinkRenderer)
+    .card
+      .card-header=page_entries_info
+      %table.shoes.table.table-hover
+        %thead
+          %tr
+            %th Manufacturer
+            %th Model
+            %th Colors
+            %th Size
+            %th Last used
+            %th Runs
+            %th Mileage
+        = render @shoes
+    .text-center
+      = will_paginate(@runs, renderer: WillPaginate::ActionView::Bootstrap4LinkRenderer)
+    = link_to 'New Shoe', new_shoe_path, class: 'btn btn-success'
