@@ -8,15 +8,8 @@
       #{Run.count} runs for #{pluralize(total_mileage, 'total mile')}
     .card-body.container
       - years.each do |y|
-        - bar_height = mileage_for_year(y) / 5 + 20
-        %a{href: runs_path(year: y)}
-          %svg{height: bar_height + 25,
-              width: 50,
-              title: pluralize(year_runs(y).size, 'run'),
-              'data-toggle': 'tooltip'}
-            %g
-              %rect.run-graph-bar{height: bar_height, width: 50, rx: 5, ry: 5, y: 25}
-              %text.run-graph-bar-text.run-graph-bar-text-year{x: 25, y: bar_height + 20, width: 50}
-                = y
-              %text.run-graph-bar-text.run-graph-bar-text-miles{x: 25, y: 20, width: 50}
-                = mileage_for_year(y)
+        %a{href: runs_path(year: y), class: ('d-none d-sm-inline' if y < years.max - 4)}
+          = render 'shared/graph_bar', bar_height: mileage_for_year(y) / 5,
+                                       tooltip: pluralize(year_runs(y).size, 'run'),
+                                       label_category: y,
+                                       label_amount: mileage_for_year(y)

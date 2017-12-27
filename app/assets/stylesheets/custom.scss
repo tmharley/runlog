@@ -209,19 +209,19 @@ select.date-select {
 
 /* home page graph */
 
-.run-graph-bar {
+.graph-bar {
   fill: $primary;
 }
 
-.run-graph-bar-text {
+.graph-bar-label {
   font-size: 0.8rem;
   text-anchor: middle;
 }
 
-.run-graph-bar-text-year {
+.graph-bar-label-category {
   fill: white;  
 }
 
-.run-graph-bar-text-miles {
+.graph-bar-label-amount {
   fill: black;
 }
