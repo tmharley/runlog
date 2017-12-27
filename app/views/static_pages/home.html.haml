@@ -1,15 +1,34 @@
-.col-12
-  .jumbotron
-    %h1 Run Log
-    %p This is a record of all my recorded runs, dating back to the very beginning.
-    = link_to "View all #{pluralize(Run.count, 'run')}", runs_path, class: 'btn btn-primary'
-  .card
-    .card-header
-      #{Run.count} runs for #{pluralize(total_mileage, 'total mile')}
-    .card-body.container
-      - years.each do |y|
-        %a{href: runs_path(year: y), class: ('d-none d-sm-inline' if y < years.max - 4)}
-          = render 'shared/graph_bar', bar_height: mileage_for_year(y) / 5,
-                                       tooltip: pluralize(year_runs(y).size, 'run'),
-                                       label_category: y,
-                                       label_amount: mileage_for_year(y)
+.row
+  .col-12
+    .jumbotron
+      %h1 Run Log
+      %p This is a record of all my recorded runs, dating back to the very beginning.
+      = link_to "View all #{pluralize(Run.count, 'run')}", runs_path, class: 'btn btn-primary'
+.row
+  .col-6
+    .card
+      .card-header
+        #{Run.count} runs for #{pluralize(total_mileage, 'total mile')}
+      .card-body
+        - years.each do |y|
+          %a{href: runs_path(year: y), class: ('d-md-none d-lg-inline' if y < years.max - 4)}
+            = render 'shared/graph_bar', bar_height: mileage_for_year(y) / 5,
+                                        tooltip: pluralize(year_runs(y).size, 'run'),
+                                        label_category: y,
+                                        label_amount: mileage_for_year(y)
+  .col-6
+    .card
+      .card-header
+        Recent mileage
+      .card-body
+        - last_week = Run.mileage_between(Time.now - 6.days, Time.now)
+        - last_four_weeks = Run.mileage_between(Time.now - 27.days, Time.now)
+        %p
+          Last week:
+          = pluralize(last_week, 'mile')
+        %p
+          Last 4 weeks:
+          = pluralize(last_four_weeks, 'mile')
+        %p
+          Maximum safe mileage today:
+          = pluralize(Run.safe_mileage, 'mile')
