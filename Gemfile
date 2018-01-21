@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 ruby '2.3.1'
 
 gem 'rails', '~> 5.0.0'
-gem 'bootstrap', '~> 4.0.0.beta2.1'
+gem 'bootstrap', '~> 4.0.0'
 gem 'bourbon'
 gem 'bootstrap-will_paginate', '~> 1.0.0'
 gem 'bootstrap_form'
@@ -23,7 +23,7 @@ gem 'puma', '~> 3.7'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3'
-gem 'timespan', :git => 'git://github.com/toxaq/timespan.git'
+gem 'timespan', git: 'https://github.com/toxaq/timespan.git'
 
 # Gems used only for assets and not required
 # in production environments by default.
