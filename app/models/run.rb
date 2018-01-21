@@ -29,7 +29,7 @@ class Run < ApplicationRecord
     end
   end
 
-  def mileage_in_last_days(num_days)
+  def self.mileage_in_last_days(num_days, start_time = Time.now)
     Run.mileage_between(start_time - (num_days - 1).days, start_time)
   end
 
@@ -156,12 +156,6 @@ class Run < ApplicationRecord
 
   def shoe_name
     [shoe.manufacturer, shoe.model].join(' ')
-  end
-
-  def training_ratio
-    acute = mileage_in_last_days(7)
-    chronic = mileage_in_last_days(28) / 4
-    acute / chronic
   end
 
   def race_performance

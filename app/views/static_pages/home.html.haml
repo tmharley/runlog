@@ -21,14 +21,19 @@
       .card-header
         Recent mileage
       .card-body
-        - last_week = Run.mileage_between(Time.now - 6.days, Time.now)
-        - last_four_weeks = Run.mileage_between(Time.now - 27.days, Time.now)
+        - last_week = Run.mileage_in_last_days(7)
+        - last_four_weeks_avg = Run.mileage_in_last_days(28) / 4
         %p
           Last week:
           = pluralize(last_week, 'mile')
         %p
-          Last 4 weeks:
-          = pluralize(last_four_weeks, 'mile')
+          Last 4 weeks average:
+          = pluralize(last_four_weeks_avg.round(2), 'mile')
         %p
-          Maximum safe mileage today:
-          = pluralize(Run.safe_mileage, 'mile')
+          - ratio = last_week / last_four_weeks_avg
+          Ratio:
+          %span{class: (ratio > 1.5 ? 'text-danger' : (ratio > 1.2 ? 'text-warning' : 'text-success'))}
+            #{ratio.round(2)}
+        %p
+          Maximum recommended today:
+          = pluralize(Run.safe_mileage.round(2), 'mile')
