@@ -21,19 +21,22 @@
     = f.label :color_primary, 'Color 1', class: 'col-sm-3'
     .col-sm-3
       .input-group
-        %span.input-group-addon #
+        .input-group-prepend
+          %span.input-group-text #
         = f.text_field :color_primary, maxlength: 6, class: 'form-control'
   .form-group.row
     = f.label :color_secondary, 'Color 2', class: 'col-sm-3'
     .col-sm-3
       .input-group
-        %span.input-group-addon #
+        .input-group-prepend
+          %span.input-group-text #
         = f.text_field :color_secondary, maxlength: 6, class: 'form-control'
   .form-group.row
     = f.label :color_tertiary, 'Color 3', class: 'col-sm-3'
     .col-sm-3
       .input-group
-        %span.input-group-addon #
+        .input-group-prepend
+          %span.input-group-text #
         = f.text_field :color_tertiary, maxlength: 6, class: 'form-control'
   .form-group.row
     .col-sm-6

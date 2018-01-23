@@ -15,7 +15,8 @@
     .col-sm-4.col-md-3
       .input-group
         = f.number_field :distance, class: 'form-control', step: 0.01, min: 0
-        %span.input-group-addon miles
+        .input-group-append
+          %span.input-group-text miles
   .form-group.row
     = f.label :duration_string, 'Duration', class: 'col-sm-3'
     .col-sm-4.col-md-3
@@ -26,7 +27,8 @@
     .col-sm-4.col-md-3
       .input-group
         = f.number_field :temperature, class: 'form-control', in: -10..110
-        %span.input-group-addon &deg;F
+        .input-group-append
+          %span.input-group-text &deg;F
       %p.form-text At start of run
     .col-sm-4.col-md-3
       = f.select :weather_type_id, WeatherType.all.collect {|wt| [wt.name, wt.id]}, {include_blank: true}, class: 'form-control'
@@ -35,7 +37,8 @@
     .col-sm-4.col-md-3
       .input-group
         = f.number_field :elev_gain, class: 'form-control', min: 0
-        %span.input-group-addon feet
+        .input-group-append
+          %span.input-group-text feet
   .form-group.row
     .col-sm-offset-3.col-sm-4.col-md-3
       .form-check
