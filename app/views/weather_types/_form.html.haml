@@ -4,10 +4,11 @@
     .col-sm-4.col-md-3
       = f.text_field :name, class: 'form-control'
   .form-group.row
-    .col-sm-offset-3.col-sm-4.col-md-3
+    .col-sm-3
+    .col-sm-4.col-md-3
       .form-check
-        %label
-          = f.check_box :is_precip
+        = f.check_box :is_precip, class: 'form-check-input'
+        %label.form-check-label
           Precipitation?
   .form-group.row
     .col-sm-7

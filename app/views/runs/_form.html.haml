@@ -5,10 +5,11 @@
     .col-sm-4.col-md-3
       = f.text_field :start_time_string, id: 'start-time', class: 'form-control'
   .form-group.row
-    .col-sm-offset-3.col-sm-4.col-md-3
+    .col-sm-3
+    .col-sm-4.col-md-3
       .form-check
-        %label
-          = f.check_box :is_night
+        = f.check_box :is_night, class: 'form-check-input'
+        %label.form-check-label
           Night run
   .form-group.row
     = f.label :distance, 'Distance', class: 'col-sm-3'
@@ -21,15 +22,14 @@
     = f.label :duration_string, 'Duration', class: 'col-sm-3'
     .col-sm-4.col-md-3
       = f.text_field :duration_string, class: 'form-control'
-      %p.form-text mm:ss or h:mm:ss format
+      %small.form-text.text-muted mm:ss or h:mm:ss format
   .form-group.row
-    = f.label :temperature, 'Temperature', class: 'col-sm-3'
+    = f.label :temperature, 'Weather', class: 'col-sm-3'
     .col-sm-4.col-md-3
       .input-group
         = f.number_field :temperature, class: 'form-control', in: -10..110
         .input-group-append
           %span.input-group-text &deg;F
-      %p.form-text At start of run
     .col-sm-4.col-md-3
       = f.select :weather_type_id, WeatherType.all.collect {|wt| [wt.name, wt.id]}, {include_blank: true}, class: 'form-control'
   .form-group.row
@@ -40,10 +40,11 @@
         .input-group-append
           %span.input-group-text feet
   .form-group.row
-    .col-sm-offset-3.col-sm-4.col-md-3
+    .col-sm-3
+    .col-sm-4.col-md-3
       .form-check
-        %label
-          = f.check_box :is_race, class: 'is-race-checkbox'
+        = f.check_box :is_race, class: 'is-race-checkbox form-check-input'
+        %label.form-check-label
           This run is a race
     .col-sm-3
       = f.text_field :race_name, class: 'form-control race-name-input', placeholder: 'Race name', style: 'display: none'
