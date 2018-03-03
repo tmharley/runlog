@@ -162,6 +162,14 @@ class Run < ApplicationRecord
     100 + 50 * (expected_race_pace - pace) / REG_STDEV
   end
 
+  def previous
+    Run.where(['start_time < ?', start_time]).order(start_time: :desc).first
+  end
+
+  def next
+    Run.where(['start_time > ?', start_time]).order(:start_time).first
+  end
+
   private
 
   def time_string(seconds)

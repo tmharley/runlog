@@ -97,6 +97,9 @@
     .btn-group.mr-2
       = link_to 'All Runs', runs_path, class: 'btn btn-info'
     .btn-group.mr-2
+      = link_to 'Previous', run_path(@run.previous), class: 'btn btn-secondary' if @run.previous
+      = link_to 'Next', run_path(@run.next), class: 'btn btn-secondary' if @run.next
+    .btn-group.mr-2
       = link_to 'New Run', new_run_path, class: 'btn btn-success'
     .btn-group.mr-2
       = link_to 'Edit', edit_run_path(@run), class: 'btn btn-warning'
