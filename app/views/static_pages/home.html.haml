@@ -30,7 +30,7 @@
           Last 4 weeks average:
           = pluralize(last_four_weeks_avg.round(2), 'mile')
         %p
-          - ratio = last_week / last_four_weeks_avg
+          - ratio = last_week / last_four_weeks_avg rescue 0
           Ratio:
           %span{class: (ratio > 1.5 ? 'text-danger' : (ratio > 1.2 ? 'text-warning' : 'text-success'))}
             #{ratio.round(2)}
