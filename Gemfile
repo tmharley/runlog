@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
 
-ruby '2.3.1'
+ruby '2.5.1'
 
-gem 'rails', '~> 5.0.0'
+gem 'rails', '~> 5.1.0'
 gem 'bootstrap', '~> 4.0.0'
 gem 'bourbon'
 gem 'bootstrap-will_paginate', '~> 1.0.0'
@@ -38,6 +38,7 @@ gem 'rack-cors'#, require: 'rack-cors'
 group :development do
   gem 'rails_best_practices'
   gem 'web-console', '~> 2.0'
+  gem 'listen'
 end
 
 group :test do
