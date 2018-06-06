@@ -2,7 +2,8 @@ source 'https://rubygems.org'
 
 ruby '2.5.1'
 
-gem 'rails', '~> 5.1.0'
+gem 'rails', '~> 5.2.0'
+gem 'bootsnap'
 gem 'bootstrap', '~> 4.0.0'
 gem 'bourbon'
 gem 'bootstrap-will_paginate', '~> 1.0.0'
@@ -12,7 +13,7 @@ gem 'momentjs-rails', '>= 2.9.0'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.17.47'
 gem 'bootstrap_form-datetimepicker'
 gem 'descriptive-statistics'
-gem 'haml', '~> 4.0.7'
+gem 'haml', '~> 5.0.0'
 gem 'rake', '~> 10.5.0'
 gem 'toastr-rails'
 
