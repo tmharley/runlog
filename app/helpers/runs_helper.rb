@@ -16,8 +16,8 @@ module RunsHelper
 
   def star_output(rating)
     return '' if rating.nil?
-    star = build_icon :star
-    half = '&frac12;'.html_safe
+    star = build_icon('star')
+    half = build_icon('star-half')
     case
     when rating < 45
       title = 'awful'
