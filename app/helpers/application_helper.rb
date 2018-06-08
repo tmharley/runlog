@@ -1,5 +1,6 @@
 module ApplicationHelper
-  ICONS = {    
+  ICONS = {
+    calendar: 'calendar',
     distance: 'ruler',
     duration: 'hour-glass',
     elevation: 'area-graph',
