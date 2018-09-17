@@ -51,13 +51,13 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
     arel (9.0.0)
-    autoprefixer-rails (8.6.0)
+    autoprefixer-rails (9.1.4)
       execjs
     binding_of_caller (0.8.0)
       debug_inspector (>= 0.0.1)
     bootsnap (1.3.0)
       msgpack (~> 1.0)
-    bootstrap (4.0.0)
+    bootstrap (4.1.3)
       autoprefixer-rails (>= 6.0.3)
       popper_js (>= 1.12.9, < 2)
       sass (>= 3.5.2)
@@ -124,7 +124,7 @@ GEM
     nio4r (2.3.1)
     nokogiri (1.8.2)
       mini_portile2 (~> 2.3.0)
-    popper_js (1.12.9)
+    popper_js (1.14.3)
     puma (3.11.4)
     rack (2.0.5)
     rack-cors (1.0.2)
@@ -225,7 +225,7 @@ PLATFORMS
 
 DEPENDENCIES
   bootsnap
-  bootstrap (~> 4.0.0)
+  bootstrap (~> 4.1.3)
   bootstrap-will_paginate (~> 1.0.0)
   bootstrap4-datetime-picker-rails
   bootstrap_form

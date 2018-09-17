@@ -4,7 +4,7 @@ ruby '2.5.1'
 
 gem 'rails', '~> 5.2.0'
 gem 'bootsnap'
-gem 'bootstrap', '~> 4.0.0'
+gem 'bootstrap', '~> 4.1.3'
 gem 'bourbon'
 gem 'bootstrap-will_paginate', '~> 1.0.0'
 gem 'bootstrap_form'
