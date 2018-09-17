@@ -208,6 +208,10 @@ select.date-select {
 
 /* home page graph */
 
+svg {
+  vertical-align: inherit;
+}
+
 .graph-bar {
   fill: $primary;
 }
