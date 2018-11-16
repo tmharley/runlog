@@ -126,7 +126,7 @@ GEM
       mini_portile2 (~> 2.3.0)
     popper_js (1.14.3)
     puma (3.11.4)
-    rack (2.0.5)
+    rack (2.0.6)
     rack-cors (1.0.2)
     rack-test (1.0.0)
       rack (>= 1.0, < 3)
@@ -238,6 +238,7 @@ DEPENDENCIES
   listen
   momentjs-rails (>= 2.9.0)
   puma (~> 3.7)
+  rack (~> 2.0.6)
   rack-cors
   rails (~> 5.2.0)
   rails-controller-testing
