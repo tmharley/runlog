@@ -11,7 +11,7 @@
         #{Run.count} runs for #{pluralize(total_mileage, 'total mile')}
       .card-body
         - years.each do |y|
-          %a{href: runs_path(year: y), class: ('d-md-none d-lg-inline' if y < years.max - 4)}
+          %a{href: runs_path(year: y), class: mileage_bar_visibility(y, years.max)}
             = render 'shared/graph_bar', bar_height: mileage_for_year(y) / 5,
                                         tooltip: pluralize(year_runs(y).size, 'run'),
                                         label_category: y,

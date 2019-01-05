@@ -20,4 +20,14 @@ module StaticPagesHelper
   def year_runs(year)
     Run.where(start_time: Time.new(year)..Time.new(year+1))
   end
+
+  def mileage_bar_visibility(year, max_year)
+    if year < max_year - 6
+      'd-none d-sm-none d-md-none d-lg-none d-xl-inline'
+    elsif year < max_year - 4
+      'd-none d-sm-none d-md-none d-lg-inline'
+    elsif year < max_year - 2
+      'd-none d-sm-none d-md-inline'
+    end
+  end
 end
