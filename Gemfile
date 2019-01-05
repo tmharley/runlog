@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby '2.5.1'
 
-gem 'rails', '~> 5.2.0'
+gem 'rails', '~> 5.2.2'
 gem 'rack', '~> 2.0.6'
 gem 'bootsnap'
 gem 'bootstrap', '~> 4.1.3'
@@ -16,6 +16,7 @@ gem 'descriptive-statistics'
 gem 'haml', '~> 5.0.0'
 gem 'rake', '~> 10.5.0'
 gem 'toastr-rails'
+gem 'loofah', '~> 2.2.3'
 
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
