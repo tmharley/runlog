@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby '2.5.1'
 
-gem 'rails', '~> 5.2.2'
+gem 'rails', '~> 5.2.2.1'
 gem 'rack', '~> 2.0.6'
 gem 'bootsnap'
 gem 'bootstrap', '~> 4.1.3'
