@@ -15,5 +15,4 @@
 //= require bootstrap
 //= require moment
 //= require tempusdominus-bootstrap-4.js
-//= require toastr
 //= require_tree .
