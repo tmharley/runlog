@@ -5,7 +5,7 @@ ruby '2.5.1'
 gem 'rails', '~> 5.2.2.1'
 gem 'rack', '~> 2.0.6'
 gem 'bootsnap'
-gem 'bootstrap', '~> 4.2.1'
+gem 'bootstrap', '~> 4.3.1'
 gem 'bourbon'
 gem 'bootstrap-will_paginate', '~> 1.0.0'
 gem 'bootstrap_form'
@@ -23,7 +23,7 @@ gem 'puma', '~> 3.7'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
+gem 'sqlite3', '~> 1.3.13'
 gem 'timespan', git: 'https://github.com/toxaq/timespan.git'
 
 # Gems used only for assets and not required
