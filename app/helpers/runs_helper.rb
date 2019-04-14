@@ -9,6 +9,8 @@ module RunsHelper
     page_title_class = params[:type].pluralize rescue 'runs'
     if params[:year]
       "#{page_title_class.capitalize} in #{params[:year]}"
+    elsif params[:start_date]
+      'Search results'
     else
       "All #{page_title_class}"
     end

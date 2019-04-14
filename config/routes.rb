@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   root to: 'static_pages#home'
-  resources :runs
+  resources :runs do
+    collection do
+      get 'search'
+    end
+  end
   resources :shoes
   resources :weather_types, except: [:show]
   # The priority is based upon order of creation: first created -> highest priority.

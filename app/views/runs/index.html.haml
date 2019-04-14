@@ -7,7 +7,9 @@
     .text-center
       = will_paginate(@runs, renderer: WillPaginate::ActionView::Bootstrap4LinkRenderer)
     .card
-      .card-header=page_entries_info
+      .card-header
+        = page_entries_info
+        = link_to build_icon('search'), search_runs_path, style: 'float: right'
       %table.table.table-hover.runs
         %thead
           %tr

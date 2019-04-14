@@ -2,9 +2,17 @@ class RunsController < ApplicationController
   def index
     criteria = {}
 
+    start_date = params[:start_date]
+    end_date = params[:end_date]
+
     if params[:year]
       year = params[:year].to_i
-      criteria[:start_time] = Time.new(year)..Time.new(year+1)
+      start_date = "#{year}-01-01"
+      end_date = "#{year + 1}-01-01"
+    end
+
+    if start_date && end_date
+      criteria[:start_time] = Time.new(*start_date.split('-'))..Time.new(*end_date.split('-'))
     end
 
     if params[:type]
@@ -72,6 +80,9 @@ class RunsController < ApplicationController
     @run = Run.find(params[:id])
     @run.destroy
     redirect_to action: :index
+  end
+
+  def search
   end
 
   private
