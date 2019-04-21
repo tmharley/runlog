@@ -34,7 +34,7 @@ class WeatherTypesController < ApplicationController
   def destroy
     @weather_type = WeatherType.find(params[:id])
     @weather_type.destroy
-    render :index
+    redirect_to weather_types_path
   end
 
   private
