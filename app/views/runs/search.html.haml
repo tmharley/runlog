@@ -5,22 +5,41 @@
   Search runs
 = form_tag({controller: 'runs', action: 'index'}, method: 'get') do
   .form-group.row
-    = label_tag :start_date, 'Start date', class: 'col-sm-3'
-    .col-sm-4.col-md-3
+    .form-check.col-sm-2
+      = check_box_tag :filter_date, class: 'form-check-input'
+      %label.form-check-label
+        = label_tag :filter_date, 'Date'
+    = label_tag :start_date, 'from', class: 'col-sm-2'
+    .col-sm-3
       .input-group.date#start-date{'data-target-input': 'nearest'}
         = text_field_tag :start_date, nil, id: 'start-date', class: 'form-control datetimepicker-input', 'data-target': '#start-date'
         .input-group-append{data: {target: '#start-date', toggle: 'datetimepicker'}}
           .input-group-text
             %i.fa.fa-calendar
-  .form-group.row
-    = label_tag :end_date, 'End date', class: 'col-sm-3'
-    .col-sm-4.col-md-3
+    = label_tag :end_date, 'to', class: 'col-sm-2'
+    .col-sm-3
       .input-group.date#end-date{'data-target-input': 'nearest'}
         = text_field_tag :end_date, nil, id: 'end-date', class: 'form-control datetimepicker-input', 'data-target': '#end-date'
         .input-group-append{data: {target: '#end-date', toggle: 'datetimepicker'}}
           .input-group-text
             %i.fa.fa-calendar
   .form-group.row
+    .form-check.col-sm-2
+      = check_box_tag :filter_dist, class: 'form-check-input'
+      %label.form-check-label
+        = label_tag :filter_dist, 'Distance'
+    = label_tag :min_dist, 'min', class: 'col-sm-2'
     .col-sm-3
+      .input-group
+        = number_field_tag :min_dist, 0, class: 'form-control', step: 0.01, min: 0
+        .input-group-append
+          %span.input-group-text miles
+    = label_tag :max_dist, 'max', class: 'col-sm-2'
+    .col-sm-3
+      .input-group
+        = number_field_tag :max_dist, 100, class: 'form-control', step: 0.01, min: 0
+        .input-group-append
+          %span.input-group-text miles
+  .form-group.row
     .col-sm-6
       = submit_tag 'Search', class: 'btn btn-primary'

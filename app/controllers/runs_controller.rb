@@ -2,24 +2,14 @@ class RunsController < ApplicationController
   def index
     criteria = {}
 
-    start_date = params[:start_date]
-    end_date = params[:end_date]
-
-    if params[:year]
-      year = params[:year].to_i
-      start_date = "#{year}-01-01"
-      end_date = "#{year + 1}-01-01"
+    if params[:filter_date]
+      begin_time = Time.new(*params[:start_date].split('-')).beginning_of_day
+      end_time = Time.new(*params[:end_date].split('-')).end_of_day
+      criteria[:start_time] = begin_time..end_time
     end
-
-    if start_date && end_date
-      criteria[:start_time] = Time.new(*start_date.split('-'))..Time.new(*end_date.split('-'))
-    end
-
-    if params[:type]
-      if params[:type] == 'race'
-        criteria[:is_race] = true
-      end
-    end
+    
+    criteria[:distance] = params[:min_dist]..params[:max_dist] if params[:filter_dist]
+    criteria[:is_race] = true if params[:type] == 'race'
 
     run_list = if criteria.any?
                  Run.where(criteria).order(start_time: :desc)
