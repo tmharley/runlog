@@ -9,6 +9,7 @@ class RunsController < ApplicationController
     end
     
     criteria[:distance] = params[:min_dist]..params[:max_dist] if params[:filter_dist]
+    criteria[:temperature] = params[:min_temp]..params[:max_temp] if params[:filter_temp]
     criteria[:is_race] = true if params[:type] == 'race'
 
     run_list = if criteria.any?
@@ -73,6 +74,9 @@ class RunsController < ApplicationController
   end
 
   def search
+    date = Time.now
+    @start_date = (date - 1.year).strftime('%Y-%m-%d')
+    @end_date = date.strftime('%Y-%m-%d')
   end
 
   private

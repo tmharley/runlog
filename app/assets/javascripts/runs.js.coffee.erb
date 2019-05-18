@@ -18,10 +18,8 @@ $(document).ready ->
     else
       $('.race-name-input').hide()
   $('#start-date').datetimepicker({
-    format: 'YYYY-MM-DD',
-    defaultDate: "<%= (Time.now - 1.year).strftime('%Y-%m-%d') %>"
+    format: 'YYYY-MM-DD'
   });
   $('#end-date').datetimepicker({
-    format: 'YYYY-MM-DD',
-    defaultDate: "<%= Time.now.strftime('%Y-%m-%d') %>"
+    format: 'YYYY-MM-DD'
   });
