@@ -1,4 +1,4 @@
-class AddShoeAndWeatherIndexes < ActiveRecord::Migration
+class AddShoeAndWeatherIndexes < ActiveRecord::Migration[5.2]
   def self.up
     add_index :runs, :shoe_id
     add_index :runs, :weather_type_id

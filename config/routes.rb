@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   end
   resources :shoes
   resources :weather_types, except: [:show]
+  get 'training' => 'static_pages#training'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -16,4 +16,8 @@ module ApplicationHelper
   def time_as_local(time)
     time.in_time_zone("Eastern Time (US & Canada)")
   end
+
+  def local_date_string(time)
+    time_as_local(time).strftime('%a %-m/%-d/%y')
+  end
 end
