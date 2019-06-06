@@ -44,6 +44,13 @@
         .input-group-append
           %span.input-group-text feet
   .form-group.row
+    = f.label :heart_rate, 'Heart rate', class: 'col-sm-3'
+    .col-sm-4.col-md-3
+      .input-group
+        = f.number_field :heart_rate, class: 'form-control', min: 0, max: 250
+        .input-group-append
+          %span.input-group-text bpm
+  .form-group.row
     .col-sm-3
     .col-sm-4.col-md-3
       .form-check

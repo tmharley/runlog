@@ -16,19 +16,12 @@
           = @run.local_time.day
     .col-6.col-sm-7
       %h1.text-left=page_header
+      %h5.text-left=local_time_string(@run.start_time)
     - if @run.is_race?
       .col-3.run-rating
         .h1=star_output(@run.race_performance)
         %p Raw rating: #{'%d' % @run.race_performance}
-  %h2 Details
   .row
-    .col-sm-6.col-md-4
-      .card
-        .card-header.bg-primary.text-white Start time
-        .card-body
-          %h4.card-title
-            = build_icon('clock', false)
-            = local_time_string(@run.start_time)
     .col-sm-6.col-md-4
       .card
         .card-header.bg-primary.text-white Total distance
@@ -69,6 +62,14 @@
             %h4.card-title
               = build_icon('external-link-square-alt')
               #{@run.elev_gain} feet
+    - if @run.heart_rate
+      .col-sm-6.col-md-4
+        .card
+          .card-header.bg-primary.text-white Average heart rate
+          .card-body
+            %h4.card-title
+              = build_icon('heartbeat')
+              #{@run.heart_rate} bpm
               
   - if @run.shoe
     .card

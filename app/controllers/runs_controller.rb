@@ -81,7 +81,7 @@ class RunsController < ApplicationController
 
   private
 	def run_params
-		params.require(:run).permit(:distance, :elev_gain, :start_time_string, :temperature, :duration_string, :is_race, :notes, :race_name, :shoe_id, :is_night, :weather_type_id)
+		params.require(:run).permit(:distance, :elev_gain, :start_time_string, :temperature, :duration_string, :is_race, :notes, :race_name, :shoe_id, :is_night, :weather_type_id, :heart_rate)
 	end
 
   def convert_datetime_to_local(field)
