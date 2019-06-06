@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -11,42 +10,42 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160716223146) do
+ActiveRecord::Schema.define(version: 2019_06_06_192617) do
 
-  create_table "runs", force: true do |t|
+  create_table "runs", force: :cascade do |t|
     t.datetime "start_time"
-    t.decimal  "distance"
-    t.integer  "duration"
-    t.integer  "temperature"
-    t.integer  "elev_gain"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-    t.boolean  "is_race"
-    t.string   "notes"
-    t.string   "race_name"
-    t.integer  "shoe_id"
-    t.boolean  "precip"
-    t.boolean  "is_night"
-    t.integer  "weather_type_id"
+    t.decimal "distance"
+    t.integer "duration"
+    t.integer "temperature"
+    t.integer "elev_gain"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "is_race"
+    t.string "notes", limit: 255
+    t.string "race_name", limit: 255
+    t.integer "shoe_id"
+    t.boolean "precip"
+    t.boolean "is_night"
+    t.integer "weather_type_id"
+    t.integer "heart_rate"
+    t.index ["shoe_id"], name: "index_runs_on_shoe_id"
+    t.index ["weather_type_id"], name: "index_runs_on_weather_type_id"
   end
 
-  add_index "runs", ["shoe_id"], name: "index_runs_on_shoe_id"
-  add_index "runs", ["weather_type_id"], name: "index_runs_on_weather_type_id"
-
-  create_table "shoes", force: true do |t|
-    t.string   "manufacturer"
-    t.string   "model"
-    t.string   "color_primary"
-    t.string   "color_secondary"
-    t.decimal  "size"
+  create_table "shoes", force: :cascade do |t|
+    t.string "manufacturer", limit: 255
+    t.string "model", limit: 255
+    t.string "color_primary", limit: 255
+    t.string "color_secondary", limit: 255
+    t.decimal "size"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "color_tertiary"
+    t.string "color_tertiary", limit: 255
   end
 
-  create_table "weather_types", force: true do |t|
-    t.string   "name"
-    t.boolean  "is_precip"
+  create_table "weather_types", force: :cascade do |t|
+    t.string "name", limit: 255
+    t.boolean "is_precip"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
