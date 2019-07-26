@@ -3,12 +3,12 @@
     .jumbotron
       %h1 Run Log
       %p This is a record of all my recorded runs, dating back to the very beginning.
-      = link_to "View all #{pluralize(Run.count, 'run')}", runs_path, class: 'btn btn-primary'
+      = link_to "View all #{pluralize(number_of_runs, 'run')}", runs_path, class: 'btn btn-primary'
 .row
   .col-6
     .card
       .card-header
-        #{Run.count} runs for #{pluralize(total_mileage, 'total mile')}
+        #{pluralize(number_of_runs, 'run')} for #{pluralize(total_mileage, 'total mile')}
       .card-body
         - years.each do |y|
           %a{href: runs_path(filter_date: true, start_date: "#{y}-01-01", end_date: "#{y}-12-31"), class: mileage_bar_visibility(y, years.max)}
