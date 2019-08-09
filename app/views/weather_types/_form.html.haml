@@ -13,3 +13,4 @@
   .form-group.row
     .col-sm-7
       = submit_tag button_title, class: 'btn btn-primary'
+      = link_to 'Delete', weather_type, data: {confirm: 'Are you sure?'}, method: :delete, class: 'btn btn-danger'

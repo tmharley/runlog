@@ -15,4 +15,5 @@
 //= require bootstrap
 //= require moment
 //= require tempusdominus-bootstrap-4.js
+//= require rails-ujs
 //= require_tree .
