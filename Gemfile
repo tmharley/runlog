@@ -46,6 +46,8 @@ group :test do
   gem 'ruby-prof'
   gem 'rails-controller-testing'
   gem 'simplecov', require: false
+  gem 'capybara'
+  gem 'selenium-webdriver'
 end
 
 # To use ActiveModel has_secure_password
