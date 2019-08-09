@@ -3,13 +3,13 @@
 one:
   start_time: 2014-04-25 20:57:43
   distance: 9.99
-  duration: 1
-  temperature: 1
-  elev_gain: 1
+  duration: 5000
+  temperature: 50
+  elev_gain: 1000
 
 two:
-  start_time: 2014-04-25 20:57:43
-  distance: 9.99
-  duration: 1
-  temperature: 1
-  elev_gain: 1
+  start_time: 2014-04-27 08:02:23
+  distance: 6.78
+  duration: 4000
+  temperature: 70
+  elev_gain: 600
