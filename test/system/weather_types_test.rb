@@ -14,28 +14,27 @@ class WeatherTypesTest < ApplicationSystemTestCase
     visit weather_types_url
     click_on "New Weather Type"
 
+    fill_in 'Name', with: 'foggy'
+
     click_on "Create"
 
     assert_selector ".toast-body", text: "Weather type was successfully created."
-    click_on "Back"
   end
 
   test "updating a Weather type" do
     visit edit_weather_type_url(@weather_type)
-    # click_on "Edit", match: :first
 
     click_on "Update"
 
-    assert_text "Weather type was successfully updated"
-    click_on "Back"
+    assert_selector ".toast-body", text: "Weather type was successfully updated."
   end
 
   test "destroying a Weather type" do
-    visit weather_type_url(@weather_type)
+    visit edit_weather_type_url(@weather_type)
     page.accept_confirm do
       click_on "Delete", match: :first
     end
 
-    assert_text "Weather type was successfully destroyed"
+    assert_selector ".toast-body", text: "Weather type was successfully deleted."
   end
 end

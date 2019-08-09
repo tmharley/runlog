@@ -14,10 +14,17 @@ class ShoesTest < ApplicationSystemTestCase
     visit shoes_url
     click_on "New Shoe"
 
+    fill_in 'Manufacturer', with: 'Shoemaker'
+    fill_in 'Model', with: 'XT3000'
+    fill_in 'Size', with: '6.5'
+    fill_in 'Color 1', with: '885500'
+    fill_in 'Color 2', with: 'addbed'
+    fill_in 'Color 3', with: 'c0ffee'
+
     click_on "Create"
 
     assert_selector ".toast-body", text: "Shoe was successfully created."
-    click_on "Back"
+    click_on "All Shoes"
   end
 
   test "updating a Shoe" do
@@ -26,7 +33,7 @@ class ShoesTest < ApplicationSystemTestCase
 
     click_on "Update"
 
-    assert_text "Shoe was successfully updated"
+    assert_selector '.toast-body', text: "Shoe was successfully updated."
     click_on "All Shoes"
   end
 
@@ -36,6 +43,6 @@ class ShoesTest < ApplicationSystemTestCase
       click_on "Delete", match: :first
     end
 
-    assert_text "Shoe was successfully destroyed"
+    assert_selector '.toast-body', text: "Shoe was successfully deleted."
   end
 end

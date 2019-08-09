@@ -23,7 +23,7 @@ class RunsTest < ApplicationSystemTestCase
 
     click_on "Create"
 
-    assert_text "Run was successfully created"
+    assert_selector '.toast-body', text: "Run was successfully created."
     click_on "All Runs"
   end
 
@@ -33,7 +33,7 @@ class RunsTest < ApplicationSystemTestCase
 
     click_on "Update"
 
-    assert_text "Run was successfully updated"
+    assert_selector '.toast-body', text: "Run was successfully updated."
     click_on "All Runs"
   end
 
@@ -43,6 +43,6 @@ class RunsTest < ApplicationSystemTestCase
       click_on "Delete", match: :first
     end
 
-    assert_text "Run was successfully destroyed"
+    assert_selector '.toast-body', text: "Run was successfully deleted."
   end
 end
