@@ -34,6 +34,7 @@ class WeatherTypesController < ApplicationController
   def destroy
     @weather_type = WeatherType.find(params[:id])
     @weather_type.destroy
+    flash[:success] = 'Weather type was successfully deleted.'
     redirect_to weather_types_path
   end
 

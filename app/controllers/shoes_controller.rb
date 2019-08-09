@@ -45,6 +45,7 @@ class ShoesController < ApplicationController
   def destroy
     @shoe = Shoe.find(params[:id])
     @shoe.destroy
+    flash[:success] = 'Shoe was successfully deleted.'
     redirect_to shoes_url
   end
 

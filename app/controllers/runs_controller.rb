@@ -70,6 +70,7 @@ class RunsController < ApplicationController
   def destroy
     @run = Run.find(params[:id])
     @run.destroy
+    flash[:success] = 'Run was successfully deleted.'
     redirect_to action: :index
   end
 
