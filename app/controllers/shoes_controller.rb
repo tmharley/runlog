@@ -28,6 +28,7 @@ class ShoesController < ApplicationController
       flash[:success] = 'Shoe was successfully created.'
       redirect_to @shoe
     else
+      flash[:danger] = @shoe.errors.full_messages.join(', ')
       render :new
     end
   end
@@ -38,6 +39,7 @@ class ShoesController < ApplicationController
       flash[:success] = 'Shoe was successfully updated.'
       redirect_to @shoe
     else
+      flash[:danger] = @shoe.errors.full_messages.join(', ')
       render :edit
     end
   end

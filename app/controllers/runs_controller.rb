@@ -52,6 +52,7 @@ class RunsController < ApplicationController
       flash[:success] = 'Run was successfully created.'
       redirect_to @run
     else
+      flash[:danger] = @run.errors.full_messages
       render :new
     end
   end
@@ -63,6 +64,7 @@ class RunsController < ApplicationController
       flash[:success] = 'Run was successfully updated.'
       redirect_to @run
     else
+      flash[:danger] = @run.errors.full_messages
       render :edit
     end
   end

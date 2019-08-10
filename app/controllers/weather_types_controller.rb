@@ -17,6 +17,7 @@ class WeatherTypesController < ApplicationController
       flash[:success] = 'Weather type was successfully created.'
       redirect_to weather_types_path
     else
+      flash[:danger] = @weather_type.errors.full_messages.join(', ')
       render :new
     end
   end
@@ -27,6 +28,7 @@ class WeatherTypesController < ApplicationController
       flash[:success] = 'Weather type was successfully updated.'
       redirect_to weather_types_path
     else
+      flash[:danger] = @weather_type.errors.full_messages.join(', ')
       render :edit
     end
   end
