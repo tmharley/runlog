@@ -15,7 +15,7 @@ gem 'bootstrap4-datetime-picker-rails'
 gem 'ruby_native_statistics'
 gem 'haml', '~> 5.0.0'
 gem 'rake', '~> 10.5.0'
-gem 'loofah', '~> 2.2.3'
+gem 'loofah', '~> 2.3.1'
 
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
