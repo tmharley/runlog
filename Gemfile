@@ -18,7 +18,7 @@ gem 'rake', '~> 10.5.0'
 gem 'loofah', '~> 2.3.1'
 
 # Use Puma as the app server
-gem 'puma', '~> 3.7'
+gem 'puma', '~> 3.12'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
