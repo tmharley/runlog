@@ -14,7 +14,7 @@ gem 'momentjs-rails', '>= 2.9.0'
 gem 'bootstrap4-datetime-picker-rails'
 gem 'ruby_native_statistics'
 gem 'haml', '~> 5.0.0'
-gem 'rake', '~> 10.5.0'
+gem 'rake', '~> 12.3.3'
 gem 'loofah', '~> 2.3.1'
 
 # Use Puma as the app server
