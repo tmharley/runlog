@@ -25,6 +25,9 @@
           "containerPort": 80
         }
       ],
+      "command": [
+        "/bin/sh -c \"echo 'Your application is now running on a container in Amazon ECS.'\""
+      ],
       "linuxParameters": null,
       "cpu": 256,
       "environment": [],
