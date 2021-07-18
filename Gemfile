@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.5.1'
+ruby '2.5.9'
 
 gem 'rails', '~> 5.2.2.1'
 gem 'rack', '~> 2.0.8'
