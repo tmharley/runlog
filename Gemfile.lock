@@ -147,7 +147,7 @@ GEM
     puma (4.3.8)
       nio4r (~> 2.0)
     racc (1.5.2)
-    rack (2.0.8)
+    rack (2.1.4)
     rack-cors (1.0.5)
       rack (>= 1.6.0)
     rack-test (1.1.0)
@@ -265,7 +265,7 @@ DEPENDENCIES
   loofah (~> 2.3.1)
   momentjs-rails (>= 2.9.0)
   puma (~> 4.3)
-  rack (~> 2.0.8)
+  rack (~> 2.1.4)
   rack-cors
   rails (~> 5.2.2.1)
   rails-controller-testing
