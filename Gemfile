@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 ruby '2.5.9'
 
 gem 'rails', '~> 5.2.2.1'
-gem 'rack', '~> 2.0.8'
+gem 'rack', '~> 2.1.4'
 gem 'bootsnap'
 gem 'bootstrap', '~> 4.3.1'
 gem 'bourbon'
