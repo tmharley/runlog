@@ -1,8 +1,8 @@
 class ShoesController < ApplicationController
   def index
-    @shoes = Shoe.all.sort_by {|s|
+    @shoes = Shoe.all.sort_by do |s|
       s.last_used.nil? ? Time.now : s.last_used
-    }.reverse.paginate(per_page: 20, page: params[:page])
+    end.reverse.paginate(per_page: 20, page: params[:page])
   end
 
   def show
@@ -52,7 +52,9 @@ class ShoesController < ApplicationController
   end
 
   private
+
   def shoe_params
-    params.require(:shoe).permit(:manufacturer, :model, :color_primary, :color_secondary, :color_tertiary, :size)
+    params.require(:shoe).permit(:manufacturer, :model, :color_primary,
+                                 :color_secondary, :color_tertiary, :size)
   end
 end

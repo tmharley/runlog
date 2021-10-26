@@ -2,6 +2,7 @@ module RunsHelper
 
   def temp_class(temp)
     return nil if temp.nil?
+
     "temp#{temp / 10 * 10}"
   end
 
@@ -18,34 +19,34 @@ module RunsHelper
 
   def star_output(rating)
     return '' if rating.nil?
+
     star = build_icon('star')
     half = build_icon('star-half')
-    case
-    when rating < 45
+    if rating < 45
       title = 'awful'
       content = half
-    when rating < 65
+    elsif rating < 65
       title = 'poor'
       content = star
-    when rating < 80
+    elsif rating < 80
       title = 'okay'
       content = star + half
-    when rating < 90
+    elsif rating < 90
       title = 'decent'
       content = star * 2
-    when rating < 100
+    elsif rating < 100
       title = 'average'
       content = star * 2 + half
-    when rating < 110
+    elsif rating < 110
       title = 'solid'
       content = star * 3
-    when rating < 120
+    elsif rating < 120
       title = 'good'
       content = star * 3 + half
-    when rating < 135
+    elsif rating < 135
       title = 'great'
       content = star * 4
-    when rating < 155
+    elsif rating < 155
       title = 'excellent'
       content = star * 4 + half
     else

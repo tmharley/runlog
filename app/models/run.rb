@@ -128,12 +128,12 @@ class Run < ApplicationRecord
     duration / distance
   end
 
-  def is_distance_record?
+  def distance_record?
     prev_distance_record = Run.where(start_time: Time.new(2012)..start_time - 1).maximum('distance')
     distance? && (!prev_distance_record || distance > prev_distance_record)
   end
 
-  def is_pace_record?
+  def pace_record?
     duration? && Run.where(start_time: Time.new(2012)...start_time).select do |r|
       r.distance >= distance && r.duration? && r.pace <= pace
     end.empty?
@@ -194,6 +194,6 @@ class Run < ApplicationRecord
   end
 
   def expected_race_pace
-    REG_INTERCEPT + (distance**0.06) * REG_DISTANCE + temperature * REG_TEMPERATURE + (days_from_start**(1.0 / 3)) * REG_TIME
+    REG_INTERCEPT + (distance ** 0.06) * REG_DISTANCE + temperature * REG_TEMPERATURE + (days_from_start ** (1.0 / 3)) * REG_TIME
   end
 end

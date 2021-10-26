@@ -10,11 +10,11 @@ class Shoe < ApplicationRecord
   BRIGHTNESS_THRESHOLD = 0.2
 
   def mileage
-    runs.inject(0) { |a,b| a = a + b.distance }
+    runs.inject(0) { |a, b| a + b.distance }
   end
 
   def last_run
-    runs.sort_by {|r| r.start_time}.last
+    runs.max_by(&:start_time)
   end
 
   def last_used
@@ -22,16 +22,16 @@ class Shoe < ApplicationRecord
   end
 
   def last_used_local_time
-    last_used.in_time_zone("Eastern Time (US & Canada)")
+    last_used.in_time_zone('Eastern Time (US & Canada)')
   end
 
   def last_used_local_string
-    last_used ? last_used_local_time.strftime("%a %-m/%-d/%y") : 'never'
+    last_used ? last_used_local_time.strftime('%a %-m/%-d/%y') : 'never'
   end
 
   def bright_color
-    max = colors.max {|a, b| a.brightness <=> b.brightness}
-    min = colors.min {|a, b| a.brightness <=> b.brightness}
+    max = colors.max { |a, b| a.brightness <=> b.brightness }
+    min = colors.min { |a, b| a.brightness <=> b.brightness }
     if max.brightness > min.brightness + BRIGHTNESS_THRESHOLD
       max
     else
@@ -41,8 +41,8 @@ class Shoe < ApplicationRecord
   end
 
   def dark_color
-    max = colors.max {|a, b| a.brightness <=> b.brightness}
-    min = colors.min {|a, b| a.brightness <=> b.brightness}
+    max = colors.max { |a, b| a.brightness <=> b.brightness }
+    min = colors.min { |a, b| a.brightness <=> b.brightness }
     if min.brightness < max.brightness - BRIGHTNESS_THRESHOLD
       min
     else
@@ -52,7 +52,8 @@ class Shoe < ApplicationRecord
   end
 
   private
+
   def colors
-    [color_primary, color_secondary].collect {|c| Color::RGB.by_hex(c)}
+    [color_primary, color_secondary].collect { |c| Color::RGB.by_hex(c) }
   end
 end

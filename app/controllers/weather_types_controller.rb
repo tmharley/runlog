@@ -41,7 +41,8 @@ class WeatherTypesController < ApplicationController
   end
 
   private
-	def weather_type_params
-		params.require(:weather_type).permit(:name, :is_precip)
-	end
+
+  def weather_type_params
+    params.require(:weather_type).permit(:name, :is_precip)
+  end
 end

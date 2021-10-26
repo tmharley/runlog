@@ -1,6 +1,6 @@
 module ApplicationHelper
   def full_title(page_title)
-    base_title = "Run Log"
+    base_title = 'Run Log'
     if page_title.empty?
       base_title
     else
@@ -14,7 +14,7 @@ module ApplicationHelper
   end
 
   def time_as_local(time)
-    time.in_time_zone("Eastern Time (US & Canada)")
+    time.in_time_zone('Eastern Time (US & Canada)')
   end
 
   def local_date_string(time)

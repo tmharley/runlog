@@ -25,7 +25,7 @@
     .col-sm-6.col-md-4
       .card
         .card-header.bg-primary.text-white Total distance
-        .card-body{class: ('record' if @run.is_distance_record?)}
+        .card-body{class: ('record' if @run.distance_record?)}
           %h4.card-title
             = build_icon('road')
             #{'%.2f' % @run.distance} miles
@@ -40,7 +40,7 @@
       .col-sm-6.col-md-4
         .card
           .card-header.bg-primary.text-white Average pace
-          .card-body{class: ('record' if @run.is_pace_record?)}
+          .card-body{class: ('record' if @run.pace_record?)}
             %h4.card-title
               = build_icon('stopwatch')
               = @run.pace_string
