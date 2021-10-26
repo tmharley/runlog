@@ -42,15 +42,16 @@ class Run < ApplicationRecord
   end
 
   def similar_runs(limit = 5)
-    dists = Run.where.not(distance: nil).pluck(:distance)
-    hills = Run.where.not(elev_gain: nil).map(&:climb_rate)
-    temps = Run.where.not(temperature: nil).pluck(:temperature)
+    comparable_runs = Run.all.select(&:can_be_compared?) #- Array(self)
+    dists = comparable_runs.map(&:distance)
+    hills = comparable_runs.map(&:climb_rate)
+    temps = comparable_runs.map(&:temperature)
 
     dist_range = dists.max - dists.min
     hill_range = hills.max - hills.min
     temp_range = (temps.max - temps.min) * 1.0
 
-    runs = Run.all.select { |r| r.can_be_compared? && r != self }
+    runs = comparable_runs.reject { |r| r == self }
     runs.map! do |r|
       {
         run: r,
@@ -177,7 +178,7 @@ class Run < ApplicationRecord
 
   def training_impulse
     return 0 unless heart_rate
-    
+
     duration / 60.0 * (heart_rate - MIN_HEART_RATE) / (MAX_HEART_RATE - MIN_HEART_RATE) * 0.64 * Math.exp(1.92 * (heart_rate - MIN_HEART_RATE) / (MAX_HEART_RATE - MIN_HEART_RATE))
   end
 
