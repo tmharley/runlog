@@ -54,6 +54,8 @@
                 = build_icon(@run.weather_type.is_precip ? 'umbrella' : 'sun')
                 #{@run.weather_string},
               %span{class: temp_class(@run.temperature)} #{@run.temperature}&deg;F
+            - unless @run.humidity.nil?
+              #{@run.humidity}% humidity
     - unless @run.elev_gain.nil?
       .col-sm-6.col-md-4
         .card
@@ -70,6 +72,8 @@
             %h4.card-title
               = build_icon('heartbeat')
               #{@run.heart_rate} bpm
+            - unless @run.intensity.nil?
+              #{@run.intensity} intensity points
               
   - if @run.shoe
     .card

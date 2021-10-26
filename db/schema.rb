@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_06_192617) do
+ActiveRecord::Schema.define(version: 2021_10_25_215251) do
 
   create_table "runs", force: :cascade do |t|
     t.datetime "start_time"
@@ -28,6 +28,8 @@ ActiveRecord::Schema.define(version: 2019_06_06_192617) do
     t.boolean "is_night"
     t.integer "weather_type_id"
     t.integer "heart_rate"
+    t.integer "humidity"
+    t.decimal "intensity"
     t.index ["shoe_id"], name: "index_runs_on_shoe_id"
     t.index ["weather_type_id"], name: "index_runs_on_weather_type_id"
   end
@@ -48,6 +50,8 @@ ActiveRecord::Schema.define(version: 2019_06_06_192617) do
     t.boolean "is_precip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string "day_icon"
+    t.string "night_icon"
   end
 
 end

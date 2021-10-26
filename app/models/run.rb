@@ -2,13 +2,15 @@ class Run < ApplicationRecord
   belongs_to :shoe, optional: true
   belongs_to :weather_type, optional: true
 
-  scope :last_week, -> {where start_time: (Time.now - 1.week)..Time.now}
+  scope :last_week, -> { where start_time: (Time.now - 1.week)..Time.now }
 
   validates :start_time, presence: true
-  validates :distance, numericality: {greater_than: 0}
-  validates :duration, numericality: {only_integer: true, greater_than_or_equal_to: 0}, allow_nil: true
-  validates :temperature, numericality: {only_integer: true}, allow_nil: true
-  validates :elev_gain, numericality: {only_integer: true, greater_than_or_equal_to: 0}, allow_nil: true
+  validates :distance, numericality: { greater_than: 0 }
+  validates :duration, numericality: { only_integer: true, greater_than_or_equal_to: 0 }, allow_nil: true
+  validates :temperature, numericality: { only_integer: true }, allow_nil: true
+  validates :elev_gain, numericality: { only_integer: true, greater_than_or_equal_to: 0 }, allow_nil: true
+  validates :humidity, numericality: 0..100, allow_nil: true
+  validates :intensity, numericality: { greater_than_or_equal_to: 0 }, allow_nil: true
 
   REG_INTERCEPT = -614.6221
   REG_DISTANCE = 1125.7969
@@ -28,7 +30,7 @@ class Run < ApplicationRecord
   def self.safe_mileage(start_date = Time.now)
     last_week = Run.mileage_between(start_date - 6.days, start_date)
     last_4_weeks = Run.mileage_between(start_date - 27.days, start_date)
-    if last_week > last_4_weeks * 3/8
+    if last_week > last_4_weeks * 3 / 8
       0
     else
       (3 * last_4_weeks - 8 * last_week) / 5
@@ -48,30 +50,27 @@ class Run < ApplicationRecord
     hill_range = hills.max - hills.min
     temp_range = (temps.max - temps.min) * 1.0
 
-    runs = Run.all.select {|r| r.can_be_compared? && r != self}
+    runs = Run.all.select { |r| r.can_be_compared? && r != self }
     runs.map! do |r|
       {
         run: r,
-        similarity: similarity(r, {
-          dist_range: dist_range,
-          hill_range: hill_range,
-          temp_range: temp_range
-        })
+        similarity: similarity(r,
+                               dist_range: dist_range,
+                               hill_range: hill_range,
+                               temp_range: temp_range)
       }
     end
-    runs.sort! {|a, b| b[:similarity] <=> a[:similarity]}
+    runs.sort! { |a, b| b[:similarity] <=> a[:similarity] }
     runs[0...limit]
   end
 
-  def similarity(other, options={})
+  def similarity(other, options = {})
     return 0 unless other.is_a? Run
-    unless can_be_compared? && other.can_be_compared?
-      return 0
-    end
+    return 0 unless can_be_compared? && other.can_be_compared?
 
-    sim_dist = options[:dist_range] == 0 ? 1 : 1 - (distance - other.distance).abs / options[:dist_range]
-    sim_hill = options[:hill_range] == 0 ? 1 : 1 - (climb_rate - other.climb_rate).abs / options[:hill_range]
-    sim_temp = options[:temp_range] == 0 ? 1 : 1 - (temperature - other.temperature).abs / options[:temp_range]
+    sim_dist = options[:dist_range].zero? ? 1 : 1 - (distance - other.distance).abs / options[:dist_range]
+    sim_hill = options[:hill_range].zero? ? 1 : 1 - (climb_rate - other.climb_rate).abs / options[:hill_range]
+    sim_temp = options[:temp_range].zero? ? 1 : 1 - (temperature - other.temperature).abs / options[:temp_range]
 
     (sim_dist + sim_hill + sim_temp) / 3
   end
@@ -91,12 +90,12 @@ class Run < ApplicationRecord
   end
 
   def local_time
-    start_time.in_time_zone("Eastern Time (US & Canada)")
+    start_time.in_time_zone('Eastern Time (US & Canada)')
   end
 
   def start_time_string
     time = id? ? local_time : Time.now
-    time.strftime("%Y-%m-%d %H:%M")
+    time.strftime('%Y-%m-%d %H:%M')
   end
 
   def day_of_week
@@ -117,7 +116,7 @@ class Run < ApplicationRecord
   end
 
   def duration_string=(str)
-    self.duration = str.split(':').inject(0){|a, m| a = a * 60 + m.to_i}
+    self.duration = str.split(':').inject(0) { |a, m| a * 60 + m.to_i }
   end
 
   def duration_string
@@ -129,14 +128,14 @@ class Run < ApplicationRecord
   end
 
   def is_distance_record?
-    prev_distance_record = Run.where(start_time: Time.new(2012)..start_time - 1).maximum("distance")
+    prev_distance_record = Run.where(start_time: Time.new(2012)..start_time - 1).maximum('distance')
     distance? && (!prev_distance_record || distance > prev_distance_record)
   end
 
   def is_pace_record?
-    duration? && Run.where(start_time: Time.new(2012)..start_time - 1).select { |r|
+    duration? && Run.where(start_time: Time.new(2012)...start_time).select do |r|
       r.distance >= distance && r.duration? && r.pace <= pace
-    }.empty?
+    end.empty?
   end
 
   def pace_string
@@ -153,7 +152,7 @@ class Run < ApplicationRecord
   end
 
   def precip?
-    weather_type && weather_type.is_precip?
+    weather_type&.is_precip?
   end
 
   def weather_string
@@ -178,6 +177,7 @@ class Run < ApplicationRecord
 
   def training_impulse
     return 0 unless heart_rate
+    
     duration / 60.0 * (heart_rate - MIN_HEART_RATE) / (MAX_HEART_RATE - MIN_HEART_RATE) * 0.64 * Math.exp(1.92 * (heart_rate - MIN_HEART_RATE) / (MAX_HEART_RATE - MIN_HEART_RATE))
   end
 
@@ -193,6 +193,6 @@ class Run < ApplicationRecord
   end
 
   def expected_race_pace
-    REG_INTERCEPT + (distance ** 0.06) * REG_DISTANCE + temperature * REG_TEMPERATURE + (days_from_start ** (1.0/3)) * REG_TIME
+    REG_INTERCEPT + (distance**0.06) * REG_DISTANCE + temperature * REG_TEMPERATURE + (days_from_start**(1.0 / 3)) * REG_TIME
   end
 end

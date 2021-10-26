@@ -1,4 +1,6 @@
 class RunsController < ApplicationController
+  before_action :find_run, only: %i[show edit destroy update]
+
   def index
     criteria = {}
 
@@ -7,7 +9,7 @@ class RunsController < ApplicationController
       end_time = Time.new(*params[:end_date].split('-')).end_of_day
       criteria[:start_time] = begin_time..end_time
     end
-    
+
     criteria[:distance] = params[:min_dist]..params[:max_dist] if params[:filter_dist]
     criteria[:temperature] = params[:min_temp]..params[:max_temp] if params[:filter_temp]
     criteria[:is_race] = true if params[:type] == 'race'
@@ -28,7 +30,6 @@ class RunsController < ApplicationController
   end
 
   def show
-    @run = Run.find(params[:id])
     @shoe = Shoe.find(@run.shoe_id) rescue nil
 
     respond_to do |format|
@@ -41,12 +42,10 @@ class RunsController < ApplicationController
     @run = Run.new
   end
 
-  def edit
-    @run = Run.find(params[:id])
-  end
+  def edit; end
 
   def create
-    convert_datetime_to_local("start_time")
+    convert_datetime_to_local('start_time')
     @run = Run.new(run_params)
     if @run.save
       flash[:success] = 'Run was successfully created.'
@@ -58,8 +57,7 @@ class RunsController < ApplicationController
   end
 
   def update
-    convert_datetime_to_local("start_time")
-    @run = Run.find(params[:id])
+    convert_datetime_to_local('start_time')
     if @run.update(run_params)
       flash[:success] = 'Run was successfully updated.'
       redirect_to @run
@@ -70,7 +68,6 @@ class RunsController < ApplicationController
   end
 
   def destroy
-    @run = Run.find(params[:id])
     @run.destroy
     flash[:success] = 'Run was successfully deleted.'
     redirect_to action: :index
@@ -83,14 +80,23 @@ class RunsController < ApplicationController
   end
 
   private
-	def run_params
-		params.require(:run).permit(:distance, :elev_gain, :start_time_string, :temperature, :duration_string, :is_race, :notes, :race_name, :shoe_id, :is_night, :weather_type_id, :heart_rate)
-	end
+
+  def find_run
+    @run = Run.find(params[:id])
+  end
+
+  def run_params
+    params.require(:run).permit(:distance, :elev_gain, :start_time_string,
+                                :temperature, :duration_string, :is_race,
+                                :notes, :race_name, :shoe_id, :is_night,
+                                :weather_type_id, :heart_rate, :humidity,
+                                :intensity)
+  end
 
   def convert_datetime_to_local(field)
-    datetime = (1..5).collect {|num| params['run'].delete "#{field}(#{num}i)" }
+    datetime = (1..5).collect { |num| params['run'].delete "#{field}(#{num}i)" }
     if datetime[0] && datetime[1] && datetime[2]
-      params['run'][field] = Time.find_zone!("Eastern Time (US & Canada)").local(*datetime.map(&:to_i))
+      params['run'][field] = Time.find_zone!('Eastern Time (US & Canada)').local(*datetime.map(&:to_i))
     end
   end
 end

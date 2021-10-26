@@ -33,8 +33,16 @@
         = f.number_field :temperature, class: 'form-control', in: -10..110
         .input-group-append
           %span.input-group-text &deg;F
+      %small.form-text.text-muted temperature
     .col-sm-4.col-md-3
       = f.select :weather_type_id, WeatherType.all.collect {|wt| [wt.name, wt.id]}, {include_blank: true}, class: 'form-control'
+      %small.form-text.text-muted conditions
+    .col-sm-4.col-md-3
+      .input-group
+        = f.number_field :humidity, class: 'form-control', in: 0..100
+        .input-group-append
+          %span.input-group-text %
+      %small.form-text.text-muted humidity
   .form-group.row
     = f.label :elev_gain, 'Elevation gain', class: 'col-sm-3'
     .col-sm-4.col-md-3
@@ -49,6 +57,10 @@
         = f.number_field :heart_rate, class: 'form-control', min: 0, max: 250
         .input-group-append
           %span.input-group-text bpm
+  .form-group.row
+    = f.label :intensity, 'Intensity points', class: 'col-sm-3'
+    .col-sm-4.col-md-3
+      = f.number_field :intensity, class: 'form-control', step: 0.01, min: 0
   .form-group.row
     .col-sm-3
     .col-sm-4.col-md-3
