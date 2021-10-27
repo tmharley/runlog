@@ -11,6 +11,14 @@
         %label.form-check-label
           Precipitation?
   .form-group.row
+    = f.label :day_icon, 'Day icon', class: 'col-sm-3'
+    .col-sm-4.col-md-3
+      = f.text_field :day_icon, class: 'form-control'
+  .form-group.row
+    = f.label :night_icon, 'Night icon', class: 'col-sm-3'
+    .col-sm-4.col-md-3
+      = f.text_field :night_icon, class: 'form-control'
+  .form-group.row
     .col-sm-7
       = submit_tag button_title, class: 'btn btn-primary'
       - unless weather_type.new_record?

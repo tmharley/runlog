@@ -9,8 +9,12 @@ module ApplicationHelper
   end
 
   def build_icon(name, solid = true)
-    base_type = solid ? 'fa' : 'far'
+    base_type = solid ? 'fas' : 'far'
     "<i class='#{base_type} fa-#{name}'></i>".html_safe
+  end
+
+  def build_weather_icon(run)
+    build_icon(run.is_night ? run.weather_type.night_icon : run.weather_type.day_icon)
   end
 
   def time_as_local(time)

@@ -11,11 +11,15 @@
           %tr
             %th Name
             %th Precipitation?
+            %th Day icon
+            %th Night icon
             %th Number of runs
         %tbody
           = render @weather_types
           %tr
             %td.text-center (not specified)
+            %td
+            %td
             %td
             %td.text-center=Run.where(weather_type_id: nil).size
     .text-center

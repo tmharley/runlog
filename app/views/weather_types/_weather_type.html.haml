@@ -2,4 +2,6 @@
   %td.text-center
     =link_to weather_type.name, edit_weather_type_path(weather_type)
   %td.text-center=weather_type.is_precip ? 'yes' : 'no'
+  %td.text-center=build_icon(weather_type.day_icon)
+  %td.text-center=build_icon(weather_type.night_icon)
   %td.text-center=weather_type.runs.size

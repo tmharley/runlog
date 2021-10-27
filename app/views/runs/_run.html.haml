@@ -13,7 +13,7 @@
     #{run.pace_string}
   %td.weather{class: "#{temp_class(run.temperature)} #{'rain' if rain}", title: ('rain' if rain)}
     - if run.weather_type
-      %span.hidden-sm.hidden=run.weather_string
+      = build_weather_icon(run)
     - unless run.temperature.nil?
       #{run.temperature}&deg;F
   %td
