@@ -9,8 +9,8 @@ class Shoe < ApplicationRecord
 
   BRIGHTNESS_THRESHOLD = 0.2
 
-  def mileage
-    runs.inject(0) { |a, b| a + b.distance }
+  def mileage(as_of: Time.now)
+    runs.where("start_time <= '#{as_of}'").inject(0) { |a, b| a + b.distance }
   end
 
   def last_run

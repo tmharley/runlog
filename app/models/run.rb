@@ -178,6 +178,16 @@ class Run < ApplicationRecord
     duration / 60.0 * (heart_rate - MIN_HEART_RATE) / (MAX_HEART_RATE - MIN_HEART_RATE) * 0.64 * Math.exp(1.92 * (heart_rate - MIN_HEART_RATE) / (MAX_HEART_RATE - MIN_HEART_RATE))
   end
 
+  def shoe_mileage
+    shoe&.mileage(as_of: start_time)
+  end
+
+  def dewpoint
+    temp_c = (temperature - 32) * 5.0 / 9
+    hum_pct = humidity * 0.01
+    257.14 * Math.log(hum_pct * Math.exp((18.678 - temp_c / 234.5) * (temp_c / (257.14 + temp_c)))) / (18.678 - Math.log(hum_pct * Math.exp((18.678 - temp_c / 234.5) * (temp_c / (257.14 + temp_c))))) * 9 / 5 + 32
+  end
+
   private
 
   def time_string(seconds)

@@ -6,106 +6,107 @@
   - page_header = "#{@run.time_of_day} run"
 - provide(:title, page_title)
 
-.col-12
-  .row
-    .run-date-header.col-3.col-sm-2
-      .card
-        .card-header.bg-primary.text-center.text-white
-          = @run.local_time.strftime('%b')
-        .card-body.text-center
-          = @run.local_time.day
-    .col-6.col-sm-7
-      %h1.text-left=page_header
-      %h5.text-left=local_time_string(@run.start_time)
-    - if @run.is_race?
-      .col-3.run-rating
-        .h1=star_output(@run.race_performance)
-        %p Raw rating: #{'%d' % @run.race_performance}
-  .row
-    .col-sm-6.col-md-4
-      .card
-        .card-header.bg-primary.text-white Total distance
-        .card-body{class: ('record' if @run.distance_record?)}
-          %h4.card-title
-            = build_icon('road')
-            #{'%.2f' % @run.distance} miles
-    - if @run.duration?
-      .col-sm-6.col-md-4
-        .card
-          .card-header.bg-primary.text-white Total duration
-          .card-body
-            %h4.card-title
-              = build_icon('hourglass-end')
-              = @run.duration_string
-      .col-sm-6.col-md-4
-        .card
-          .card-header.bg-primary.text-white Average pace
-          .card-body{class: ('record' if @run.pace_record?)}
-            %h4.card-title
-              = build_icon('stopwatch')
-              = @run.pace_string
-    - unless @run.temperature.nil?
-      .col-sm-6.col-md-4
-        .card
-          .card-header.bg-primary.text-white Weather
-          .card-body{class: ('precip' if @run.precip?)}
-            %h4.card-title
-              %span{class: temp_class(@run.temperature)}
-                - if @run.weather_type
-                  = build_weather_icon(@run)
-                #{@run.temperature}&deg;F
-            - unless @run.humidity.nil?
-              #{@run.humidity}% humidity
-    - unless @run.elev_gain.nil?
-      .col-sm-6.col-md-4
-        .card
-          .card-header.bg-primary.text-white Total elevation gain
-          .card-body
-            %h4.card-title
-              = build_icon('external-link-square-alt')
-              #{@run.elev_gain} feet
-    - if @run.heart_rate
-      .col-sm-6.col-md-4
-        .card
-          .card-header.bg-primary.text-white Average heart rate
-          .card-body
-            %h4.card-title
-              = build_icon('heartbeat')
-              #{@run.heart_rate} bpm
-            - unless @run.intensity.nil?
-              #{@run.intensity} intensity points
-              
-  - if @run.shoe
+.row
+  .run-date-header.col-3.col-sm-2
     .card
-      .card-header.bg-info.text-white Shoes
+      .card-header.bg-primary.text-center.text-white
+        = @run.local_time.strftime('%b')
+      .card-body.text-center
+        = @run.local_time.day
+  .col-6.col-sm-7
+    %h1.text-left=page_header
+    %h5.text-left=local_time_string(@run.start_time)
+  - if @run.is_race?
+    .col-3.run-rating
+      .h1=star_output(@run.race_performance)
+      %p Raw rating: #{'%d' % @run.race_performance}
+.row.row-cols-1.row-cols-sm-2.row-cols-md-3
+  .col
+    .card{class: ('bg-success text-white' if @run.distance_record?)}
+      .card-header.bg-primary.text-white Total distance
       .card-body
-        = link_to @run.shoe_name,
-                  shoe_path(@run.shoe),
-                  style: "background: ##{@run.shoe.dark_color.hex}; color: ##{@run.shoe.bright_color.hex}"
-  - if @run.notes?
-    .card
-      .card-header.bg-info.text-white Notes
-      .card-body=@run.notes
-  - if @run.can_be_compared?
-    .card
-      .card-header.bg-info.text-white Similar runs
-      %table.table
-        %tr
-          %th Date
-          %th Distance
-          %th Weather
-          %th Climb
-          %th Similarity score
-        - @run.similar_runs.each do |r|
-          = render 'similar_run', run: r[:run], similarity: r[:similarity]
-  .btn-toolbar{role: 'toolbar'}
-    .btn-group.me-2{role: 'group'}
-      = link_to 'All Runs', runs_path, class: 'btn btn-info'
-    .btn-group.me-2{role: 'group'}
-      = link_to 'Previous', run_path(@run.previous), class: 'btn btn-secondary' if @run.previous
-      = link_to 'Next', run_path(@run.next), class: 'btn btn-secondary' if @run.next
-    .btn-group.me-2{role: 'group'}
-      = link_to 'New Run', new_run_path, class: 'btn btn-success'
-    .btn-group.me-2{role: 'group'}
-      = link_to 'Edit', edit_run_path(@run), class: 'btn btn-warning'
-      = link_to 'Delete', @run, data: {confirm: 'Are you sure?'}, method: :delete, class: 'btn btn-danger'
+        %h4.card-title
+          = build_icon('road')
+          #{'%.2f' % @run.distance} miles
+  - if @run.duration?
+    .col
+      .card
+        .card-header.bg-primary.text-white Total duration
+        .card-body
+          %h4.card-title
+            = build_icon('hourglass-end')
+            = @run.duration_string
+    .col
+      .card{class: ('bg-success text-white' if @run.pace_record?)}
+        .card-header.bg-primary.text-white Average pace
+        .card-body
+          %h4.card-title
+            = build_icon('stopwatch')
+            = @run.pace_string
+  - unless @run.temperature.nil?
+    .col
+      .card
+        .card-header.bg-primary.text-white Weather
+        .card-body{class: ('precip' if @run.precip?)}
+          %h4.card-title
+            %span{class: temp_class(@run.temperature)}
+              - if @run.weather_type
+                = build_weather_icon(@run)
+              #{@run.temperature}&deg;F
+          - unless @run.humidity.nil?
+            %p.card-text #{@run.humidity}% humidity
+  - unless @run.elev_gain.nil?
+    .col
+      .card
+        .card-header.bg-primary.text-white Total elevation gain
+        .card-body
+          %h4.card-title
+            = build_icon('external-link-square-alt')
+            #{@run.elev_gain} feet
+  - if @run.heart_rate
+    .col
+      .card
+        .card-header.bg-primary.text-white Average heart rate
+        .card-body
+          %h4.card-title
+            = build_icon('heartbeat')
+            #{@run.heart_rate} bpm
+          - unless @run.intensity.nil?
+            %p.card-text #{@run.intensity} intensity points
+  - if @run.shoe
+    .col
+      .card.shoe-card{style: "background: ##{@run.shoe.dark_color.hex}; color: ##{@run.shoe.bright_color.hex}"}
+        .card-header.bg-primary.text-white Shoes
+        .card-body
+          %h4.card-title
+            = build_icon('shoe-prints')
+            = link_to @run.shoe_name,
+                      shoe_path(@run.shoe)
+          %p.card-text #{@run.shoe_mileage} miles
+- if @run.notes?
+  .card
+    .card-header.bg-info.text-white Notes
+    .card-body=@run.notes
+- if @run.can_be_compared?
+  .card
+    .card-header.bg-info.text-white Similar runs
+    %table.table
+      %tr
+        %th Date
+        %th Distance
+        %th Weather
+        %th Climb
+        %th Similarity score
+      - @run.similar_runs.each do |r|
+        = render 'similar_run', run: r[:run], similarity: r[:similarity]
+.btn-toolbar{role: 'toolbar'}
+  .btn-group.me-2{role: 'group'}
+    = link_to 'All Runs', runs_path, class: 'btn btn-info'
+  .btn-group.me-2{role: 'group'}
+    = link_to 'Previous', run_path(@run.previous), class: 'btn btn-secondary' if @run.previous
+    = link_to 'Next', run_path(@run.next), class: 'btn btn-secondary' if @run.next
+  .btn-group.me-2{role: 'group'}
+    = link_to 'New Run', new_run_path, class: 'btn btn-success'
+  .btn-group.me-2{role: 'group'}
+    = link_to 'Edit', edit_run_path(@run), class: 'btn btn-warning'
+    = link_to 'Delete', @run, data: {confirm: 'Are you sure?'}, method: :delete, class: 'btn btn-danger'
