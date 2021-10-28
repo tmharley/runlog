@@ -51,8 +51,7 @@
           .card-body{class: ('precip' if @run.precip?)}
             %h4.card-title
               - if @run.weather_type
-                = build_icon(@run.is_night ? @run.weather_type.night_icon : @run.weather_type.day_icon)
-                #{@run.weather_string},
+                = build_weather_icon(@run)
               %span{class: temp_class(@run.temperature)} #{@run.temperature}&deg;F
             - unless @run.humidity.nil?
               #{@run.humidity}% humidity

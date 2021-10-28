@@ -7,7 +7,7 @@ module RunsHelper
   end
 
   def build_page_title(params)
-    page_title_class = params[:type].pluralize rescue 'runs'
+    page_title_class = params[:type]&.pluralize || 'runs'
     if params[:year]
       "#{page_title_class.capitalize} in #{params[:year]}"
     elsif params[:start_date]

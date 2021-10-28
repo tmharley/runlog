@@ -3,7 +3,7 @@
   %td #{'%.2f' % run.distance} mi
   %td
     - if run.weather_type
-      #{run.weather_string}
+      = build_weather_icon(run)
     - unless run.temperature.nil?
       #{run.temperature}&deg;F
   %td #{run.elev_gain} ft
