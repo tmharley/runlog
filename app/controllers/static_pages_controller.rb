@@ -2,14 +2,24 @@ class StaticPagesController < ApplicationController
   def home; end
 
   def training
-    @last_week_runs = Run.last_week
-    @acute = Run.mileage_in_last_days(7)
-    @chronic = Run.mileage_in_last_days(28)
-    trimps = @last_week_runs.map(&:training_impulse)
-    @monotony = if trimps.length > 1
-                  (trimps.mean / trimps.stdev).round(2)
-                else
-                  'Requires at least 2 runs to calculate'
-                end
+    runs_by_day = (0...28).collect do |days_ago|
+      Run.on_day(Date.today - days_ago.days)
+    end
+
+    @days = []
+    runs_by_day.each_with_index do |runs, idx|
+      last_week_miles = Run.last_days_from(7, Date.today - idx.days).pluck(:distance)
+      l7d = last_week_miles.sum
+      l4w = Run.last_days_from(28, Date.today - idx.days).pluck(:distance).sum / 4.0
+      @days << {
+        date: Date.today - idx.days,
+        miles: runs.map(&:distance).sum,
+        last_seven_days: l7d,
+        last_four_weeks: l4w,
+        atc: l7d / l4w,
+        long_to_total: last_week_miles.max / l7d,
+        intensity: runs.map(&:intensity).sum
+      }
+    end
   end
 end

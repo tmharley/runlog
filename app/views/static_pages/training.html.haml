@@ -1,43 +1,17 @@
 - provide(:title, 'Training')
 %h1 Training
 .row
-  .col-sm-6.col-md-4
-    .card
-      .card-header.bg-primary.text-white Mileage in the last week
-      .card-body
-        %h4.card-title
-          = pluralize(@acute, 'mile')
-  .col-sm-6.col-md-4
-    .card
-      .card-header.bg-primary.text-white Mileage in the last 4 weeks
-      .card-body
-        %h4.card-title
-          = pluralize(@chronic, 'mile')
-  .col-sm-6.col-md-4
-    .card
-      .card-header.bg-primary.text-white Acute-to-chronic ratio
-      .card-body
-        %h4.card-title
-          - ratio = @acute / (@chronic / 4) rescue 0.00
-          %span{class: (ratio > 1.5 ? 'text-danger' : (ratio > 1.2 ? 'text-warning' : 'text-success'))}
-            #{ratio.round(2)}
-.row
-  .col-sm-12
-    %table.table.table-hover.training
+  .col
+    %table.table.table-hover
       %thead
         %tr
           %th Date
-          %th Distance
-          %th Duration
-          %th Avg HR
-          %th TRIMP
+          %th Miles
+          %th 7D Total
+          %th 4W Avg
+          %th AtC
+          %th L/T
+          %th Intensity
       %tbody
-        - @last_week_runs.each do |run|
-          %tr
-            %td=local_date_string(run.start_time)
-            %td #{run.distance} mi
-            %td=run.duration_string
-            %td #{run.heart_rate} bpm
-            %td=run.training_impulse.round
-  .col-sm-12
-    %p Training monotony: #{@monotony}
+        - @days.each_with_index do |day, idx|
+          = render 'training_day', day: day

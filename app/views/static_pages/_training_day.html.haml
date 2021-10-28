@@ -1,0 +1,8 @@
+%tr
+  %td=local_date_string(day[:date])
+  %td=format('%.2f', day[:miles])
+  %td=format('%.2f', day[:last_seven_days])
+  %td=format('%.2f', day[:last_four_weeks])
+  %td=format('%.2f', day[:atc])
+  %td=format('%d%%', day[:long_to_total] * 100)
+  %td=format('%.2f', day[:intensity])

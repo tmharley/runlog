@@ -27,11 +27,11 @@ module StaticPagesHelper
   end
 
   def mileage_bar_visibility(year, max_year)
-    if year < max_year - 6
+    if year < max_year - 15
       'd-none d-sm-none d-md-none d-lg-none d-xl-inline'
-    elsif year < max_year - 4
+    elsif year < max_year - 11
       'd-none d-sm-none d-md-none d-lg-inline'
-    elsif year < max_year - 2
+    elsif year < max_year - 7
       'd-none d-sm-none d-md-inline'
     end
   end

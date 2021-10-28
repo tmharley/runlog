@@ -3,6 +3,8 @@ class Run < ApplicationRecord
   belongs_to :weather_type, optional: true
 
   scope :last_week, -> { where start_time: (Time.now - 1.week)..Time.now }
+  scope :on_day, ->(day) { where start_time: day.beginning_of_day...day.end_of_day }
+  scope :last_days_from, ->(days, time) { where start_time: (time - (days - 1).days).beginning_of_day...time.end_of_day }
 
   validates :start_time, presence: true
   validates :distance, numericality: { greater_than: 0 }
@@ -21,25 +23,6 @@ class Run < ApplicationRecord
   # temporary constants, want these to be configurable:
   MIN_HEART_RATE = 59
   MAX_HEART_RATE = 210
-
-  def self.mileage_between(start_date, end_date)
-    Run.where(start_time: start_date.beginning_of_day..end_date.end_of_day)
-       .map(&:distance).sum
-  end
-
-  def self.safe_mileage(start_date = Time.now)
-    last_week = Run.mileage_between(start_date - 6.days, start_date)
-    last_4_weeks = Run.mileage_between(start_date - 27.days, start_date)
-    if last_week > last_4_weeks * 3 / 8
-      0
-    else
-      (3 * last_4_weeks - 8 * last_week) / 5
-    end
-  end
-
-  def self.mileage_in_last_days(num_days, start_time = Time.now)
-    Run.mileage_between(start_time - (num_days - 1).days, start_time)
-  end
 
   def similar_runs(limit = 5)
     comparable_runs = Run.all.select(&:can_be_compared?) #- Array(self)
@@ -170,12 +153,6 @@ class Run < ApplicationRecord
 
   def next
     Run.where(['start_time > ?', start_time]).order(:start_time).first
-  end
-
-  def training_impulse
-    return 0 unless heart_rate
-
-    duration / 60.0 * (heart_rate - MIN_HEART_RATE) / (MAX_HEART_RATE - MIN_HEART_RATE) * 0.64 * Math.exp(1.92 * (heart_rate - MIN_HEART_RATE) / (MAX_HEART_RATE - MIN_HEART_RATE))
   end
 
   def shoe_mileage

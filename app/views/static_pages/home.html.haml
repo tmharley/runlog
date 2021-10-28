@@ -3,7 +3,7 @@
     %h1 Run Log
     %p This is a record of all my recorded runs, dating back to the very beginning.
 .row
-  .col-6
+  .col
     .card#mileage-bar-graph
       .card-header
         #{pluralize(number_of_runs, 'run')} for #{pluralize(total_mileage, 'total mile')}
@@ -14,24 +14,3 @@
                                         tooltip: pluralize(year_runs(y).size, 'run'),
                                         label_category: y,
                                         label_amount: mileage_for_year(y)
-  .col-6
-    .card
-      .card-header
-        Recent mileage
-      .card-body
-        - last_week = Run.mileage_in_last_days(7)
-        - last_four_weeks_avg = Run.mileage_in_last_days(28) / 4
-        %p
-          Last week:
-          = pluralize(last_week, 'mile')
-        %p
-          Last 4 weeks average:
-          = pluralize(last_four_weeks_avg.round(2), 'mile')
-        %p
-          - ratio = last_week / last_four_weeks_avg rescue 0
-          Ratio:
-          %span{class: (ratio > 1.5 ? 'text-danger' : (ratio > 1.2 ? 'text-warning' : 'text-success'))}
-            #{ratio.round(2)}
-        %p
-          Maximum recommended today:
-          = pluralize(Run.safe_mileage.round(2), 'mile')
