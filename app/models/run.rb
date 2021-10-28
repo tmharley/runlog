@@ -112,12 +112,12 @@ class Run < ApplicationRecord
   end
 
   def distance_record?
-    prev_distance_record = Run.where(start_time: Time.new(2012)..start_time - 1).maximum('distance')
+    prev_distance_record = Run.where('start_time < :time', { time: start_time }).maximum('distance')
     distance? && (!prev_distance_record || distance > prev_distance_record)
   end
 
   def pace_record?
-    duration? && Run.where(start_time: Time.new(2012)...start_time).select do |r|
+    duration? && Run.where('start_time < :time', { time: start_time }).select do |r|
       r.distance >= distance && r.duration? && r.pace <= pace
     end.empty?
   end

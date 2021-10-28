@@ -13,5 +13,5 @@
           %th L/T
           %th Intensity
       %tbody
-        - @days.each_with_index do |day, idx|
+        - @days.each do |day|
           = render 'training_day', day: day
