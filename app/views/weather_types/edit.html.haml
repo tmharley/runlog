@@ -2,4 +2,4 @@
 .col-12
   %h1 Edit weather type
   = render 'form', button_title: 'Update', weather_type: @weather_type
-  = link_to 'Back', weather_types_path
+  = link_to 'Back', weather_types_path, class: 'btn btn-secondary'

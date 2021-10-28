@@ -1,10 +1,10 @@
 %tr
   %td=shoe.manufacturer
   %td=link_to shoe.model, shoe_path(shoe)
-  %td.row
-    .col-4{style: "background: ##{shoe.color_primary}"} &nbsp;
-    .col-4{style: "background: ##{shoe.color_secondary}"} &nbsp;
-    .col-4{style: "background: ##{shoe.color_tertiary}"} &nbsp;
+  %td
+    %span.badge{style: "background: ##{shoe.color_primary}"} &nbsp;
+    %span.badge{style: "background: ##{shoe.color_secondary}"} &nbsp;
+    %span.badge{style: "background: ##{shoe.color_tertiary}"} &nbsp;
   %td=shoe_size_clean(shoe.size)
   %td=shoe.last_used_local_string
   %td=shoe.runs.count

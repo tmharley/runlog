@@ -2,13 +2,14 @@ source 'https://rubygems.org'
 
 ruby '2.5.9'
 
-gem 'rails', '~> 5.2.6'
 gem 'rack', '~> 2.1.4'
-gem 'bootsnap'
-gem 'bootstrap', '~> 4.3.1'
-gem 'bourbon'
+gem 'rails', '~> 5.2.6'
+
+gem 'bootstrap', '~> 5.1.0'
 gem 'bootstrap-will_paginate', '~> 1.0.0'
 gem 'bootstrap_form'
+gem 'bootsnap'
+gem 'bourbon'
 gem 'color'
 gem 'momentjs-rails', '>= 2.9.0'
 gem 'bootstrap4-datetime-picker-rails'

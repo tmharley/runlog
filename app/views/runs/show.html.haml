@@ -50,9 +50,10 @@
           .card-header.bg-primary.text-white Weather
           .card-body{class: ('precip' if @run.precip?)}
             %h4.card-title
-              - if @run.weather_type
-                = build_weather_icon(@run)
-              %span{class: temp_class(@run.temperature)} #{@run.temperature}&deg;F
+              %span{class: temp_class(@run.temperature)}
+                - if @run.weather_type
+                  = build_weather_icon(@run)
+                #{@run.temperature}&deg;F
             - unless @run.humidity.nil?
               #{@run.humidity}% humidity
     - unless @run.elev_gain.nil?
@@ -98,13 +99,13 @@
         - @run.similar_runs.each do |r|
           = render 'similar_run', run: r[:run], similarity: r[:similarity]
   .btn-toolbar{role: 'toolbar'}
-    .btn-group.mr-2
+    .btn-group.me-2{role: 'group'}
       = link_to 'All Runs', runs_path, class: 'btn btn-info'
-    .btn-group.mr-2
+    .btn-group.me-2{role: 'group'}
       = link_to 'Previous', run_path(@run.previous), class: 'btn btn-secondary' if @run.previous
       = link_to 'Next', run_path(@run.next), class: 'btn btn-secondary' if @run.next
-    .btn-group.mr-2
+    .btn-group.me-2{role: 'group'}
       = link_to 'New Run', new_run_path, class: 'btn btn-success'
-    .btn-group.mr-2
+    .btn-group.me-2{role: 'group'}
       = link_to 'Edit', edit_run_path(@run), class: 'btn btn-warning'
       = link_to 'Delete', @run, data: {confirm: 'Are you sure?'}, method: :delete, class: 'btn btn-danger'

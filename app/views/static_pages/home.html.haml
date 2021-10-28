@@ -1,12 +1,10 @@
 .row
   .col-12
-    .jumbotron
-      %h1 Run Log
-      %p This is a record of all my recorded runs, dating back to the very beginning.
-      = link_to "View all #{pluralize(number_of_runs, 'run')}", runs_path, class: 'btn btn-primary'
+    %h1 Run Log
+    %p This is a record of all my recorded runs, dating back to the very beginning.
 .row
   .col-6
-    .card
+    .card#mileage-bar-graph
       .card-header
         #{pluralize(number_of_runs, 'run')} for #{pluralize(total_mileage, 'total mile')}
       .card-body

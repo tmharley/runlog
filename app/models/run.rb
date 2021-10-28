@@ -156,10 +156,6 @@ class Run < ApplicationRecord
     weather_type&.is_precip?
   end
 
-  def weather_string
-    weather_type.name
-  end
-
   def shoe_name
     [shoe.manufacturer, shoe.model].join(' ')
   end

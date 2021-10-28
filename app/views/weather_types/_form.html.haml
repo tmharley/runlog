@@ -1,25 +1,24 @@
 = form_for(weather_type) do |f|
-  .form-group.row
-    = f.label :name, 'Name', class: 'col-sm-3'
+  .row.mb-3
+    = f.label :name, 'Name', class: 'col-sm-3 col-form-label'
     .col-sm-4.col-md-3
       = f.text_field :name, class: 'form-control'
-  .form-group.row
-    .col-sm-3
-    .col-sm-4.col-md-3
+  .row.mb-3
+    .col-sm-4.col-md-3.offset-sm-3
       .form-check
         = f.check_box :is_precip, class: 'form-check-input'
         %label.form-check-label
           Precipitation?
-  .form-group.row
-    = f.label :day_icon, 'Day icon', class: 'col-sm-3'
+  .row.mb-3
+    = f.label :day_icon, 'Day icon', class: 'col-sm-3 col-form-label'
     .col-sm-4.col-md-3
       = f.text_field :day_icon, class: 'form-control'
-  .form-group.row
-    = f.label :night_icon, 'Night icon', class: 'col-sm-3'
+  .row.mb-3
+    = f.label :night_icon, 'Night icon', class: 'col-sm-3 col-form-label'
     .col-sm-4.col-md-3
       = f.text_field :night_icon, class: 'form-control'
-  .form-group.row
-    .col-sm-7
+  .row.mb-3
+    .col-sm-7.offset-sm-3
       = submit_tag button_title, class: 'btn btn-primary'
       - unless weather_type.new_record?
         = link_to 'Delete', weather_type, data: {confirm: 'Are you sure?'}, method: :delete, class: 'btn btn-danger'

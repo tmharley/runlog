@@ -1,83 +1,75 @@
 = form_for(run) do |f|
-  .form-group.row
-    = f.label :start_time_string, 'Start time', class: 'col-sm-3'
-    .col-sm-4.col-md-3
+  .row.mb-3
+    = f.label :start_time_string, 'Start time', class: 'col-sm-3 col-form-label'
+    .col-sm-5.col-md-4.col-lg-3
       .input-group.date#start-time{'data-target-input': 'nearest'}
         = f.text_field :start_time_string, id: 'start-time', class: 'form-control datetimepicker-input', 'data-target': '#start-time'
-        .input-group-append{data: {target: '#start-time', toggle: 'datetimepicker'}}
-          .input-group-text
-            %i.fa.fa-calendar
-  .form-group.row
-    .col-sm-3
-    .col-sm-4.col-md-3
+        .input-group-text{data: {target: '#start-time', toggle: 'datetimepicker'}}
+          %i.fa.fa-calendar
+  .row.mb-3
+    .col-sm-4.col-md-3.offset-sm-3
       .form-check
         = f.check_box :is_night, class: 'form-check-input'
         %label.form-check-label
           Night run
-  .form-group.row
-    = f.label :distance, 'Distance', class: 'col-sm-3'
-    .col-sm-4.col-md-3
+  .row.mb-3
+    = f.label :distance, 'Distance', class: 'col-sm-3 col-form-label'
+    .col-sm-4.col-md-3.col-lg-2
       .input-group
         = f.number_field :distance, class: 'form-control', step: 0.01, min: 0
-        .input-group-append
-          %span.input-group-text miles
-  .form-group.row
-    = f.label :duration_string, 'Duration', class: 'col-sm-3'
-    .col-sm-4.col-md-3
+        .input-group-text miles
+  .row.mb-3
+    = f.label :duration_string, 'Duration', class: 'col-sm-3 col-form-label'
+    .col-sm-5.col-md-4.col-lg-3
       = f.text_field :duration_string, class: 'form-control'
-      %small.form-text.text-muted mm:ss or h:mm:ss format
-  .form-group.row
-    = f.label :temperature, 'Weather', class: 'col-sm-3'
-    .col-sm-4.col-md-3
+      .form-text mm:ss or h:mm:ss format
+  .row.mb-3
+    = f.label :temperature, 'Weather', class: 'col-sm-3 col-form-label'
+    .col-sm-3.col-lg-2
       .input-group
         = f.number_field :temperature, class: 'form-control', in: -10..110
-        .input-group-append
-          %span.input-group-text &deg;F
-      %small.form-text.text-muted temperature
-    .col-sm-4.col-md-3
-      = f.select :weather_type_id, WeatherType.all.collect {|wt| [wt.name, wt.id]}, {include_blank: true}, class: 'form-control'
-      %small.form-text.text-muted conditions
-    .col-sm-4.col-md-3
+        .input-group-text &deg;F
+      .form-text temperature
+    .col-sm-3.col-xl-2
+      = f.select :weather_type_id, WeatherType.all.collect {|wt| [wt.name, wt.id]}, {include_blank: true}, class: 'form-select'
+      .form-text conditions
+    .col-sm-3.col-lg-2
       .input-group
         = f.number_field :humidity, class: 'form-control', in: 0..100
-        .input-group-append
-          %span.input-group-text %
-      %small.form-text.text-muted humidity
-  .form-group.row
-    = f.label :elev_gain, 'Elevation gain', class: 'col-sm-3'
-    .col-sm-4.col-md-3
+        .input-group-text %
+      .form-text humidity
+  .row.mb-3
+    = f.label :elev_gain, 'Elevation gain', class: 'col-sm-3 col-form-label'
+    .col-sm-4.col-md-3.col-lg-2
       .input-group
         = f.number_field :elev_gain, class: 'form-control', min: 0
-        .input-group-append
-          %span.input-group-text feet
-  .form-group.row
-    = f.label :heart_rate, 'Heart rate', class: 'col-sm-3'
-    .col-sm-4.col-md-3
+        .input-group-text feet
+  .row.mb-3
+    = f.label :heart_rate, 'Heart rate', class: 'col-sm-3 col-form-label'
+    .col-sm-4.col-md-3.col-lg-2
       .input-group
         = f.number_field :heart_rate, class: 'form-control', min: 0, max: 250
-        .input-group-append
-          %span.input-group-text bpm
-  .form-group.row
-    = f.label :intensity, 'Intensity points', class: 'col-sm-3'
-    .col-sm-4.col-md-3
+        .input-group-text bpm
+  .row.mb-3
+    = f.label :intensity, 'Intensity points', class: 'col-sm-3 col-form-label'
+    .col-sm-3.col-md-2
       = f.number_field :intensity, class: 'form-control', step: 0.01, min: 0
-  .form-group.row
-    .col-sm-3
-    .col-sm-4.col-md-3
+  .row.mb-3
+    .col-sm-5.col-md-4.offset-sm-3
       .form-check
         = f.check_box :is_race, class: 'is-race-checkbox form-check-input'
         %label.form-check-label
           This run is a race
-    .col-sm-3
+    .col-sm-5.offset-sm-3.offset-md-0
       = f.text_field :race_name, class: 'form-control race-name-input', placeholder: 'Race name', style: 'display: none'
-  .form-group.row
-    = f.label :shoe_id, 'Shoe', class: 'col-sm-3'
+  .row.mb-3
+    = f.label :shoe_id, 'Shoe', class: 'col-sm-3 col-form-label'
     .col-sm-4.col-md-3
-      = f.select :shoe_id, Shoe.all.collect {|s| [s.model, s.id]}, {include_blank: true}, class: 'form-control'
-  .form-group.row
+      = f.select :shoe_id, Shoe.all.collect {|s| [s.model, s.id]}, {include_blank: true}, class: 'form-select'
+  .row.mb-3
     = f.label :notes, 'Notes', class: 'col-sm-3'
-    .col-sm-8.col-md-6
+    .col-sm-9
       = f.text_area :notes, rows: 3, class: 'form-control'
-  .form-group.row
-    .col-sm-7
+  .row.mb-3
+    .col.offset-sm-3
       = submit_tag button_title, class: 'btn btn-primary'

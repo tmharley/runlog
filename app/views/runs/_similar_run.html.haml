@@ -1,7 +1,7 @@
 %tr.text-center
   %td=link_to local_date_time_string(run.start_time), run
   %td #{'%.2f' % run.distance} mi
-  %td
+  %td{class: temp_class(run.temperature)}
     - if run.weather_type
       = build_weather_icon(run)
     - unless run.temperature.nil?
