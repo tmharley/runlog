@@ -35,4 +35,40 @@ module StaticPagesHelper
       'd-none d-sm-none d-md-inline'
     end
   end
+
+  def atc_class(atc)
+    if atc > 1.5
+      'table-danger'
+    elsif atc > 1.2
+      'table-warning'
+    elsif atc > 1
+      'table-info'
+    else
+      ''
+    end
+  end
+
+  def long_run_class(ratio)
+    if ratio > 0.5
+      'table-danger'
+    elsif ratio > 1.0 / 3
+      'table-warning'
+    elsif ratio > 0.25
+      'table-info'
+    else
+      ''
+    end
+  end
+
+  def intensity_class(int_per_min)
+    if int_per_min > 0.7
+      'table-danger'
+    elsif int_per_min > 0.55
+      'table-warning'
+    elsif int_per_min > 0.35
+      'table-info'
+    else
+      ''
+    end
+  end
 end

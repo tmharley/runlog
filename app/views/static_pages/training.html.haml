@@ -7,11 +7,19 @@
         %tr
           %th Date
           %th Miles
-          %th 7D Total
-          %th 4W Avg
-          %th AtC
-          %th L/T
+          %th{title: 'Total mileage for last 7 days', 'data-toggle': 'tooltip'}
+            7D Total
+          %th{title: 'Average weekly mileage for last 4 weeks', 'data-toggle': 'tooltip'}
+            4W Avg
+          %th{title: 'Acute to chronic mileage ratio', 'data-toggle': 'tooltip'}
+            AtC
+          %th{title: 'Long run length as ratio of total weekly mileage', 'data-toggle': 'tooltip'}
+            L/T
           %th Intensity
+          %th{title: 'Intensity points per minute', 'data-toggle': 'tooltip'}
+            Int/min
+          %th{title: 'Total intensity for last 7 days', 'data-toggle': 'tooltip'}
+            7D Intensity
       %tbody
         - @days.each do |day|
           = render 'training_day', day: day

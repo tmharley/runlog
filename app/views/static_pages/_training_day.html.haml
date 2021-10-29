@@ -1,8 +1,15 @@
 %tr
-  %td=local_date_string(day[:date])
-  %td=format('%.2f', day[:miles])
+  %td{class: ('table-light' if day[:date].sunday?)}
+    = local_date_string(day[:date])
+  %td{class: ('table-info' if day[:miles].positive?)}
+    = format('%.2f', day[:miles])
   %td=format('%.2f', day[:last_seven_days])
   %td=format('%.2f', day[:last_four_weeks])
-  %td=format('%.2f', day[:atc])
-  %td=format('%d%%', day[:long_to_total] * 100)
+  %td{class: atc_class(day[:atc])}
+    = format('%.2f', day[:atc])
+  %td{class: long_run_class(day[:long_to_total])}
+    = format('%d%%', day[:long_to_total] * 100)
   %td=format('%.2f', day[:intensity])
+  %td{class: intensity_class(day[:intensity_per_minute])}
+    = day[:intensity_per_minute].nan? ? '' : format('%.3f', day[:intensity_per_minute])
+  %td=format('%.2f', day[:seven_days_intensity])
