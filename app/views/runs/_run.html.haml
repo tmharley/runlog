@@ -7,6 +7,8 @@
     = link_to local_date_time_string(run.start_time), run
   %td
     #{'%.2f' % run.distance} mi
+    - if run.is_race?
+      %i.fas.fa-flag-checkered{title: '(race)'}
   %td
     #{run.duration_string}
   %td
