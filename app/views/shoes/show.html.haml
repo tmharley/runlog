@@ -1,33 +1,32 @@
 - provide(:title, 'View shoe')
-.col-12
-  %h1 #{@shoe.manufacturer} #{@shoe.model}
-  .card
-    .card-header.bg-primary.text-white Details
-    .card-body
-      .row
-        .col-sm-4
-          %h3 Manufacturer
-          %p.details=@shoe.manufacturer
-        .col-sm-4
-          %h3 Model
-          %p.details=@shoe.model
-        .col-sm-4
-          %h3 Size
-          %p.details=shoe_size_clean(@shoe.size)
-  .card
-    .card-header.bg-primary.text-white Colors
-    .card-body
-      %p.details.badge{style: "background: ##{@shoe.color_primary}"}
-        \##{@shoe.color_primary}
-      %p.details.badge{style: "background: ##{@shoe.color_secondary}"}
-        \##{@shoe.color_secondary}
-      %p.details.badge{style: "background: ##{@shoe.color_tertiary}"}
-        \##{@shoe.color_tertiary}
-  .btn-toolbar{role: 'toolbar'}
-    .btn-group.me-2{role: 'group'}
-      = link_to 'All Shoes', shoes_path, class: 'btn btn-info'
-    .btn-group.me-2{role: 'group'}
-      = link_to 'New Shoe', new_shoe_path, class: 'btn btn-success'
-    .btn-group.me-2{role: 'group'}
-      = link_to 'Edit', edit_shoe_path(@shoe), class: 'btn btn-warning'
-      = link_to 'Delete', @shoe, data: {confirm: 'Are you sure?'}, method: :delete, class: 'btn btn-danger'
+%h1 #{@shoe.manufacturer} #{@shoe.model}
+.row.row-cols-1.row-cols-sm-2.row-cols-md-3
+  .col
+    .card
+      .card-header.bg-primary.text-white Size
+      .card-body
+        %h4.card-title=shoe_size_clean(@shoe.size)
+  .col
+    .card
+      .card-header.bg-primary.text-white Colors
+      .card-body
+        %p.card-text
+          %span.badge{style: colors_for_display(@shoe.color_primary)}
+            color 1
+          %span.badge{style: colors_for_display(@shoe.color_secondary)}
+            color 2
+          %span.badge{style: colors_for_display(@shoe.color_tertiary)}
+            color 3
+  .col
+    .card
+      .card-header.bg-primary.text-white Mileage
+      .card-body
+        %h4.card-title=@shoe.mileage
+.btn-toolbar{role: 'toolbar'}
+  .btn-group.me-2{role: 'group'}
+    = link_to 'All Shoes', shoes_path, class: 'btn btn-info'
+  .btn-group.me-2{role: 'group'}
+    = link_to 'New Shoe', new_shoe_path, class: 'btn btn-success'
+  .btn-group.me-2{role: 'group'}
+    = link_to 'Edit', edit_shoe_path(@shoe), class: 'btn btn-warning'
+    = link_to 'Delete', @shoe, data: {confirm: 'Are you sure?'}, method: :delete, class: 'btn btn-danger'
