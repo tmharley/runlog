@@ -25,14 +25,16 @@ class Run < ApplicationRecord
   MAX_HEART_RATE = 210
 
   def similar_runs(limit = 5)
-    comparable_runs = Run.all.select(&:can_be_compared?) #- Array(self)
+    comparable_runs = Run.all.select(&:can_be_compared?)
     dists = comparable_runs.map(&:distance)
     hills = comparable_runs.map(&:climb_rate)
     temps = comparable_runs.map(&:temperature)
+    paces = comparable_runs.map(&:pace)
 
     dist_range = dists.max - dists.min
     hill_range = hills.max - hills.min
     temp_range = (temps.max - temps.min) * 1.0
+    pace_range = paces.max - paces.min
 
     runs = comparable_runs.reject { |r| r == self }
     runs.map! do |r|
@@ -41,22 +43,24 @@ class Run < ApplicationRecord
         similarity: similarity(r,
                                dist_range: dist_range,
                                hill_range: hill_range,
-                               temp_range: temp_range)
+                               temp_range: temp_range,
+                               pace_range: pace_range)
       }
     end
     runs.sort! { |a, b| b[:similarity] <=> a[:similarity] }
     runs[0...limit]
   end
 
-  def similarity(other, options = {})
+  def similarity(other, dist_range: 0, hill_range: 0, temp_range: 0, pace_range: 0)
     return 0 unless other.is_a? Run
     return 0 unless can_be_compared? && other.can_be_compared?
 
-    sim_dist = options[:dist_range].zero? ? 1 : 1 - (distance - other.distance).abs / options[:dist_range]
-    sim_hill = options[:hill_range].zero? ? 1 : 1 - (climb_rate - other.climb_rate).abs / options[:hill_range]
-    sim_temp = options[:temp_range].zero? ? 1 : 1 - (temperature - other.temperature).abs / options[:temp_range]
+    sim_dist = dist_range.zero? ? 1 : 1 - (distance - other.distance).abs / dist_range
+    sim_hill = hill_range.zero? ? 1 : 1 - (climb_rate - other.climb_rate).abs / hill_range
+    sim_temp = temp_range.zero? ? 1 : 1 - (temperature - other.temperature).abs / temp_range
+    sim_pace = pace_range.zero? ? 1 : 1 - (pace - other.pace).abs / pace_range
 
-    (sim_dist + sim_hill + sim_temp) / 3
+    (sim_dist + sim_hill + sim_temp + sim_pace) / 4
   end
 
   def can_be_compared?
