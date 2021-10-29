@@ -3,59 +3,56 @@
 %h1
   Search runs
 = form_tag({controller: 'runs', action: 'index'}, method: 'get') do
-  .form-group.row
-    .form-check.col-sm-2
-      = check_box_tag :filter_date, true, false, class: 'form-check-input'
-      %label.form-check-label
-        = label_tag :filter_date, 'Date'
-    = label_tag :start_date, 'from', class: 'col-sm-2'
+  .row.mb-3.align-items-center
+    .col-sm-2
+      .form-check
+        = check_box_tag :filter_date, true, false, class: 'form-check-input'
+        %label.form-check-label
+          = label_tag :filter_date, 'Date'
+    = label_tag :start_date, 'from', class: 'col-sm-2 col-form-label'
     .col-sm-3
-      .input-group.date#start-date{'data-target-input': 'nearest'}
-        = text_field_tag :start_date, @start_date, id: 'start-date', class: 'form-control datetimepicker-input', 'data-target': '#start-date'
-        .input-group-append{data: {target: '#start-date', toggle: 'datetimepicker'}}
-          .input-group-text
-            %i.fa.fa-calendar
-    = label_tag :end_date, 'to', class: 'col-sm-2'
+      .input-group#start-date{'data-target-input': 'nearest'}
+        = text_field_tag :start_date, @start_date, class: 'form-control datetimepicker-input', id: 'start-date', 'data-target': '#start-date'
+        .input-group-text{data: {target: '#start-date', toggle: 'datetimepicker'}}
+          %i.fas.fa-calendar
+    = label_tag :end_date, 'to', class: 'col-sm-2 col-form-label'
     .col-sm-3
-      .input-group.date#end-date{'data-target-input': 'nearest'}
-        = text_field_tag :end_date, @end_date, id: 'end-date', class: 'form-control datetimepicker-input', 'data-target': '#end-date'
-        .input-group-append{data: {target: '#end-date', toggle: 'datetimepicker'}}
-          .input-group-text
-            %i.fa.fa-calendar
-  .form-group.row
-    .form-check.col-sm-2
-      = check_box_tag :filter_dist, true, false, class: 'form-check-input'
-      %label.form-check-label
-        = label_tag :filter_dist, 'Distance'
-    = label_tag :min_dist, 'min', class: 'col-sm-2'
+      .input-group#end-date{'data-target-input': 'nearest'}
+        = text_field_tag :end_date, @end_date, class: 'form-control datetimepicker-input', id: 'end-date', 'data-target': '#end-date'
+        .input-group-text{data: {target: '#end-date', toggle: 'datetimepicker'}}
+          %i.fas.fa-calendar
+  .row.mb-3.align-items-center
+    .col-sm-2
+      .form-check
+        = check_box_tag :filter_dist, true, false, class: 'form-check-input'
+        %label.form-check-label
+          = label_tag :filter_dist, 'Distance'
+    = label_tag :min_dist, 'min', class: 'col-sm-2 col-form-label'
     .col-sm-3
       .input-group
         = number_field_tag :min_dist, 0, class: 'form-control', step: 0.01, min: 0
-        .input-group-append
-          %span.input-group-text miles
-    = label_tag :max_dist, 'max', class: 'col-sm-2'
+        .input-group-text miles
+    = label_tag :max_dist, 'max', class: 'col-sm-2 col-form-label'
     .col-sm-3
       .input-group
         = number_field_tag :max_dist, 100, class: 'form-control', step: 0.01, min: 0
-        .input-group-append
-          %span.input-group-text miles
-  .form-group.row
-    .form-check.col-sm-2
-      = check_box_tag :filter_temp, true, false, class: 'form-check-input'
-      %label.form-check-label
-        = label_tag :filter_temp, 'Temperature'
-    = label_tag :min_temp, 'min', class: 'col-sm-2'
+        .input-group-text miles
+  .row.mb-3.align-items-center
+    .col-sm-2
+      .form-check
+        = check_box_tag :filter_temp, true, false, class: 'form-check-input'
+        %label.form-check-label
+          = label_tag :filter_temp, 'Temperature'
+    = label_tag :min_temp, 'min', class: 'col-sm-2 col-form-label'
     .col-sm-3
       .input-group
         = number_field_tag :min_temp, 0, class: 'form-control', step: 1, min: -20, max: 120
-        .input-group-append
-          %span.input-group-text &deg;F
-    = label_tag :max_temp, 'max', class: 'col-sm-2'
+        .input-group-text &deg;F
+    = label_tag :max_temp, 'max', class: 'col-sm-2 col-form-label'
     .col-sm-3
       .input-group
         = number_field_tag :max_temp, 100, class: 'form-control', step: 1, min: -20, max: 120
-        .input-group-append
-          %span.input-group-text &deg;F
-  .form-group.row
+        .input-group-text &deg;F
+  .row.mb-3
     .col-sm-6
       = submit_tag 'Search', class: 'btn btn-primary'
