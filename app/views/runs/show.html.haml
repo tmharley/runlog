@@ -85,11 +85,11 @@
           %p.card-text #{@run.shoe_mileage} miles
 - if @run.notes?
   .card
-    .card-header.bg-info.text-white Notes
+    .card-header.bg-secondary.text-white Notes
     .card-body=@run.notes
 - if @run.can_be_compared?
   .card
-    .card-header.bg-info.text-white Similar runs
+    .card-header.bg-secondary.text-white Similar runs
     %table.table
       %tr
         %th Date
