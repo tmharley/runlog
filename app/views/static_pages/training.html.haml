@@ -1,5 +1,23 @@
 - provide(:title, 'Training')
-%h1 Training
+%h1 Training history
+
+= form_tag({controller: 'static_pages', action: 'training'}, method: 'get') do
+  .row.mb-3
+    = label_tag :start_date, 'From', class: 'col-auto col-form-label'
+    .col-auto
+      .input-group#start-date{'data-target-input': 'nearest'}
+        = text_field_tag :start_date, @start_date, class: 'form-control datetimepicker-input', id: 'start-date', 'data-target': '#start-date'
+        .input-group-text{data: {target: '#start-date', toggle: 'datetimepicker'}}
+          %i.fas.fa-calendar
+    = label_tag :end_date, 'to', class: 'col-auto col-form-label'
+    .col-auto
+      .input-group#end-date{'data-target-input': 'nearest'}
+        = text_field_tag :end_date, @end_date, class: 'form-control datetimepicker-input', id: 'end-date', 'data-target': '#end-date'
+        .input-group-text{data: {target: '#end-date', toggle: 'datetimepicker'}}
+          %i.fas.fa-calendar
+    .col-auto
+      = submit_tag 'Show', class: 'btn btn-primary'
+
 .row
   .col
     %table.table.table-hover

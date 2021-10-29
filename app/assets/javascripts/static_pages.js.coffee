@@ -6,3 +6,9 @@ $(document).ready ->
   $('[data-toggle="tooltip"]').tooltip({
     container: 'body'
   })
+  $('#start-date').datetimepicker({
+    format: 'YYYY-MM-DD'
+  });
+  $('#end-date').datetimepicker({
+    format: 'YYYY-MM-DD'
+  });
