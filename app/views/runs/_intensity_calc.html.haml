@@ -1,0 +1,64 @@
+.modal#intensity-calc
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %h5.modal-title Calculate intensity
+        %button.btn-close{type: 'button', 'data-bs-dismiss': 'modal', 'aria-label': 'Close'}
+      .modal-body
+        = form_tag do
+          .row.mb-3.align-items-center
+            = label_tag :easy, 'Easy', class: 'col-sm-3 col-form-label'
+            .col-sm-3
+              = text_field_tag :easy, nil, data: {weight: 0.2, target: 'easy_total'}, class: 'form-control intensity-input'
+            %label.col-sm-3
+              &times; 0.2 =
+            .col-sm-3
+              = text_field_tag :easy_total, 0.0, class: 'form-control intensity-subtotal', disabled: true
+          .row.mb-3.align-items-center
+            = label_tag :marathon, 'Marathon', class: 'col-sm-3 col-form-label'
+            .col-sm-3
+              = text_field_tag :marathon, nil, data: {weight: 0.4, target: 'marathon_total'}, class: 'form-control intensity-input'
+            %label.col-sm-3
+              &times; 0.4 =
+            .col-sm-3
+              = text_field_tag :marathon_total, 0.0, class: 'form-control intensity-subtotal', disabled: true
+          .row.mb-3.align-items-center
+            = label_tag :threshold, 'Threshold', class: 'col-sm-3 col-form-label'
+            .col-sm-3
+              = text_field_tag :threshold, nil, data: {weight: 0.6, target: 'threshold_total'}, class: 'form-control intensity-input'
+            %label.col-sm-3
+              &times; 0.6 =
+            .col-sm-3
+              = text_field_tag :threshold_total, 0.0, class: 'form-control intensity-subtotal', disabled: true
+          .row.mb-3.align-items-center
+            = label_tag :ten_k, '10k effort', class: 'col-sm-3 col-form-label'
+            .col-sm-3
+              = text_field_tag :ten_k, nil, data: {weight: 0.8, target: 'ten_k_total'}, class: 'form-control intensity-input'
+            %label.col-sm-3
+              &times; 0.8 =
+            .col-sm-3
+              = text_field_tag :ten_k_total, 0.0, class: 'form-control intensity-subtotal', disabled: true
+          .row.mb-3.align-items-center
+            = label_tag :interval, 'Interval', class: 'col-sm-3 col-form-label'
+            .col-sm-3
+              = text_field_tag :interval, nil, data: {weight: 1.0, target: 'interval_total'}, class: 'form-control intensity-input'
+            %label.col-sm-3
+              &times; 1.0 =
+            .col-sm-3
+              = text_field_tag :interval_total, 0.0, class: 'form-control intensity-subtotal', disabled: true
+          .row.mb-3.align-items-center
+            = label_tag :repetition, 'Repetition', class: 'col-sm-3 col-form-label'
+            .col-sm-3
+              = text_field_tag :repetition, nil, data: {weight: 1.5, target: 'repetition_total'}, class: 'form-control intensity-input'
+            %label.col-sm-3
+              &times; 1.5 =
+            .col-sm-3
+              = text_field_tag :repetition_total, 0.0, class: 'form-control intensity-subtotal', disabled: true
+          .row.mb-3.align-items-center
+            %label.col-sm-9
+              Total
+            .col-sm-3
+              = text_field_tag :grand_total, 0.0, class: 'form-control', disabled: true
+      .modal-footer
+        %button.btn.btn-secondary{'data-bs-dismiss': 'modal'} Cancel
+        %button.btn.btn-primary#intensity-confirm{'data-bs-dismiss': 'modal'} Use

@@ -23,3 +23,11 @@ $(document).ready ->
   $('#end-date').datetimepicker({
     format: 'YYYY-MM-DD'
   });
+  reduceFunc = (a, b) => a * 60 + parseInt(b)
+  sumFunc = (a, b) => parseFloat(a) + parseFloat(b)
+  $('.intensity-input').on 'change', (e) ->
+    total = (this.value.split(':').reduce(reduceFunc) * this.dataset.weight / 60.0).toFixed(4)
+    document.getElementById(this.dataset.target).value = total
+    document.getElementById('grand_total').value = $('.intensity-subtotal').map(() -> this.value).get().reduce(sumFunc).toFixed(2)
+  $('#intensity-confirm').on 'click', (e) ->
+    document.getElementById('run_intensity').value = document.getElementById('grand_total').value

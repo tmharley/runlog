@@ -1,3 +1,4 @@
+= render 'intensity_calc'
 = form_for(run) do |f|
   .row.mb-3
     = f.label :start_time_string, 'Start time', class: 'col-sm-3 col-form-label'
@@ -53,7 +54,10 @@
   .row.mb-3
     = f.label :intensity, 'Intensity points', class: 'col-sm-3 col-form-label'
     .col-sm-3.col-md-2
-      = f.number_field :intensity, class: 'form-control', step: 0.01, min: 0
+      .input-group
+        = f.number_field :intensity, class: 'form-control', step: 0.01, min: 0
+        .input-group-text{data: {'bs-toggle': 'modal', 'bs-target': '#intensity-calc'}}
+          %i.fas.fa-calculator
   .row.mb-3
     .col-sm-5.col-md-4.offset-sm-3
       .form-check
