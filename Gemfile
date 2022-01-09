@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 ruby '2.7.2'
 
 gem 'rack', '~> 2.1.4'
-gem 'rails', '~> 5.2.6'
+gem 'rails', '~> 6.0.4'
 
 gem 'bootstrap', '~> 5.1.0'
 gem 'bootstrap-will_paginate', '~> 1.0.0'
@@ -24,7 +24,7 @@ gem 'puma', '~> 4.3'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3', '~> 1.3.13'
+gem 'sqlite3', '~> 1.4'
 gem 'timespan', git: 'https://github.com/toxaq/timespan.git'
 
 # Gems used only for assets and not required
