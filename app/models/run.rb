@@ -77,21 +77,17 @@ class Run < ApplicationRecord
     @invalid_start_time = true
   end
 
-  def local_time
-    start_time.in_time_zone('Eastern Time (US & Canada)')
-  end
-
   def start_time_string
-    time = id? ? local_time : Time.now
+    time = id? ? start_time : Time.now
     time.strftime('%Y-%m-%d %H:%M')
   end
 
   def day_of_week
-    local_time.strftime('%A')
+    start_time.strftime('%A')
   end
 
   def time_of_day
-    case local_time.hour
+    case start_time.hour
     when 4..11
       "#{day_of_week} morning"
     when 12..16

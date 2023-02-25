@@ -1,8 +1,8 @@
 - if @run.is_race?
-  - page_title = @run.race_name || "Race on #{@run.local_time.strftime('%B %e, %Y')}"
+  - page_title = @run.race_name || "Race on #{@run.start_time.strftime('%B %e, %Y')}"
   - page_header = @run.race_name || "#{@run.time_of_day} race"
 - else
-  - page_title = @run.local_time.strftime('%B %e, %Y')
+  - page_title = @run.start_time.strftime('%B %e, %Y')
   - page_header = "#{@run.time_of_day} run"
 - provide(:title, page_title)
 
@@ -10,9 +10,9 @@
   .run-date-header.col-3.col-sm-2
     .card
       .card-header.bg-primary.text-center.text-white
-        = @run.local_time.strftime('%b')
+        = @run.start_time.strftime('%b')
       .card-body.text-center
-        = @run.local_time.day
+        = @run.start_time.day
   .col-6.col-sm-7
     %h1.text-left=page_header
     %h5.text-left=local_time_string(@run.start_time)

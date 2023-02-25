@@ -21,12 +21,8 @@ class Shoe < ApplicationRecord
     last_run.start_time rescue nil
   end
 
-  def last_used_local_time
-    last_used.in_time_zone('Eastern Time (US & Canada)')
-  end
-
   def last_used_local_string
-    last_used ? last_used_local_time.strftime('%a %-m/%-d/%y') : 'never'
+    last_used ? last_used.strftime('%a %-m/%-d/%y') : 'never'
   end
 
   def bright_color
