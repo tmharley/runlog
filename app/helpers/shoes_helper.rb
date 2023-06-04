@@ -11,4 +11,8 @@ module ShoesHelper
     style += '; color: black' if Color::RGB.by_hex(shoe_color).brightness > 0.75
     style
   end
+
+  def model_with_mileage(shoe)
+    "#{shoe.model} (#{shoe.mileage} mi)"
+  end
 end
