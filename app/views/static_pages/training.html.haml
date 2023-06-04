@@ -38,6 +38,8 @@
             Int/min
           %th{title: 'Total intensity for last 7 days', 'data-toggle': 'tooltip'}
             7D Intensity
+          %th{title: 'Acute to chronic intensity ratio', 'data-toggle': 'tooltip'}
+            Int AtC
       %tbody
         - @days.each do |day|
           = render 'training_day', day: day

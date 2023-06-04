@@ -49,7 +49,9 @@ module StaticPagesHelper
   end
 
   def long_run_class(ratio)
-    if ratio > 0.5
+    if ratio.nil?
+      'table-secondary'
+    elsif ratio > 0.5
       'table-danger'
     elsif ratio > 1.0 / 3
       'table-warning'
