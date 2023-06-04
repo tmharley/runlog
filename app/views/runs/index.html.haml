@@ -10,13 +10,12 @@
       .card-header
         = page_entries_info
         = link_to build_icon('search'), search_runs_path, style: 'float: right'
-      %table.table.table-hover.runs
+      %table.table.table-sm.table-hover.runs
         %thead
           %tr
             %th Start time
             %th Distance
             %th Duration
-            %th Pace
             %th Weather
             %th Climb
             %th Notes

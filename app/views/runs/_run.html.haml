@@ -11,8 +11,8 @@
       %i.fas.fa-flag-checkered{title: '(race)'}
   %td
     #{run.duration_string}
-  %td
-    #{run.pace_string}
+    %small
+      (#{run.pace_string})
   %td.weather{class: "#{temp_class(run.temperature)} #{'rain' if rain}", title: ('rain' if rain)}
     - if run.weather_type
       = build_weather_icon(run)
@@ -21,6 +21,8 @@
   %td
     - unless run.elev_gain.nil?
       #{run.elev_gain} ft
+      %small
+        (#{'%.1f' % run.climb_rate} ft/mi)
   - if run.notes?
     %td{title: run.notes, 'data-toggle': 'tooltip'}
       = build_icon('comment-alt')

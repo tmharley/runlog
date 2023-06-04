@@ -12,7 +12,7 @@ class RunsController < ApplicationController
 
     criteria[:distance] = params[:min_dist]..params[:max_dist] if params[:filter_dist]
     criteria[:temperature] = params[:min_temp]..params[:max_temp] if params[:filter_temp]
-    criteria[:is_race] = true if params[:type] == 'race'
+    # criteria[:is_race] = true if params[:type] == 'race'
 
     run_list = if criteria.any?
                  Run.where(criteria).order(start_time: :desc)
@@ -20,7 +20,9 @@ class RunsController < ApplicationController
                  Run.all.order(start_time: :desc)
                end
 
-    @runs = run_list.paginate(per_page: 20, page: params[:page])
+    run_list = params[:type] == 'race' ? run_list.select(&:is_race) : run_list
+
+    @runs = run_list.paginate(per_page: 50, page: params[:page])
 
     respond_to do |format|
       format.html
