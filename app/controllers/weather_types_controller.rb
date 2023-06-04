@@ -1,6 +1,12 @@
 class WeatherTypesController < ApplicationController
   def index
     @weather_types = WeatherType.all.paginate(per_page: 20, page: params[:page])
+    min_temp, max_temp = Run.pluck(:temperature).compact!.minmax
+    @temp_counts = {}
+    (min_temp / 5).upto(max_temp / 5).each do |temp_category|
+      label = "#{temp_category * 5}&ndash;#{temp_category * 5 + 4}".html_safe
+      @temp_counts[label] = Run.where(temperature: temp_category * 5...(temp_category + 1) * 5).count
+    end
   end
 
   def new

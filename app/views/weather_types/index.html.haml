@@ -1,7 +1,16 @@
 - provide(:title, 'Weather types')
 .row
   .col-12
-    %h1 Weather types
+    %h1 Weather statistics
+    .card
+      .card-header
+        Temperatures
+      .card-body
+        - @temp_counts.each do |temp, count|
+          = render 'shared/graph_bar', bar_height: count,
+                                      tooltip: pluralize(count, 'run'),
+                                      label_category: temp,
+                                      label_amount: count
     .text-center
       =will_paginate(@runs, renderer: WillPaginate::ActionView::Bootstrap4LinkRenderer)
     .card
