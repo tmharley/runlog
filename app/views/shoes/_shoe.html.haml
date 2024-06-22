@@ -1,14 +1,14 @@
 %tr
   %td=shoe.manufacturer
-  %td
-    = link_to shoe.model, shoe_path(shoe)
-    - if shoe.retired?
-      %span.badge.rounded-pill.bg-secondary{title: 'retired'} r
+  %td=link_to shoe.model, shoe_path(shoe)
   %td
     %span.badge{style: colors_for_display(shoe.color_primary)} 1
     %span.badge{style: colors_for_display(shoe.color_secondary)} 2
     %span.badge{style: colors_for_display(shoe.color_tertiary)} 3
   %td=shoe_size_clean(shoe.size)
-  %td=shoe.last_used_local_string
+  %td
+    = shoe.last_used_local_string
+    - if shoe.retired?
+      %span.badge.rounded-pill.bg-secondary{title: 'retired'} r
   %td=shoe.runs.count
   %td='%.2f' % shoe.mileage
