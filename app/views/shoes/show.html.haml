@@ -1,5 +1,9 @@
 - provide(:title, 'View shoe')
-%h1 #{@shoe.manufacturer} #{@shoe.model}
+%h1
+  #{@shoe.manufacturer}
+  #{@shoe.model}
+  - if @shoe.retired?
+    %span.badge.rounded-pill.bg-secondary retired
 .row.row-cols-1.row-cols-sm-2.row-cols-md-3
   .col
     .card

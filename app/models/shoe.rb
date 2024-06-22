@@ -1,6 +1,8 @@
 class Shoe < ApplicationRecord
   has_many :runs
 
+  scope :active, -> { where retired: false }
+
   validates :manufacturer, presence: true
   validates :model, presence: true
   validates :color_primary, presence: true

@@ -1,6 +1,9 @@
 %tr
   %td=shoe.manufacturer
-  %td=link_to shoe.model, shoe_path(shoe)
+  %td
+    = link_to shoe.model, shoe_path(shoe)
+    - if shoe.retired?
+      %span.badge.rounded-pill.bg-secondary{title: 'retired'} r
   %td
     %span.badge{style: colors_for_display(shoe.color_primary)} 1
     %span.badge{style: colors_for_display(shoe.color_secondary)} 2

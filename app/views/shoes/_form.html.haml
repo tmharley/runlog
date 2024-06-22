@@ -30,5 +30,11 @@
         .input-group-text #
         = f.text_field :color_tertiary, maxlength: 6, class: 'form-control'
   .row.mb-3
+    .col-sm-4.col-md-3.offset-sm-3
+      .form-check
+        = f.check_box :retired, class: 'form-check-input'
+        %label.form-check-label
+          Retired
+  .row.mb-3
     .col-sm-6.offset-sm-3
       = submit_tag button_title, class: 'btn btn-primary'

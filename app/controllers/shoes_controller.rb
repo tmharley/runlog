@@ -55,6 +55,7 @@ class ShoesController < ApplicationController
 
   def shoe_params
     params.require(:shoe).permit(:manufacturer, :model, :color_primary,
-                                 :color_secondary, :color_tertiary, :size)
+                                 :color_secondary, :color_tertiary, :size,
+                                 :retired)
   end
 end
