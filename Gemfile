@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.7.2'
+ruby '3.0.4'
 
 gem 'rack', '~> 2.1.4'
 gem 'rails', '~> 6.1.0'
@@ -8,7 +8,7 @@ gem 'rails', '~> 6.1.0'
 gem 'bootstrap', '~> 5.1.0'
 gem 'bootstrap-will_paginate', '~> 1.0.0'
 gem 'bootstrap_form'
-gem 'bootsnap'
+gem 'bootsnap', '~> 1.18.4'
 gem 'bourbon'
 gem 'color'
 gem 'momentjs-rails', '>= 2.9.0'
@@ -24,7 +24,7 @@ gem 'puma', '~> 4.3'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3', '~> 1.4'
+gem 'sqlite3', '< 2'
 gem 'timespan', git: 'https://github.com/toxaq/timespan.git'
 
 # Gems used only for assets and not required
