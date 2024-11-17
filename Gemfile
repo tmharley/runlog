@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 ruby '2.7.2'
 
 gem 'rack', '~> 2.1.4'
-gem 'rails', '~> 6.0.4'
+gem 'rails', '~> 6.1.0'
 
 gem 'bootstrap', '~> 5.1.0'
 gem 'bootstrap-will_paginate', '~> 1.0.0'
@@ -14,7 +14,7 @@ gem 'color'
 gem 'momentjs-rails', '>= 2.9.0'
 gem 'bootstrap4-datetime-picker-rails'
 gem 'ruby_native_statistics'
-gem 'haml', '~> 5.0.0'
+gem 'haml', '~> 5.2.2'
 gem 'rake', '~> 12.3.3'
 gem 'loofah', '~> 2.3.1'
 
