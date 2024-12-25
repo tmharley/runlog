@@ -35,7 +35,7 @@ class ShoesController < ApplicationController
 
   def update
     @shoe = Shoe.find(params[:id])
-    if @shoe.update_attributes(shoe_params)
+    if @shoe.update(shoe_params)
       flash[:success] = 'Shoe was successfully updated.'
       redirect_to @shoe
     else

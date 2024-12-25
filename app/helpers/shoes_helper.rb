@@ -13,6 +13,6 @@ module ShoesHelper
   end
 
   def model_with_mileage(shoe)
-    "#{shoe.model} (#{shoe.mileage} mi)"
+    "#{shoe.model} (#{shoe.mileage.round(2)} mi)"
   end
 end

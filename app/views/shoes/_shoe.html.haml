@@ -11,4 +11,4 @@
     - if shoe.retired?
       %span.badge.rounded-pill.bg-secondary{title: 'retired'} r
   %td=shoe.runs.count
-  %td='%.2f' % shoe.mileage
+  %td=shoe.mileage.round(2)

@@ -25,7 +25,7 @@
     .card
       .card-header.bg-primary.text-white Mileage
       .card-body
-        %h4.card-title=@shoe.mileage
+        %h4.card-title=@shoe.mileage.round(2)
 .btn-toolbar{role: 'toolbar'}
   .btn-group.me-2{role: 'group'}
     = link_to 'All Shoes', shoes_path, class: 'btn btn-info'
