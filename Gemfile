@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
 
-ruby '3.0.4'
+ruby '3.3.6'
 
-gem 'rack', '~> 2.1.4'
+gem 'rack', '< 3'
 gem 'rails', '~> 6.1.0'
 
 gem 'bootstrap', '~> 5.1.0'
@@ -31,7 +31,7 @@ gem 'timespan', git: 'https://github.com/toxaq/timespan.git'
 # in production environments by default.
 gem 'coffee-rails', '>= 3.2.1'
 gem 'uglifier', '>= 1.0.3'
-gem 'webpacker'
+gem 'webpacker', '~> 5.4.0'
 
 gem 'jquery-rails'
 
