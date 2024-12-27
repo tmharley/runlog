@@ -16,10 +16,6 @@
   .col-6.col-sm-7
     %h1.text-left=page_header
     %h5.text-left=local_time_string(@run.start_time)
-  - if @run.is_race?
-    .col-3.run-rating
-      .h1=star_output(@run.race_performance)
-      %p Raw rating: #{'%d' % @run.race_performance}
 .row.row-cols-1.row-cols-sm-2.row-cols-md-3
   .col
     .card{class: ('bg-success text-white' if @run.distance_record?)}

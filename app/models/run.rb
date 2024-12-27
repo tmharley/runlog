@@ -14,16 +14,6 @@ class Run < ApplicationRecord
   validates :humidity, numericality: 0..100, allow_nil: true
   validates :intensity, numericality: { greater_than_or_equal_to: 0 }, allow_nil: true
 
-  REG_INTERCEPT = -614.6221
-  REG_DISTANCE = 1125.7969
-  REG_TEMPERATURE = 2.0218
-  REG_TIME = -19.6665
-  REG_STDEV = 26.04043
-
-  # temporary constants, want these to be configurable:
-  MIN_HEART_RATE = 59
-  MAX_HEART_RATE = 210
-
   def similar_runs(limit = 5)
     comparable_runs = Run.all.select(&:can_be_compared?)
     dists = comparable_runs.map(&:distance)
@@ -130,21 +120,12 @@ class Run < ApplicationRecord
     elev_gain / distance
   end
 
-  def days_from_start
-    @@first_run_date ||= Run.order('start_time ASC').first.start_time.to_date
-    start_time.to_date - @@first_run_date
-  end
-
   def precip?
     weather_type&.is_precip?
   end
 
   def shoe_name
     [shoe.manufacturer, shoe.model].join(' ')
-  end
-
-  def race_performance
-    100 + 50 * (expected_race_pace - pace) / REG_STDEV
   end
 
   def previous
@@ -156,7 +137,7 @@ class Run < ApplicationRecord
   end
 
   def shoe_mileage
-    shoe&.mileage(as_of: start_time)
+    shoe&.mileage(as_of: start_time).round(2)
   end
 
   def dewpoint
@@ -174,9 +155,5 @@ class Run < ApplicationRecord
       h = seconds / 3600
       "#{h}:" + Time.at(seconds).strftime('%M:%S')
     end
-  end
-
-  def expected_race_pace
-    REG_INTERCEPT + (distance ** 0.06) * REG_DISTANCE + temperature * REG_TEMPERATURE + (days_from_start ** (1.0 / 3)) * REG_TIME
   end
 end
