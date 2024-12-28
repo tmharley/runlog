@@ -2,20 +2,19 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-$record-color: lighten($info, 65%);
-$rain-color: lighten($success, 65%);
+$record-color: lighten(#0dcaf0, 65%);
+$rain-color: lighten(#198754, 65%);
 $night-color: $gray-200;
-$record-hover-color: lighten($info, 60%);
-$rain-hover-color: lighten($success, 60%);
+$record-hover-color: lighten(#0dcaf0, 60%);
+$rain-hover-color: lighten(#198754, 60%);
 $night-hover-color: $gray-300;
 
 table.runs {
   tr {
     td {
       text-align: center;
-      a:visited {
+      a {
         color: $primary;
-        background-color: lighten($primary, 75%);
         &:hover {
           text-decoration: none;
         }

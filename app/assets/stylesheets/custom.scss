@@ -139,7 +139,7 @@ table {
 footer {
   margin-top: 45px;
   padding-top: 5px;
-  border-top: 1px solid $gray-300;
+  border-top: 1px solid #dee2e6; // $gray-300;
   small {
     float: left;
   }
@@ -162,37 +162,37 @@ select.date-select {
 /* weather */
 
 .temp0 {
-  color: $pink;
+  color: $temp0 !important;
 }
 .temp10 {
-  color: $purple;
+  color: $temp10 !important;
 }
 .temp20 {
-  color: $indigo;
+  color: $temp20 !important;
 }
 .temp30 {
-  color: $blue;
+  color: $temp30 !important;
 }
 .temp40 {
-  color: $cyan;
+  color: $temp40 !important;
 }
 .temp50 {
-  color: $teal;
+  color: $temp50 !important;
 }
 .temp60 {
-  color: $green;
+  color: $temp60 !important;
 }
 .temp70 {
-  color: $yellow;
+  color: $temp70 !important;
 }
 .temp80 {
-  color: $orange;
+  color: $temp80 !important;
 }
 .temp90 {
-  color: $red;
+  color: $temp90 !important;
 }
 .temp100 {
-  color: $pink;
+  color: $temp100 !important;
 }
 
 /* icons */

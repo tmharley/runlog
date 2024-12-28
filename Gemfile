@@ -3,9 +3,9 @@ source 'https://rubygems.org'
 ruby '3.3.6'
 
 gem 'rack', '< 3'
-gem 'rails', '~> 6.1.0'
+gem 'rails', '~> 7.0.0'
 
-gem 'bootstrap', '~> 5.1.0'
+gem 'bootstrap', '> 5.1.0'
 gem 'bootstrap-will_paginate', '~> 1.0.0'
 gem 'bootstrap_form'
 gem 'bootsnap', '~> 1.18.4'
@@ -14,8 +14,9 @@ gem 'color'
 gem 'momentjs-rails', '>= 2.9.0'
 gem 'bootstrap4-datetime-picker-rails'
 gem 'ruby_native_statistics'
+gem 'dartsass-sprockets', '~> 3.1.0'
 gem 'haml', '~> 5.2.2'
-gem 'rake', '~> 12.3.3'
+gem 'rake', '~> 13.0'
 gem 'loofah', '~> 2.3.1'
 
 # Use Puma as the app server
@@ -39,7 +40,7 @@ gem 'rack-cors'#, require: 'rack-cors'
 
 group :development do
   gem 'rails_best_practices'
-  gem 'web-console', '~> 2.0'
+  gem 'web-console', '> 2.3.0'
   gem 'listen'
 end
 
