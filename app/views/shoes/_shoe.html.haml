@@ -7,7 +7,7 @@
     %span.badge{style: colors_for_display(shoe.color_tertiary)} 3
   %td=shoe_size_clean(shoe.size)
   %td
-    = shoe.last_used_local_string
+    = link_to shoe.last_used_local_string, runs_shoe_path(shoe)
     - if shoe.retired?
       %span.badge.rounded-pill.bg-secondary{title: 'retired'} r
   %td=shoe.runs.count

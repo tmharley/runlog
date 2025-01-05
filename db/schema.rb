@@ -10,16 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_11_17_222314) do
-
+ActiveRecord::Schema[7.0].define(version: 2024_12_27_185208) do
   create_table "runs", force: :cascade do |t|
-    t.datetime "start_time"
+    t.datetime "start_time", precision: nil
     t.decimal "distance"
     t.integer "duration"
     t.integer "temperature"
     t.integer "elev_gain"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.boolean "is_race"
     t.string "notes", limit: 255
     t.string "race_name", limit: 255
@@ -40,8 +39,8 @@ ActiveRecord::Schema.define(version: 2024_11_17_222314) do
     t.string "color_primary", limit: 255
     t.string "color_secondary", limit: 255
     t.decimal "size"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", precision: nil
+    t.datetime "updated_at", precision: nil
     t.string "color_tertiary", limit: 255
     t.boolean "retired", default: false
   end
@@ -49,8 +48,8 @@ ActiveRecord::Schema.define(version: 2024_11_17_222314) do
   create_table "weather_types", force: :cascade do |t|
     t.string "name", limit: 255
     t.boolean "is_precip"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", precision: nil
+    t.datetime "updated_at", precision: nil
     t.string "day_icon"
     t.string "night_icon"
   end

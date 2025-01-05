@@ -12,7 +12,7 @@ class RunsController < ApplicationController
 
     criteria[:distance] = params[:min_dist]..params[:max_dist] if params[:filter_dist]
     criteria[:temperature] = params[:min_temp]..params[:max_temp] if params[:filter_temp]
-    # criteria[:is_race] = true if params[:type] == 'race'
+    criteria[:shoe_id] = params[:shoe_id] if params[:shoe_id]
 
     run_list = if criteria.any?
                  Run.where(criteria).order(start_time: :desc)

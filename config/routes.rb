@@ -6,7 +6,11 @@ Rails.application.routes.draw do
       get 'search'
     end
   end
-  resources :shoes
+  resources :shoes do
+    member do
+      get 'runs'
+    end
+  end
   resources :weather_types, except: [:show]
   get 'training' => 'static_pages#training'
 end

@@ -12,6 +12,8 @@ module RunsHelper
       "#{page_title_class.capitalize} in #{params[:year]}"
     elsif params[:start_date]
       'Search results'
+    elsif params[:shoe_id]
+      "All #{page_title_class} for shoe"
     else
       "All #{page_title_class}"
     end

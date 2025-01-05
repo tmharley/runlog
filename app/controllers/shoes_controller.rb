@@ -51,6 +51,10 @@ class ShoesController < ApplicationController
     redirect_to shoes_url
   end
 
+  def runs
+    redirect_to runs_url(shoe_id: params[:id])
+  end
+
   private
 
   def shoe_params
